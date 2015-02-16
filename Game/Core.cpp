@@ -1,7 +1,8 @@
-#include "Engine\Core\Interpolated.hpp"
+#include "Engine\Physics\Reality.h"
+#include "Engine\Core\Deterministic.hpp"
 
 int main()
 {
-	//Engine::Core::Interpolated< > 
+	Engine::Core::Deterministic< Engine::Physics::Reality >(1.0f / 60.0f);
 	return 0;
 }

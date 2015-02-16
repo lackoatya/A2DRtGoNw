@@ -24,6 +24,18 @@
     <ClCompile Include="Game\Core.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Physics\Reality.cpp">
+      <Filter>Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Physics\Body.cpp">
+      <Filter>Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Physics\Manifold.cpp">
+      <Filter>Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Physics\Collision.cpp">
+      <Filter>Engine\Physics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Core\Processable.h">
@@ -40,6 +52,21 @@
     </ClInclude>
     <ClInclude Include="Engine\Core\Interpolated.hpp">
       <Filter>Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Physics\Reality.h">
+      <Filter>Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Physics\Body.h">
+      <Filter>Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Physics\Shape.h">
+      <Filter>Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Physics\Manifold.h">
+      <Filter>Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Physics\Collision.h">
+      <Filter>Engine\Physics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

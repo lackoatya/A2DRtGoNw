@@ -11,7 +11,7 @@ namespace Engine
 		template < class Processable >
 		static void Deterministic(real32 const& _interval)
 		{
-			Processable instance;
+			Processable instance(_interval);
 
 			real32 elapsed_time = 0.;
 			boost::chrono::steady_clock::time_point now, last_time = boost::chrono::steady_clock::now();
@@ -24,7 +24,7 @@ namespace Engine
 
 				while (_interval < elapsed_time)
 				{
-					instance.Update();
+					instance.Process();
 
 					elapsed_time -= _interval;
 				}

@@ -39,7 +39,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir);D:\boost_1_57_0;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);$(ProjectDir)\Libraries;D:\boost_1_57_0;$(IncludePath)</IncludePath>
     <LibraryPath>D:\boost_1_57_0\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -67,6 +67,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Physics\Body.cpp" />
+    <ClCompile Include="Engine\Physics\Collision.cpp" />
+    <ClCompile Include="Engine\Physics\Manifold.cpp" />
+    <ClCompile Include="Engine\Physics\Reality.cpp" />
     <ClCompile Include="Game\Core.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -74,6 +78,11 @@
     <ClInclude Include="Engine\Core\Processable.h" />
     <ClInclude Include="Engine\Core\NonDeterministic.hpp" />
     <ClInclude Include="Engine\Core\Deterministic.hpp" />
+    <ClInclude Include="Engine\Physics\Body.h" />
+    <ClInclude Include="Engine\Physics\Collision.h" />
+    <ClInclude Include="Engine\Physics\Manifold.h" />
+    <ClInclude Include="Engine\Physics\Reality.h" />
+    <ClInclude Include="Engine\Physics\Shape.h" />
     <ClInclude Include="Engine\Types.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

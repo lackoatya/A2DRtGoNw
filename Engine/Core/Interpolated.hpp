@@ -11,7 +11,7 @@ namespace Engine
 		template < class Deterministic_Processable, class NonDeterministic_Processable >
 		static void Interpolated(real32 const& _deterministic_interval, real32 const& _nondeterministic_interval)
 		{
-			Deterministic_Processable model;
+			Deterministic_Processable model(_deterministic_interval);
 			NonDeterministic_Processable < Deterministic_Processable > view;
 
 			real32 elapsed_time = 0., elapsed_model_time = 0., elapsed_view_time = 0.;
