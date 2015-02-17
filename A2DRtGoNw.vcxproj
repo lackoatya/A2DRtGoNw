@@ -71,7 +71,7 @@
     <ClCompile Include="Engine\Physics\Collision.cpp" />
     <ClCompile Include="Engine\Physics\Manifold.cpp" />
     <ClCompile Include="Engine\Physics\Reality.cpp" />
-    <ClCompile Include="Game\Core.cpp" />
+    <ClCompile Include="P3A\Core.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Core\Interpolated.hpp" />

@@ -4,9 +4,6 @@
     <Filter Include="Engine">
       <UniqueIdentifier>{589957b7-487a-40e9-9ee6-dceae5611c67}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game">
-      <UniqueIdentifier>{b9b304dc-d27c-4491-ab83-308d12d52f06}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Core">
       <UniqueIdentifier>{ffcce7b2-2230-4cc0-ac71-3cbb71049f37}</UniqueIdentifier>
     </Filter>
@@ -19,11 +16,14 @@
     <Filter Include="Engine\Network">
       <UniqueIdentifier>{f62f2220-eb6c-4b65-a390-b060d1124c9c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="P3A">
+      <UniqueIdentifier>{4980fd26-bfa3-4989-8be0-d6312f25ec07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="P3A\Graphics">
+      <UniqueIdentifier>{16855621-2d6e-4bbb-8e9f-4eaecbe17220}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Game\Core.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Physics\Reality.cpp">
       <Filter>Engine\Physics</Filter>
     </ClCompile>
@@ -35,6 +35,9 @@
     </ClCompile>
     <ClCompile Include="Engine\Physics\Collision.cpp">
       <Filter>Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="P3A\Core.cpp">
+      <Filter>P3A</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
