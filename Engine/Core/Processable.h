@@ -6,16 +6,16 @@ namespace Engine
 {
 	namespace Core
 	{
+		template < class ProcessResult >
 		class Processable
 		{
 		public:
-			Processable() = default;
-			~Processable() = default;
-			Processable(const Processable &_other) = default;
-			Processable & operator=(const Processable &_other) = default;
+			inline Processable(void) = default;
+			inline Processable(const Processable &_other) = default;
+			inline Processable & operator=(const Processable &_other) = default;
+			inline virtual ~Processable(void) = default;
 
-			virtual uint8 Valid() = 0;  // TODO move this to StateHandler!
-			virtual void Process() = 0;
+			virtual ProcessResult Process() = 0;
 		};
 	}
 }

@@ -40,16 +40,18 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(ProjectDir);$(ProjectDir)\Libraries\Include;D:\boost_1_57_0;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)\Libraries\Library;D:\boost_1_57_0\stage\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(ProjectDir)\Libraries\Library\Win32;D:\boost_1_57_0\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>opengl32.lib;glew32sd.lib;glfw3.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -67,23 +69,36 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Graphics\Shader.cpp" />
+    <ClCompile Include="Engine\Graphics\Texture.cpp" />
+    <ClCompile Include="Engine\Graphics\WindowContext.cpp" />
     <ClCompile Include="Engine\Physics\Body.cpp" />
     <ClCompile Include="Engine\Physics\Collision.cpp" />
     <ClCompile Include="Engine\Physics\Manifold.cpp" />
     <ClCompile Include="Engine\Physics\Reality.cpp" />
     <ClCompile Include="P3A\Core.cpp" />
+    <ClCompile Include="P3A\Graphics\Menu.cpp" />
+    <ClCompile Include="P3A\Graphics\GraphicsContext.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Engine\Core\Interpolated.hpp" />
     <ClInclude Include="Engine\Core\Processable.h" />
     <ClInclude Include="Engine\Core\NonDeterministic.hpp" />
     <ClInclude Include="Engine\Core\Deterministic.hpp" />
+    <ClInclude Include="Engine\Core\Result.h" />
+    <ClInclude Include="Engine\Graphics\KeyHandler.hpp" />
+    <ClInclude Include="Engine\Graphics\WindowContext.h" />
+    <ClInclude Include="Engine\Graphics\Shader.h" />
+    <ClInclude Include="Engine\Graphics\Texture.h" />
+    <ClInclude Include="Engine\Network\Connection.h" />
     <ClInclude Include="Engine\Physics\Body.h" />
     <ClInclude Include="Engine\Physics\Collision.h" />
     <ClInclude Include="Engine\Physics\Manifold.h" />
     <ClInclude Include="Engine\Physics\Reality.h" />
     <ClInclude Include="Engine\Physics\Shape.h" />
     <ClInclude Include="Engine\Types.h" />
+    <ClInclude Include="P3A\Core\State.h" />
+    <ClInclude Include="P3A\Graphics\Menu.h" />
+    <ClInclude Include="P3A\Graphics\GraphicsContext.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

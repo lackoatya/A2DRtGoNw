@@ -13,8 +13,8 @@ namespace Engine
 		struct Body;
 		struct Shape;
 
-		class Reality :
-			public Core::Processable
+		class Reality // :
+			//public Core::Processable
 		{
 		public:
 			Reality() = delete;

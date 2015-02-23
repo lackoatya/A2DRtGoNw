@@ -8,11 +8,9 @@ namespace Engine
 {
 	namespace Core
 	{
-		template < class Processable >
-		static void NonDeterministic(real32 const& _interval)
+		template < class Processable, class Result >
+		static Result NonDeterministic(Processable & _instance, real32 const& _interval)
 		{
-			Processable instance;
-
 			real32 elapsed_time = 0.;
 			boost::chrono::steady_clock::time_point now, last_time = boost::chrono::steady_clock::now();
 
@@ -24,11 +22,12 @@ namespace Engine
 
 				if (_interval < elapsed_time)
 				{
-					instance.Process();
+					Result result = _instance.Process();
+					if (result.Valid()) return result;
 
 					elapsed_time = 0.;
 				}
-			} while (instance.Valid());
+			} while (true);
 		}
 	}
 }

@@ -22,6 +22,12 @@
     <Filter Include="P3A\Graphics">
       <UniqueIdentifier>{16855621-2d6e-4bbb-8e9f-4eaecbe17220}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Graphics">
+      <UniqueIdentifier>{9180bd67-8dfe-4618-9b82-e31af75a162a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="P3A\Core">
+      <UniqueIdentifier>{db786e21-d892-4457-ac49-6a93ec9e76a0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Physics\Reality.cpp">
@@ -39,6 +45,21 @@
     <ClCompile Include="P3A\Core.cpp">
       <Filter>P3A</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Graphics\Shader.cpp">
+      <Filter>Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Graphics\Texture.cpp">
+      <Filter>Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Graphics\WindowContext.cpp">
+      <Filter>Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="P3A\Graphics\Menu.cpp">
+      <Filter>P3A\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="P3A\Graphics\GraphicsContext.cpp">
+      <Filter>P3A\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Core\Processable.h">
@@ -51,9 +72,6 @@
       <Filter>Engine\Core</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Core\Deterministic.hpp">
-      <Filter>Engine\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Core\Interpolated.hpp">
       <Filter>Engine\Core</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Physics\Reality.h">
@@ -70,6 +88,33 @@
     </ClInclude>
     <ClInclude Include="Engine\Physics\Collision.h">
       <Filter>Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Graphics\Shader.h">
+      <Filter>Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Graphics\Texture.h">
+      <Filter>Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Graphics\WindowContext.h">
+      <Filter>Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Network\Connection.h">
+      <Filter>Engine\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Core\Result.h">
+      <Filter>Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="P3A\Graphics\Menu.h">
+      <Filter>P3A\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="P3A\Core\State.h">
+      <Filter>P3A\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="P3A\Graphics\GraphicsContext.h">
+      <Filter>P3A\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Graphics\KeyHandler.hpp">
+      <Filter>Engine\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

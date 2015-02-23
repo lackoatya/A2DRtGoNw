@@ -1,7 +1,7 @@
 #pragma once
 
 // Basic types
-#include <boost\cstdint.hpp>
+#include "BOOST\cstdint.hpp"
 
 typedef int_fast8_t int8;
 typedef int_fast16_t int16;
@@ -16,10 +16,16 @@ typedef double real64;
 
 
 // Shared Pointer
-#include <boost\shared_ptr.hpp>
+#include "BOOST\shared_ptr.hpp"
 
 template< class Type >
 using shared_ptr = boost::shared_ptr < Type >;
+
+
+// Atomic
+#include "BOOST\atomic.hpp"
+template< class Type >
+using atomic = boost::atomic < Type > ;
 
 
 // Constants
