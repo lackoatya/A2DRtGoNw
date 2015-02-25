@@ -69,9 +69,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Graphics\Camera.cpp" />
+    <ClCompile Include="Engine\Graphics\Model_Base.cpp" />
     <ClCompile Include="Engine\Graphics\Shader.cpp" />
-    <ClCompile Include="Engine\Graphics\Texture.cpp" />
-    <ClCompile Include="Engine\Graphics\WindowContext.cpp" />
+    <ClCompile Include="Engine\Graphics\Texture_Base.cpp" />
+    <ClCompile Include="Engine\Graphics\Context_Base.cpp" />
     <ClCompile Include="Engine\Physics\Body.cpp" />
     <ClCompile Include="Engine\Physics\Collision.cpp" />
     <ClCompile Include="Engine\Physics\Manifold.cpp" />
@@ -79,16 +81,20 @@
     <ClCompile Include="P3A\Core.cpp" />
     <ClCompile Include="P3A\Graphics\Menu.cpp" />
     <ClCompile Include="P3A\Graphics\GraphicsContext.cpp" />
+    <ClCompile Include="P3A\Graphics\Model.cpp" />
+    <ClCompile Include="P3A\Graphics\Test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Core\Processable.h" />
     <ClInclude Include="Engine\Core\NonDeterministic.hpp" />
     <ClInclude Include="Engine\Core\Deterministic.hpp" />
     <ClInclude Include="Engine\Core\Result.h" />
+    <ClInclude Include="Engine\Graphics\Camera.h" />
     <ClInclude Include="Engine\Graphics\KeyHandler.hpp" />
-    <ClInclude Include="Engine\Graphics\WindowContext.h" />
+    <ClInclude Include="Engine\Graphics\Model_Base.h" />
+    <ClInclude Include="Engine\Graphics\Context_Base.h" />
     <ClInclude Include="Engine\Graphics\Shader.h" />
-    <ClInclude Include="Engine\Graphics\Texture.h" />
+    <ClInclude Include="Engine\Graphics\Texture_Base.h" />
     <ClInclude Include="Engine\Network\Connection.h" />
     <ClInclude Include="Engine\Physics\Body.h" />
     <ClInclude Include="Engine\Physics\Collision.h" />
@@ -99,6 +105,14 @@
     <ClInclude Include="P3A\Core\State.h" />
     <ClInclude Include="P3A\Graphics\Menu.h" />
     <ClInclude Include="P3A\Graphics\GraphicsContext.h" />
+    <ClInclude Include="P3A\Graphics\Model.h" />
+    <ClInclude Include="P3A\Graphics\Test.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="P3A\Shaders\Box.frag" />
+    <None Include="P3A\Shaders\Box.vs" />
+    <None Include="P3A\Shaders\Text.frag" />
+    <None Include="P3A\Shaders\Text.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

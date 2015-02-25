@@ -7,12 +7,12 @@ uniform mat4 model;
 uniform mat4 view;
 uniform mat4 projection;
 
-out vec3 wallColor;
-out vec2 wallTexCoord;
+out vec3 boxColor;
+out vec2 boxTexCoord;
 
 void main()
 {
     gl_Position = projection * view * model * vec4(position, 0.0f, 1.0f);
-	wallColor = color;
-	wallTexCoord = vec2(texCoord.x, 1.0 - texCoord.y);
+	boxColor = color;
+	boxTexCoord = vec2(texCoord.x, 1.0 - texCoord.y);
 }

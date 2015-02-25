@@ -13,19 +13,20 @@
 #include "GLM\glm.hpp"
 
 #include "Engine\Types.h"
+#include "Engine\Graphics\Camera.h"
 
 namespace Engine
 {
 	namespace Graphics
 	{
-		class WindowContext
+		class Context_Base
 		{
 		public:
-			inline WindowContext(void) = delete;
-			WindowContext(uint32 const& _window_width, uint32 const& _window_height, real32 _camera_min_distance = 0.01f, real32 _camera_max_distance = 64.f);
-			inline WindowContext(WindowContext const& _other) = delete;
-			inline WindowContext & operator=(WindowContext const& _other) = delete;
-			virtual ~WindowContext(void);
+			inline Context_Base(void) = delete;
+			Context_Base(uint32 const& _window_width, uint32 const& _window_height, real32 _camera_min_distance = 0.01f, real32 _camera_max_distance = 64.f);
+			inline Context_Base(Context_Base const& _other) = delete;
+			inline Context_Base & operator=(Context_Base const& _other) = delete;
+			virtual ~Context_Base(void);
 
 			//inline GLFWwindow * Window(void) const { return window; }
 			inline void PollEvents(void) const { glfwPollEvents(); }
@@ -41,6 +42,8 @@ namespace Engine
 			glm::mat4 viewMatrix;
 			GLint projLoc;
 			glm::mat4 projectionMatrix;
+
+			Camera camera;
 
 			uint32 window_width, window_height;
 			GLFWwindow *window;

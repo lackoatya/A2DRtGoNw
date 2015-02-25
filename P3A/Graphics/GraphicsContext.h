@@ -4,15 +4,15 @@
 
 #include "Engine\Types.h"
 #include "Engine\Graphics\Shader.h"
-#include "Engine\Graphics\Texture.h"
-#include "Engine\Graphics\WindowContext.h"
+#include "Engine\Graphics\Texture_Base.h"
+#include "Engine\Graphics\Context_Base.h"
 
 namespace P3A
 {
 	namespace Graphics
 	{
 		class GraphicsContext :
-			public Engine::Graphics::WindowContext
+			public Engine::Graphics::Context_Base
 		{
 		public:
 			inline GraphicsContext(void) = delete;
@@ -30,15 +30,15 @@ namespace P3A
 				Count
 			};
 
-			void DrawString(Engine::Graphics::Texture const* _font_texture, std::string const& _text, float const& _x, float const& _y, StringAlignment const& _alignment);
+			void DrawString(Engine::Graphics::Texture_Base const* _font_texture, std::string const& _text, float const& _x, float const& _y, glm::vec4 const& _color, StringAlignment const& _alignment);
+			void DrawBox(Engine::Graphics::Texture_Base const* _texture, Vector2 const& _center, real32 const& _rotation);
 
 		//private:
 			// TODO Why are these dynamically allocated?!
-			Engine::Graphics::Shader *shader_text;
-			Engine::Graphics::Shader *shader_wall;
-			Engine::Graphics::Shader *shader_hero;
+			Engine::Graphics::Shader * shader_box;
+			Engine::Graphics::Shader * shader_text;
 
-			Engine::Graphics::Texture *font_arial_black;
+			Engine::Graphics::Texture_Base * font_arial_black;
 		};
 	}
 }

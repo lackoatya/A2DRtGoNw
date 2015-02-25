@@ -84,6 +84,19 @@ struct Vector2
 		y = yp;
 	}
 
+	inline void Rotate_Degree(real32 const& _degree)
+	{
+		real32 radians = _degree / 180.0f * PI;
+		real32 c = std::cos(radians);
+		real32 s = std::sin(radians);
+
+		real32 xp = x * c - y * s;
+		real32 yp = x * s + y * c;
+
+		x = xp;
+		y = yp;
+	}
+
 	inline void Normalize(void)
 	{
 		real32 len = Len();

@@ -3,7 +3,7 @@
 #include <vector>
 
 #include "Engine\Types.h"
-#include "Engine\Graphics\WindowContext.h"
+#include "Engine\Graphics\Context_Base.h"
 
 namespace Engine
 {
@@ -36,7 +36,7 @@ namespace Engine
 			inline KeyHandler & operator=(KeyHandler const& _other) = delete;
 			inline ~KeyHandler() = default;
 
-			void Process(Engine::Graphics::WindowContext const& _context)
+			void Process(Engine::Graphics::Context_Base const& _context)
 			{
 				for (KeyBinding & binding : state)
 				{

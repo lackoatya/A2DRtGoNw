@@ -45,13 +45,13 @@ void P3A::Graphics::Menu::Render(void)
 
 	context.shader_text->Use();
 
-	context.DrawString(context.font_arial_black, ">> per Aspera ad Astra <<", center_x, context.window_height - 2 * 32.0f, P3A::Graphics::GraphicsContext::StringAlignment::MIDDLE);
+	context.DrawString(context.font_arial_black, ">> per Aspera ad Astra <<", center_x, context.window_height - 2 * 32.0f, glm::vec4(1.0f, 0.0f, 1.0f, 1.0f), P3A::Graphics::GraphicsContext::StringAlignment::MIDDLE);
 
-	context.DrawString(context.font_arial_black, (current == 0 ? ">Local Game" : "Local Game"), center_x, center_y + 4 * 48.f, P3A::Graphics::GraphicsContext::StringAlignment::MIDDLE);
-	context.DrawString(context.font_arial_black, (current == 1 ? ">Join Network Game" : "Join Network Game"), center_x, center_y + 3 * 48.f, P3A::Graphics::GraphicsContext::StringAlignment::MIDDLE);
-	context.DrawString(context.font_arial_black, (current == 2 ? ">Host Network Game" : "Host Network Game"), center_x, center_y + 2 * 48.f, P3A::Graphics::GraphicsContext::StringAlignment::MIDDLE);
-	context.DrawString(context.font_arial_black, (current == 3 ? ">Options" : "Options"), center_x, center_y + 1 * 48.f, P3A::Graphics::GraphicsContext::StringAlignment::MIDDLE);
-	context.DrawString(context.font_arial_black, (current == 4 ? ">Exit" : "Exit"), center_x, center_y + 0 * 48.f, P3A::Graphics::GraphicsContext::StringAlignment::MIDDLE);
+	context.DrawString(context.font_arial_black, (current == 0 ? ">Local Game" : "Local Game"), center_x, center_y + 4 * 48.f, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), P3A::Graphics::GraphicsContext::StringAlignment::MIDDLE);
+	context.DrawString(context.font_arial_black, (current == 1 ? ">Join Network Game" : "Join Network Game"), center_x, center_y + 3 * 48.f, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), P3A::Graphics::GraphicsContext::StringAlignment::MIDDLE);
+	context.DrawString(context.font_arial_black, (current == 2 ? ">Host Network Game" : "Host Network Game"), center_x, center_y + 2 * 48.f, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), P3A::Graphics::GraphicsContext::StringAlignment::MIDDLE);
+	context.DrawString(context.font_arial_black, (current == 3 ? ">Options" : "Options"), center_x, center_y + 1 * 48.f, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), P3A::Graphics::GraphicsContext::StringAlignment::MIDDLE);
+	context.DrawString(context.font_arial_black, (current == 4 ? ">Exit" : "Exit"), center_x, center_y + 0 * 48.f, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), P3A::Graphics::GraphicsContext::StringAlignment::MIDDLE);
 
 	glBindVertexArray(0);
 }

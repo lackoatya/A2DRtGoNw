@@ -1,22 +1,11 @@
 #version 330 core
-in vec3 textColor;
 in vec2 textTexCoord;
 
-out vec4 color;
-
 uniform sampler2D textTexture;
+uniform vec4 color;
 
 void main()
 {
-    color = texture(textTexture, textTexCoord);
+    gl_FragColor = vec4(color.xyz, (texture(textTexture, textTexCoord).a * color.w));
+	//color = texture(textTexture, textTexCoord);
 }
- 
-/*
-varying vec2 texcoord;
-uniform sampler2D tex;
-uniform vec4 color;
- 
-void main(void) {
-  gl_FragColor = vec4(1, 1, 1, texture2D(tex, texcoord).a) * color;
-}
-*/

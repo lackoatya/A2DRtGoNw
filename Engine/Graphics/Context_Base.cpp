@@ -2,9 +2,9 @@
 
 #include "GLM\gtc\matrix_transform.hpp"
 
-#include "Engine\Graphics\WindowContext.h"
+#include "Engine\Graphics\Context_Base.h"
 
-Engine::Graphics::WindowContext::WindowContext(uint32 const& _window_width, uint32 const& _window_height, real32 _camera_min_distance, real32 _camera_max_distance) :
+Engine::Graphics::Context_Base::Context_Base(uint32 const& _window_width, uint32 const& _window_height, real32 _camera_min_distance, real32 _camera_max_distance) :
 	window_width(_window_width),
 	window_height(_window_height)
 {
@@ -22,6 +22,10 @@ Engine::Graphics::WindowContext::WindowContext(uint32 const& _window_width, uint
 
 	glViewport(0, 0, window_width, window_height);
 
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
 	projectionMatrix = glm::mat4();
 	projectionMatrix = glm::ortho(0.0f, (float)window_width, 0.0f, (float)window_height, _camera_min_distance, _camera_max_distance);
 
@@ -30,7 +34,7 @@ Engine::Graphics::WindowContext::WindowContext(uint32 const& _window_width, uint
 	glGenBuffers(1, &EBO);
 }
 
-Engine::Graphics::WindowContext::~WindowContext(void)
+Engine::Graphics::Context_Base::~Context_Base(void)
 {
 	glfwTerminate();
 

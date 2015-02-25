@@ -1,7 +1,5 @@
 #pragma once
 
-#include <vector>
-
 #include "Engine\Types.h"
 #include "Engine\Core\Processable.h"
 #include "Engine\Graphics\KeyHandler.hpp"
