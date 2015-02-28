@@ -40,7 +40,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(ProjectDir);$(ProjectDir)\Libraries\Include;D:\boost_1_57_0;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)\Libraries\Library\Win32;D:\boost_1_57_0\stage\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(ProjectDir)\Libraries\Win32;D:\boost_1_57_0\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
