@@ -17,7 +17,9 @@ namespace P3A
 		public:
 			inline GraphicsContext(void) = delete;
 			GraphicsContext(uint32 const& _window_width, uint32 const& _window_height, real32 _camera_min_distance = 0.01f, real32 _camera_max_distance = 64.f);
+			inline GraphicsContext(GraphicsContext && _other) = delete;
 			inline GraphicsContext(GraphicsContext const& _other) = delete;
+			inline GraphicsContext & operator=(GraphicsContext && _other) = delete;
 			inline GraphicsContext & operator=(GraphicsContext const& _other) = delete;
 			~GraphicsContext(void);
 

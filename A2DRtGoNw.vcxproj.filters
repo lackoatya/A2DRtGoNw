@@ -57,22 +57,28 @@
     <ClCompile Include="P3A\Graphics\GraphicsContext.cpp">
       <Filter>P3A\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="P3A\Graphics\Model.cpp">
-      <Filter>P3A\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Graphics\Context_Base.cpp">
       <Filter>Engine\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Graphics\Texture_Base.cpp">
       <Filter>Engine\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Graphics\Model_Base.cpp">
-      <Filter>Engine\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="P3A\Graphics\Test.cpp">
       <Filter>P3A\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Graphics\Camera.cpp">
+      <Filter>Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Graphics\Mesh.cpp">
+      <Filter>Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Graphics\Appearance.cpp">
+      <Filter>Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="P3A\Graphics\Model.cpp">
+      <Filter>P3A\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Graphics\Model_Base.cpp">
       <Filter>Engine\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
@@ -125,12 +131,6 @@
     <ClInclude Include="Engine\Graphics\KeyHandler.hpp">
       <Filter>Engine\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="P3A\Graphics\Model.h">
-      <Filter>P3A\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Graphics\Model_Base.h">
-      <Filter>Engine\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Graphics\Context_Base.h">
       <Filter>Engine\Graphics</Filter>
     </ClInclude>
@@ -141,6 +141,18 @@
       <Filter>P3A\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Graphics\Camera.h">
+      <Filter>Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Graphics\Mesh.h">
+      <Filter>Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Graphics\Appearance.h">
+      <Filter>Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="P3A\Graphics\Model.h">
+      <Filter>P3A\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Graphics\Model_Base.h">
       <Filter>Engine\Graphics</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,7 +1,5 @@
 #pragma once
 
-#include <string>
-
 #include "Engine\Graphics\Model_Base.h"
 
 namespace P3A
@@ -14,16 +12,21 @@ namespace P3A
 			public Engine::Graphics::Model_Base
 		{
 		public:
+			GraphicsContext & context;
+
+			// Constructor
 			inline Model(void) = delete;
-			inline Model(std::string const& _path, std::string const& _name, Vector2 const& _location) : Engine::Graphics::Model_Base(_path, _name, _location) { }
+			inline Model(Engine::Graphics::Mesh * _mesh, Engine::Graphics::Appearance * _appearance, GraphicsContext & _context) : Model_Base(_mesh, _appearance), context(_context) { }
+			// Copy Constructor
+			inline Model(Model && _other) = delete;
 			inline Model(Model const& _other) = delete;
+			// Assignment operator
+			inline Model & operator=(Model && _other) = delete;
 			inline Model & operator=(Model const& _other) = delete;
+			// Destructor
 			inline virtual ~Model(void) = default;
 
-			void Render(GraphicsContext & _context);
-
-		private:
-			void Render_Element(GraphicsContext & _context, Engine::Graphics::Element_Base * _element, Vector2 const& _location, real32 const& _rotation);
+			void Render(void);
 		};
 	}
 }
