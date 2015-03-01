@@ -46,13 +46,14 @@ namespace Engine
 				};
 
 			public:
-				uint32 depth = 0;
+				uint32 index, depth = 0;
 
 				uint32 joints_count = 0;
 				Joint ** joints = nullptr;
 
 				// Constructor
-				inline Element(uint32 const& _depth, uint32 const& _joints_count, Joint ** _joints) :
+				inline Element(uint32 const& _index, uint32 const& _depth, uint32 const& _joints_count, Joint ** _joints) :
+					index(_index),
 					depth(_depth),
 					joints_count(_joints_count),
 					joints(_joints) { }

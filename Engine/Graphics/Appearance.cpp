@@ -5,6 +5,8 @@
 Engine::Graphics::Appearance::Appearance(std::string && _appearance_path, std::string && _texture_directory)
 {
 	std::ifstream file(_appearance_path);
+	assert(!file.fail() && "Error while opening appearance!");
+
 	file >> element_textures_count;
 
 	element_textures = new Texture_Base *[element_textures_count];

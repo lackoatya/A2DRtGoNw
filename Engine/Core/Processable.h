@@ -10,12 +10,18 @@ namespace Engine
 		class Processable
 		{
 		public:
+			// Constructor
 			inline Processable(void) = default;
-			inline Processable(const Processable &_other) = default;
-			inline Processable & operator=(const Processable &_other) = default;
+			// Copy Constructor
+			inline Processable(Processable && _other) = delete;
+			inline Processable(Processable const& _other) = delete;
+			// Assignment operator
+			inline Processable & operator=(Processable && _other) = delete;
+			inline Processable & operator=(Processable const& _other) = delete;
+			// Destructor
 			inline virtual ~Processable(void) = default;
 
-			virtual ProcessResult Process() = 0;
+			virtual ProcessResult Process(real32 const& _elapsed_time) = 0;
 		};
 	}
 }

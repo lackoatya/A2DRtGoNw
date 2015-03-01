@@ -5,6 +5,7 @@
 Engine::Graphics::Mesh::Mesh(std::string && _mesh_path)
 {
 	std::ifstream file(_mesh_path);
+	assert(!file.fail() && "Error while opening mesh!");
 
 	file >> elements_count;
 
@@ -28,7 +29,7 @@ Engine::Graphics::Mesh::Mesh(std::string && _mesh_path)
 			joints[current_joint] = new Element::Joint(Vector2(owner_x, owner_y), target_index, Vector2(target_x, target_y));
 		}
 
-		elements[current_element] = new Element(depth, joints_count, joints);
+		elements[current_element] = new Element(current_element, depth, joints_count, joints);
 	}
 
 	file >> animations_count;

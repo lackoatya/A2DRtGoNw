@@ -21,7 +21,13 @@ namespace Engine
 
 				// Constructor
 				inline Interpolation_Base(void) = delete;
-				inline Interpolation_Base(real32 const& _time, uint32 const& _rotations_count) : time(_time), rotations_count(_rotations_count) { rotations = new real32[rotations_count]; }
+				inline Interpolation_Base(real32 const& _time, uint32 const& _rotations_count) :
+					time(_time),
+					rotations_count(_rotations_count)
+				{
+					rotations = new real32[rotations_count];
+					memset(rotations, 0.f, rotations_count * sizeof(real32));
+				}
 				// Copy Constructor
 				inline Interpolation_Base(Interpolation_Base && _other) = delete;
 				inline Interpolation_Base(Interpolation_Base const& _other) = delete;
@@ -36,19 +42,22 @@ namespace Engine
 			Mesh * mesh = nullptr;
 			Appearance * appearance = nullptr;
 
-			real32 animation_time = 0.f;
-			Mesh::Animation * animation = nullptr;
+			uint32 frame, animation = 0;
 
-			Interpolation_Base * interpolation_start = nullptr, * interpolation_end = nullptr;
+			Interpolation_Base * interpolation_current = nullptr, * interpolation_start = nullptr, * interpolation_end = nullptr;
 
 			// Constructor
 			inline Model_Base(void) = delete;
-			inline Model_Base(Engine::Graphics::Mesh * _mesh, Engine::Graphics::Appearance * _appearance) :
+			inline Model_Base(Engine::Graphics::Mesh * _mesh, Engine::Graphics::Appearance * _appearance, uint32 const& _animation) :
 				mesh(_mesh),
-				appearance(_appearance)
+				appearance(_appearance),
+				animation(_animation)
 			{ 
 				interpolation_start = new Interpolation_Base(0.f, _mesh->elements_count);
+				interpolation_current = new Interpolation_Base(0.f, _mesh->elements_count);
 				interpolation_end = new Interpolation_Base(0.f, _mesh->elements_count);
+
+				SetFrame(0);
 			}
 			// Copy Constructor
 			inline Model_Base(Model_Base && _other) = delete;
@@ -60,12 +69,16 @@ namespace Engine
 			inline virtual ~Model_Base(void)
 			{
 				delete interpolation_start;
+				delete interpolation_current;
 				delete interpolation_end;
 			}
 
-			virtual void Animate(Mesh::Animation * _animation);
+			virtual void Animate(uint32 const& _animation);
 			virtual void Update(real32 const& _elapsed_time);
+
 			virtual void Render(void) = 0;
+		protected:
+			virtual void SetFrame(uint32 const& _frame);
 		};
 	}
 }

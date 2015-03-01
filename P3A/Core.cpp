@@ -21,7 +21,7 @@ int main()
 			//state = Engine::Core::NonDeterministic < P3A::Graphics::Menu, P3A::Core::State >(menu, 1000 / 60);
 
 			P3A::Graphics::Test test(graphics);
-			state = Engine::Core::NonDeterministic < P3A::Graphics::Test, P3A::Core::State >(test, 1000 / 60);
+			state = Engine::Core::NonDeterministic < P3A::Graphics::Test, P3A::Core::State >(test, 60 / 1000);
 		}
 		break;
 
