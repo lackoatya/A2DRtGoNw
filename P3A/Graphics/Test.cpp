@@ -9,10 +9,10 @@ P3A::Graphics::Test::Test(P3A::Graphics::GraphicsContext & _context) :
 	context(_context)
 {
 	meshes = new Engine::Graphics::Mesh*[1];
-	meshes[0] = new Engine::Graphics::Mesh(std::string("P3A\\Data\\Meshes\\testxx.mesh"));
+	meshes[0] = new Engine::Graphics::Mesh(std::string("P3A\\Data\\Meshes\\dzsoni.mesh"));
 
 	appearances = new Engine::Graphics::Appearance*[1];
-	appearances[0] = new Engine::Graphics::Appearance(std::string("P3A\\Data\\Appearances\\testxx.appearance"), std::string("P3A\\Data\\Textures"));
+	appearances[0] = new Engine::Graphics::Appearance(std::string("P3A\\Data\\Appearances\\dzsoni.appearance"), std::string("P3A\\Data\\Textures"));
 
 	model = new Model(meshes[0], appearances[0], 0, Vector2(0.f, 0.f), context);
 }

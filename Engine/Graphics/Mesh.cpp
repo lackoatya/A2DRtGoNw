@@ -2,10 +2,21 @@
 
 #include "Engine\Graphics\Mesh.h"
 
+void ReadPlaceholder(std::ifstream & _file)
+{
+        std::string placeholder;
+        _file >> placeholder;
+        std::getline(_file, placeholder);
+}
+
 Engine::Graphics::Mesh::Mesh(std::string && _mesh_path)
 {
-	std::ifstream file(_mesh_path);
+        std::string placeholder;
+
+        std::ifstream file(_mesh_path);
 	assert(!file.fail() && "Error while opening mesh!");
+
+        ReadPlaceholder(file);
 
 	file >> elements_count;
 
@@ -13,7 +24,9 @@ Engine::Graphics::Mesh::Mesh(std::string && _mesh_path)
 
 	for (uint32 current_element = 0; current_element < elements_count; ++current_element)
 	{
-		uint32 depth = 0, joints_count = 0;
+                ReadPlaceholder(file);
+
+                int32 depth = 0, joints_count = 0;
 
 		file >> depth >> joints_count;
 
@@ -32,12 +45,16 @@ Engine::Graphics::Mesh::Mesh(std::string && _mesh_path)
 		elements[current_element] = new Element(current_element, depth, joints_count, joints);
 	}
 
+        ReadPlaceholder(file);
+
 	file >> animations_count;
 
 	animations = new Animation*[animations_count];
 
 	for (uint32 current_animation = 0; current_animation < animations_count; ++current_animation)
 	{
+                ReadPlaceholder(file);
+
 		uint32 frames_count = 0;
 
 		file >> frames_count;
@@ -45,6 +62,8 @@ Engine::Graphics::Mesh::Mesh(std::string && _mesh_path)
 		Animation::Frame ** frames = new Animation::Frame*[frames_count];
 		for (uint32 current_frame = 0; current_frame < frames_count; ++current_frame)
 		{
+                        ReadPlaceholder(file);
+
 			real32 end = 0.f;
 			uint32 transformations_count = 0;
 
