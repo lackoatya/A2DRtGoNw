@@ -60,7 +60,7 @@ void P3A::Graphics::Test::Render()
 
 void P3A::Graphics::Test::Handle_Keys(void)
 {
-	//if (glfwGetKey(context.window, GLFW_KEY_W) || glfwGetKey(context.window, GLFW_KEY_UP))
+        //if (glfwGetKey(context.window, GLFW_KEY_SPACE) == GLFW_PRESS) pau
 }
 
 void P3A::Graphics::Test::Handle_Mouse(void)

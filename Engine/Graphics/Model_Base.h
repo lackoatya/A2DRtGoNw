@@ -26,7 +26,7 @@ namespace Engine
 					rotations_count(_rotations_count)
 				{
 					rotations = new real32[rotations_count];
-					memset(rotations, 0.f, rotations_count * sizeof(real32));
+					memset(rotations, (uint32)(0.f), rotations_count * sizeof(real32));
 				}
 				// Copy Constructor
 				inline Interpolation_Base(Interpolation_Base && _other) = delete;
