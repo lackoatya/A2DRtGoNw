@@ -22,6 +22,9 @@ Engine::Graphics::Mesh::Mesh(std::string && _mesh_path)
 
 	elements = new Element*[elements_count];
 
+        depth_indexes = new uint32[elements_count];
+        memset(depth_indexes, 0, sizeof(depth_indexes));
+
 	for (uint32 current_element = 0; current_element < elements_count; ++current_element)
 	{
                 ReadPlaceholder(file);
@@ -29,6 +32,8 @@ Engine::Graphics::Mesh::Mesh(std::string && _mesh_path)
                 int32 depth = 0, joints_count = 0;
 
 		file >> depth >> joints_count;
+
+                depth_indexes[depth] = current_element;
 
 		Element::Joint ** joints = new Element::Joint*[joints_count];
 

@@ -41,4 +41,20 @@ void Engine::Graphics::Model_Base::Update(real32 const& _elapsed_time)
 	real32 dt = (interpolation_current->time - interpolation_start->time) / (interpolation_end->time - interpolation_start->time);
 	for (uint32 element = 0; element < mesh->elements_count; ++element)
 		interpolation_current->rotations[element] = interpolation_start->rotations[element] + (interpolation_end->rotations[element] - interpolation_start->rotations[element]) * dt;
+
+        Update_ElementCenters(0);
+}
+
+void Engine::Graphics::Model_Base::Update_ElementCenters(uint32 const& _element_index)
+{
+        for (uint32 current = 0; current < mesh->elements[_element_index]->joints_count; ++current)
+        {
+                Vector2 owner = mesh->elements[_element_index]->joints[current]->owner_location;
+                owner.Rotate_Degree(interpolation_current->rotations[_element_index]);
+                Vector2 target = mesh->elements[_element_index]->joints[current]->target_location;
+                target.Rotate_Degree(interpolation_current->rotations[mesh->elements[_element_index]->joints[current]->target_index]);
+                element_centers[mesh->elements[_element_index]->joints[current]->target_index] = owner - target + element_centers[_element_index];
+
+                Update_ElementCenters(mesh->elements[_element_index]->joints[current]->target_index);
+        }
 }

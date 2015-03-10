@@ -154,6 +154,8 @@ namespace Engine
 			};
 
 		public:
+                        uint32 * depth_indexes = nullptr;
+
 			uint32 elements_count = 0;
 			Element ** elements = nullptr;
 
@@ -171,15 +173,15 @@ namespace Engine
 			// Destructor
 			inline virtual ~Mesh(void)
 			{
+                                delete[] depth_indexes; depth_indexes = nullptr;
+
 				for (uint32 current = 0; current < elements_count; ++current)
 					delete elements[current];
-				delete[] elements;
-				elements = nullptr;
+				delete[] elements;      elements = nullptr;
 
 				for (uint32 current = 0; current < animations_count; ++current)
 					delete animations[current];
-				delete[] animations;
-				animations = nullptr;
+				delete[] animations;    animations = nullptr;
 			}
 		};
 	}

@@ -43,9 +43,11 @@ namespace Engine
 			Appearance * appearance = nullptr;
 
 			uint32 frame, animation = 0;
-
+                protected:
+                        Vector2 * element_centers = nullptr;
 			Interpolation_Base * interpolation_current = nullptr, * interpolation_start = nullptr, * interpolation_end = nullptr;
 
+                public:
 			// Constructor
 			inline Model_Base(void) = delete;
 			inline Model_Base(Engine::Graphics::Mesh * _mesh, Engine::Graphics::Appearance * _appearance, uint32 const& _animation) :
@@ -53,6 +55,8 @@ namespace Engine
 				appearance(_appearance),
 				animation(_animation)
 			{ 
+                                element_centers = new Vector2[_mesh->elements_count];
+
 				interpolation_start = new Interpolation_Base(0.f, _mesh->elements_count);
 				interpolation_current = new Interpolation_Base(0.f, _mesh->elements_count);
 				interpolation_end = new Interpolation_Base(0.f, _mesh->elements_count);
@@ -68,16 +72,18 @@ namespace Engine
 			// Destructor
 			inline virtual ~Model_Base(void)
 			{
-				delete interpolation_start;
-				delete interpolation_current;
-				delete interpolation_end;
+                                delete[] element_centers;       element_centers = nullptr;
+
+                                delete interpolation_start;     interpolation_start = nullptr;
+                                delete interpolation_current;   interpolation_current = nullptr;
+                                delete interpolation_end;       interpolation_end = nullptr;
 			}
 
 			virtual void Animate(uint32 const& _animation);
 			virtual void Update(real32 const& _elapsed_time);
 
-			virtual void Render(void) = 0;
 		protected:
+                        virtual void Update_ElementCenters(uint32 const& _element_index);
 			virtual void SetFrame(uint32 const& _frame);
 		};
 	}

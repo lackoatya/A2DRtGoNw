@@ -30,10 +30,7 @@ namespace P3A
 			// Destructor
 			inline virtual ~Model(void) = default;
 
-			void Render(void);
-
-		private:
-			void Render_Element(Engine::Graphics::Mesh::Element * _element, Vector2 const& _location);
+                        void Render(void);
 		};
 	}
 }
