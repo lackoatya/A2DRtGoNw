@@ -1,46 +1,65 @@
-#pragma once
+#ifndef P3A_GRAPHICS_GRAPHICSCONTEXT_H_
+#define P3A_GRAPHICS_GRAPHICSCONTEXT_H_
 
 #include <string>
 
-#include "Engine\Types.h"
-#include "Engine\Graphics\Shader.h"
-#include "Engine\Graphics\Texture_Base.h"
-#include "Engine\Graphics\Context_Base.h"
+#include "Engine/Types.h"
+#include "Engine/Graphics/Shader.h"
+#include "Engine/Graphics/TextureBase.h"
+#include "Engine/Graphics/ContextBase.h"
 
-namespace P3A
+namespace P3A {
+namespace Graphics {
+enum class StringAlignment
 {
-	namespace Graphics
-	{
-		class GraphicsContext :
-			public Engine::Graphics::Context_Base
-		{
-		public:
-			inline GraphicsContext(void) = delete;
-			GraphicsContext(uint32 const& _window_width, uint32 const& _window_height, real32 _camera_min_distance = 0.01f, real32 _camera_max_distance = 64.f);
-			inline GraphicsContext(GraphicsContext && _other) = delete;
-			inline GraphicsContext(GraphicsContext const& _other) = delete;
-			inline GraphicsContext & operator=(GraphicsContext && _other) = delete;
-			inline GraphicsContext & operator=(GraphicsContext const& _other) = delete;
-			~GraphicsContext(void);
+  LEFT = 0,
+  MIDDLE,
+  RIGHT,
 
-			enum class StringAlignment
-			{
-				LEFT = 0,
-				MIDDLE,
-				RIGHT,
+  Count
+};
 
-				Count
-			};
+enum class Font
+{
+  ARIAL_BLACK = 0,
+  Count
+};
 
-			void DrawString(Engine::Graphics::Texture_Base const* _font_texture, std::string const& _text, float const& _x, float const& _y, glm::vec4 const& _color, StringAlignment const& _alignment);
-			void DrawBox(Engine::Graphics::Texture_Base const* _texture, Vector2 const& _center, real32 const& _rotation);
+class GraphicsContext : public Engine::Graphics::ContextBase {
+  public:
 
-		//private:
-			// TODO Why are these dynamically allocated?!
-			Engine::Graphics::Shader * shader_box;
-			Engine::Graphics::Shader * shader_text;
+  public:
+    GraphicsContext(uint32 const& _window_width, uint32 const& _window_height)
+      : GraphicsContext(_window_width, _window_height, 0.01f, 64.0f) { }
+    GraphicsContext(uint32 const& _window_width, uint32 const& _window_height,
+      real32 _camera_min_distance, real32 _camera_max_distance);
+    inline GraphicsContext(void) = delete;
+    inline GraphicsContext(GraphicsContext && _other) = delete;
+    inline GraphicsContext(GraphicsContext const& _other) = delete;
+    inline GraphicsContext & operator=(GraphicsContext && _other) = delete;
+    inline GraphicsContext & operator=(GraphicsContext const& _other) = delete;
+    ~GraphicsContext(void);
 
-			Engine::Graphics::Texture_Base * font_arial_black;
-		};
-	}
+    void PrepareBoxDraw(void) const { shader_box_->Use(); }
+    void PrepareStringDraw(void) const { shader_text_->Use(); }
+
+    void DrawBox(Engine::Graphics::TextureBase const* _texture, Vector2 const& _center,
+                 real32 const& _rotation);
+    void DrawString(Font const& _font, std::string const& _text, float const& _x, float const& _y,
+                    glm::vec4 const& _color, StringAlignment const& _alignment);
+
+    inline Engine::Graphics::Shader * shader_box(void) const { return shader_box_; }
+    inline Engine::Graphics::Shader * shader_text(void) const { return shader_text_; }
+
+    inline Engine::Graphics::TextureBase * font_arial_black(void) const { return font_arial_black_; }
+
+  private:
+    Engine::Graphics::Shader * shader_box_ = nullptr;
+    Engine::Graphics::Shader * shader_text_ = nullptr;
+
+    Engine::Graphics::TextureBase * font_arial_black_ = nullptr;
+};
 }
+}
+
+#endif

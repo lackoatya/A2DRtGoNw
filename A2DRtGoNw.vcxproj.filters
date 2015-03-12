@@ -57,35 +57,35 @@
     <ClCompile Include="P3A\Graphics\GraphicsContext.cpp">
       <Filter>P3A\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Graphics\Context_Base.cpp">
-      <Filter>Engine\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Graphics\Texture_Base.cpp">
-      <Filter>Engine\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="P3A\Graphics\Test.cpp">
       <Filter>P3A\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Graphics\Camera.cpp">
-      <Filter>Engine\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Graphics\Mesh.cpp">
-      <Filter>Engine\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Graphics\Appearance.cpp">
-      <Filter>Engine\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="P3A\Graphics\Model.cpp">
       <Filter>P3A\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Graphics\Model_Base.cpp">
+    <ClCompile Include="Engine\Graphics\Appearance.cc">
       <Filter>Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Graphics\Camera.cc">
+      <Filter>Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Graphics\ContextBase.cc">
+      <Filter>Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Graphics\Mesh.cc">
+      <Filter>Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Graphics\ModelBase.cc">
+      <Filter>Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Graphics\TextureBase.cc">
+      <Filter>Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Core\Logger.cc">
+      <Filter>Engine\Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Engine\Core\Processable.h">
-      <Filter>Engine\Core</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Types.h">
       <Filter>Engine</Filter>
     </ClInclude>
@@ -116,9 +116,6 @@
     <ClInclude Include="Engine\Network\Connection.h">
       <Filter>Engine\Network</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Core\Result.h">
-      <Filter>Engine\Core</Filter>
-    </ClInclude>
     <ClInclude Include="P3A\Graphics\Menu.h">
       <Filter>P3A\Graphics</Filter>
     </ClInclude>
@@ -127,15 +124,6 @@
     </ClInclude>
     <ClInclude Include="P3A\Graphics\GraphicsContext.h">
       <Filter>P3A\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Graphics\KeyHandler.hpp">
-      <Filter>Engine\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Graphics\Context_Base.h">
-      <Filter>Engine\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Graphics\Texture_Base.h">
-      <Filter>Engine\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="P3A\Graphics\Test.h">
       <Filter>P3A\Graphics</Filter>
@@ -152,8 +140,26 @@
     <ClInclude Include="P3A\Graphics\Model.h">
       <Filter>P3A\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Graphics\Model_Base.h">
+    <ClInclude Include="Engine\Core\ProcessableInterface.h">
+      <Filter>Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Core\ProcessableResultInterface.h">
+      <Filter>Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Graphics\ContextBase.h">
       <Filter>Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Graphics\KeyHandler.h">
+      <Filter>Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Graphics\ModelBase.h">
+      <Filter>Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Graphics\TextureBase.h">
+      <Filter>Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Core\Logger.h">
+      <Filter>Engine\Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,69 +1,67 @@
+#include "P3A/Graphics/Test.h"
+
 #include <string>
 
-#include "GLM\gtc\type_ptr.hpp"
-#include "GLM\gtc\matrix_transform.hpp"
+#include "GLM/gtc/type_ptr.hpp"
 
-#include "P3A\Graphics\Test.h"
+namespace P3A { 
+namespace Graphics {
+Test::Test(P3A::Graphics::GraphicsContext & _context)
+    : context_(_context) {
+  meshes_ = new Engine::Graphics::Mesh*[1];
+  meshes_[0] = new Engine::Graphics::Mesh(std::string("P3A\\Data\\Meshes\\dzsoni.mesh"));
 
-P3A::Graphics::Test::Test(P3A::Graphics::GraphicsContext & _context) :
-	context(_context)
-{
-	meshes = new Engine::Graphics::Mesh*[1];
-	meshes[0] = new Engine::Graphics::Mesh(std::string("P3A\\Data\\Meshes\\dzsoni.mesh"));
+  appearances_ = new Engine::Graphics::Appearance*[1];
+  appearances_[0] = new Engine::Graphics::Appearance(
+      std::string("P3A\\Data\\Appearances\\dzsoni.appearance"), std::string("P3A\\Data\\Textures"));
 
-	appearances = new Engine::Graphics::Appearance*[1];
-	appearances[0] = new Engine::Graphics::Appearance(std::string("P3A\\Data\\Appearances\\dzsoni.appearance"), std::string("P3A\\Data\\Textures"));
-
-	model = new Model(meshes[0], appearances[0], 0, Vector2(0.f, 0.f), context);
+  model_ = new Model(meshes_[0], appearances_[0], 0, Vector2(0.f, 0.f), context_);
 }
 
-P3A::Core::State P3A::Graphics::Test::Process(real32 const& _elapsed_time)
-{
-	context.PollEvents();
+P3A::Core::State Test::Process(real32 const& _elapsed_time) {
+  context_.PollEvents();
 
-	Handle_Keys();
-	Handle_Mouse();
+  HandleKeys();
+  HandleMouse();
 
-	Update(_elapsed_time);
-	Render();
+  Update(_elapsed_time);
+  Render();
 
-	context.SwapBuffers();
+  context_.SwapBuffers();
 
-	return P3A::Core::State(glfwWindowShouldClose(context.window) ? P3A::Core::CoreState::EXIT : P3A::Core::CoreState::CONTINUE);
+  return P3A::Core::State(context_.ShouldClose() ?
+      P3A::Core::CoreState::EXIT : P3A::Core::CoreState::CONTINUE);
 }
 
-void P3A::Graphics::Test::Update(real32 const& _elapsed_time)
-{
-	model->Update(_elapsed_time);
+void P3A::Graphics::Test::Update(real32 const& _elapsed_time) {
+  model_->Update(_elapsed_time);
 }
 
-void P3A::Graphics::Test::Render()
-{
-	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+void P3A::Graphics::Test::Render() {
+  glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	context.camera.UpdateVectors(context, Vector2(0.f, 0.f));
-	context.viewMatrix = glm::lookAt(context.camera.center, context.camera.eye, context.camera.up);
+  context_.UpdateCameraAndView(Vector2(0.0f, 0.0f));
 
-	context.shader_box->Use();
+  context_.PrepareBoxDraw();
+  glUniformMatrix4fv(context_.shader_box()->GetLocation("view"), 1, GL_FALSE,
+                     glm::value_ptr(context_.view_matrix()));
+  glUniformMatrix4fv(context_.shader_box()->GetLocation("projection"), 1, GL_FALSE,
+                     glm::value_ptr(context_.projection_matrix()));
 
-	context.viewLoc = glGetUniformLocation(context.shader_box->shaderProgram, "view");
-	context.projLoc = glGetUniformLocation(context.shader_box->shaderProgram, "projection");
+  model_->Render();
 
-	glUniformMatrix4fv(context.viewLoc, 1, GL_FALSE, glm::value_ptr(context.viewMatrix));
-	glUniformMatrix4fv(context.projLoc, 1, GL_FALSE, glm::value_ptr(context.projectionMatrix));
-
-	model->Render();
-
-	glBindVertexArray(0);
+  glBindVertexArray(0);
 }
 
-void P3A::Graphics::Test::Handle_Keys(void)
+void P3A::Graphics::Test::HandleKeys(void)
 {
-        //if (glfwGetKey(context.window, GLFW_KEY_SPACE) == GLFW_PRESS) pau
+  //if (glfwGetKey(context.window, GLFW_KEY_SPACE) == GLFW_PRESS) pau
 }
 
-void P3A::Graphics::Test::Handle_Mouse(void)
+void P3A::Graphics::Test::HandleMouse(void)
 {
 
+}
+}
 }

@@ -1,30 +1,35 @@
-#pragma once
+#ifndef ENGINE_GRAPHICS_CAMERA_H
+#define ENGINE_GRAPHICS_CAMERA_H
 
-//#include "GLEW\glew.h"
-#include "GLM\glm.hpp"
-//#include "GLM\gtc\matrix_transform.hpp"
+#include "GLM/glm.hpp"
 
-#include "Engine\Types.h"
+#include "Engine/Types.h"
 
-namespace Engine
-{
-	namespace Graphics
-	{
-		class Context_Base;
+namespace Engine {
+namespace Graphics {
+class ContextBase;
 
-		class Camera
-		{
-		public:
-			glm::vec3 center = glm::vec3(0.0f, 0.0f, 2.0f);
-			glm::vec3 eye = glm::vec3(0.0f, 0.0f, 0.0f);
-			glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
+class Camera {
+  public:
+    inline Camera(void) = default;
+    inline Camera(Camera && _other) = delete;
+    inline Camera(Camera const& _other) = delete;
+    inline Camera & operator=(Camera && _other) = delete;
+    inline Camera & operator=(Camera const& _other) = delete;
+    inline virtual ~Camera(void) = default;
 
-			inline Camera(void) = default;
-			inline Camera(Camera const& _other) = delete;
-			inline Camera & operator=(Camera const& _other) = delete;
-			inline virtual ~Camera(void) = default;
+    void UpdateVectors(ContextBase const& _context, Vector2 const& _position);
 
-			void UpdateVectors(Context_Base const& _context, Vector2 const& _position);
-		};
-	}
+    inline glm::vec3 center(void) const { return center_; }
+    inline glm::vec3 eye(void) const { return eye_; }
+    inline glm::vec3 up(void) const { return up_; }
+
+  private:
+    glm::vec3 center_ = glm::vec3(0.0f, 0.0f, 2.0f);
+    glm::vec3 eye_ = glm::vec3(0.0f, 0.0f, 0.0f);
+    const glm::vec3 up_ = glm::vec3(0.0f, 1.0f, 0.0f);
+};
 }
+}
+
+#endif

@@ -1,75 +1,73 @@
-#include "Engine\Graphics\Shader.h"
+#include "Engine/Graphics/Shader.h"
 
+#include <assert.h>
 #include <string>
 #include <fstream>
 #include <sstream>
-#include <assert.h>
 
-Engine::Graphics::Shader::Shader(const GLchar *_vertexPath, const GLchar *_fragmentPath)
-{
-	std::string vertexCode;
-	std::string fragmentCode;
+#include "Engine/Core/Logger.h"
 
-	std::ifstream vShaderFile(_vertexPath);
-	std::ifstream fShaderFile(_fragmentPath);
-	std::stringstream vShaderStream, fShaderStream;
+namespace Engine {
+namespace Graphics{
+Shader::Shader(const GLchar *_vertex_path, const GLchar *_fragment_path) {
+  std::string vertex_code;
+  std::string fragment_code;
 
-	vShaderStream << vShaderFile.rdbuf();
-	fShaderStream << fShaderFile.rdbuf();
+  std::ifstream vertex_shader_file(_vertex_path), fragment_shader_file(_fragment_path);
+  std::stringstream vertex_shader_stream, fragment_shader_stream;
 
-	vShaderFile.close();
-	fShaderFile.close();
+  vertex_shader_stream << vertex_shader_file.rdbuf();
+  fragment_shader_stream << fragment_shader_file.rdbuf();
 
-	vertexCode = vShaderStream.str();
-	fragmentCode = fShaderStream.str();
+  vertex_shader_file.close();
+  fragment_shader_file.close();
 
-	const GLchar* vShaderCode = vertexCode.c_str();
-	const GLchar* fShaderCode = fragmentCode.c_str();
+  vertex_code = vertex_shader_stream.str();
+  fragment_code = fragment_shader_stream.str();
 
-	GLuint vertex, fragment;
-	GLint success;
-	GLchar infoLog[512];
+  const GLchar * vertex_shader_code = vertex_code.c_str();
+  const GLchar * fragment_shader_code = fragment_code.c_str();
 
-	vertex = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertex, 1, &vShaderCode, NULL);
-	glCompileShader(vertex);
+  GLint success;
+  GLuint vertex, fragment;
 
-	glGetShaderiv(vertex, GL_COMPILE_STATUS, &success);
-	if (!success)
-	{
-		glGetShaderInfoLog(vertex, 512, NULL, infoLog);
-		assert(false && "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" && infoLog);
-	}
+  vertex = glCreateShader(GL_VERTEX_SHADER);
+  glShaderSource(vertex, 1, &vertex_shader_code, NULL);
+  glCompileShader(vertex);
 
-	fragment = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragment, 1, &fShaderCode, NULL);
-	glCompileShader(fragment);
+  glGetShaderiv(vertex, GL_COMPILE_STATUS, &success);
+  if (!success) {
+    GLchar info_log[512];
+    glGetShaderInfoLog(vertex, 512, NULL, info_log);
+    Engine::Core::AbortWithMessageAndData("Vertex Compilation failed:\0", info_log);
+  }
 
-	glGetShaderiv(fragment, GL_COMPILE_STATUS, &success);
-	if (!success)
-	{
-		glGetShaderInfoLog(fragment, 512, NULL, infoLog);
-		assert(false && "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" && infoLog);
-	}
+  fragment = glCreateShader(GL_FRAGMENT_SHADER);
+  glShaderSource(fragment, 1, &fragment_shader_code, NULL);
+  glCompileShader(fragment);
 
-	this->shaderProgram = glCreateProgram();
-	glAttachShader(shaderProgram, vertex);
-	glAttachShader(shaderProgram, fragment);
-	glLinkProgram(shaderProgram);
+  glGetShaderiv(fragment, GL_COMPILE_STATUS, &success);
+  if (!success) {
+    GLchar info_log[512];
+    glGetShaderInfoLog(vertex, 512, NULL, info_log);
+    Engine::Core::AbortWithMessageAndData("Fragment Compilation failed:\0", info_log);
+  }
 
-	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-	if (!success)
-	{
-		glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-		assert(false && "ERROR::SHADER::VERTEX::LINKING_FAILED\n" && infoLog);
-	}
+  shader_program_ = glCreateProgram();
+  glAttachShader(shader_program_, vertex);
+  glAttachShader(shader_program_, fragment);
+  glLinkProgram(shader_program_);
 
-	glDeleteShader(vertex);
-	glDeleteShader(fragment);
+  glGetProgramiv(shader_program_, GL_LINK_STATUS, &success);
+  if (!success) {
+    GLchar info_log[512];
+    glGetProgramInfoLog(shader_program_, 512, NULL, info_log);
+    char message[600] = "ERROR::SHADER::VERTEX::LINKING_FAILED\n\0";
+    Engine::Core::AbortWithMessageAndData("Shader Linking failed:\0", info_log);
+  }
+
+  glDeleteShader(vertex);
+  glDeleteShader(fragment);
 }
-
-Engine::Graphics::Shader::~Shader()
-{
-	glDeleteProgram(shaderProgram);
-	// TODO WTF
+}
 }

@@ -1,31 +1,31 @@
-#pragma once
+#ifndef ENGINE_GRAPHICS_APPEARANCE_H_
+#define ENGINE_GRAPHICS_APPEARANCE_H_
 
 #include <string>
 
-#include "Engine\Types.h"
-#include "Engine\Graphics\Texture_Base.h"
+#include "Engine/Types.h"
+#include "Engine/Graphics/TextureBase.h"
 
-namespace Engine
-{
-	namespace Graphics
-	{
-		class Appearance
-		{
-		public:
-			uint32 element_textures_count = 0;
-			Texture_Base ** element_textures = nullptr;
+namespace Engine {
+namespace Graphics {
+class Appearance {
+  public:
+    Appearance(std::string const& _appearance_path, std::string const& _texture_directory);
+    inline Appearance(void) = delete;
+    inline Appearance(Appearance && _other) = delete;
+    inline Appearance(Appearance const& _other) = delete;
+    inline Appearance & operator=(Appearance && _other) = delete;
+    inline Appearance & operator=(Appearance const& _other) = delete;
+    virtual ~Appearance(void);
 
-			// Constructor
-			inline Appearance(void) = delete;
-			Appearance(std::string && _appearance_path, std::string && _texture_directory);
-			// Copy Constructor
-			inline Appearance(Appearance && _other) = delete;
-			inline Appearance(Appearance const& _other) = delete;
-			// Assignment operator
-			inline Appearance & operator=(Appearance && _other) = delete;
-			inline Appearance & operator=(Appearance const& _other) = delete;
-			// Destructor
-			virtual ~Appearance(void);
-		};
-	}
+    inline uint32 element_textures_count(void) const { return element_textures_count_; }
+    inline TextureBase ** element_textures(void) const { return element_textures_; }
+
+  private:
+    uint32 element_textures_count_ = 0;
+    TextureBase ** element_textures_ = nullptr;
+};
 }
+}
+
+#endif

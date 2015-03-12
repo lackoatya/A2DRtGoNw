@@ -3,7 +3,7 @@
 #include <vector>
 
 #include "Engine\Types.h"
-#include "Engine\Core\Processable.h"
+#include "Engine\Core\ProcessableInterface.h"
 #include "Engine\Physics\Manifold.h"
 
 namespace Engine
@@ -33,8 +33,8 @@ namespace Engine
 
 			// QUESTION: what is this?
 			uint32 m_iterations = 10;
-			std::vector< Body * > bodies;
-			std::vector< Manifold > contacts;
+			std::vector<Body *> bodies;
+			std::vector<Manifold> contacts;
 		};
 	}
 }

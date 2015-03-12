@@ -1,80 +1,54 @@
-#pragma once
+#ifndef ENGINE_NETWORK_CONNECTION_H_
+#define ENGINE_NETWORK_CONNECTION_H_
 
 #include <string>
 
-#include "BOOST\asio.hpp"
-#include "BOOST\thread.hpp"
-#include "BOOST\atomic.hpp"
+#include "BOOST/asio.hpp"
+#include "BOOST/thread.hpp"
+#include "BOOST/atomic.hpp"
 
-#include "Engine\Types.h"
+#include "Engine/Types.h"
 
-struct Packet;
-class Hero;
-class Gateway;
+namespace Engine {
+namespace Network {
+class Connection {
+  public:
+    explicit Connection(boost::asio::io_service & _io_service);
+    inline Connection(void) = delete;
+    inline Connection(Connection && _other) = delete;
+    inline Connection(Connection const& _other) = delete;
+    inline Connection & operator=(Connection && _other) = delete;
+    inline Connection & operator=(Connection const& _other) = delete;
+    virtual ~Connection(void);
 
-namespace Engine
-{
-	namespace Network
-	{
-		/*enum class ServerCommand
-		{
-			UDP_PORT = 0,
-			GAME_STATE,
+    void Start(void);
 
-			Count
-		};
+    void TCP_Send(Packet const& _packet);
+    void UDP_Send(Packet const& _packet);
 
-		enum class ClientCommand
-		{
-			LOGIN = 0
-		};*/
+    virtual void Process(char * _data, size_t const& _received) = 0;
+    virtual void Dispose(void);
 
-		class Connection
-		{
-		public:
-			Connection() = delete;
-			Connection(boost::asio::io_service &_io_service);
-			Connection(Connection const& _other) = delete;
-			Connection & operator=(Connection const& _other) = delete;
-			virtual ~Connection();
+    inline boost::asio::ip::tcp::socket const& tcp_socket(void) const { return tcp_socket_; };
+    inline boost::asio::ip::udp::socket const& udp_socket(void) const { return udp_socket_; };
 
-			void Start();
+  protected:
+    atomic<bool> disposed_;
 
-			void TCP_Send(Packet *_packet);
+    char * tcp_data_ = nullptr, * udp_data_ = nullptr;
+    boost::asio::ip::tcp::socket tcp_socket_;
+    boost::asio::ip::udp::socket udp_socket_;
 
-			void UDP_Send(Packet *_packet);
+    void TCP_Receive(void);
+    void UDP_Receive(void);
 
-			inline boost::asio::ip::tcp::socket const& TCP_Socket() const { return tcp_socket; };
-			inline boost::asio::ip::udp::socket const& UDP_Socket() const { return udp_socket; };
+    void TCP_ReceiveCallback(boost::system::error_code const& _error, size_t const& _received);
+    void UDP_ReceiveCallback(boost::system::error_code const& _error, size_t const& _received);
 
-			// TODO this should be pure virtual, right?
-			virtual void Dispose();
-
-			virtual void Process(char *_data, size_t _received) = 0;
-
-		protected:
-			atomic< bool > disposed;
-
-			// TODO This shouldn't be base class specific!
-			//shared_ptr< Hero > hero = 0;
-
-			// TCP
-			char *tcp_data = 0;
-			boost::asio::ip::tcp::socket tcp_socket;
-
-			void TCP_Receive();
-			void Handle_TCP_Receive(boost::system::error_code const& _error, size_t const& _received);
-
-			void Handle_TCP_Send(boost::system::error_code const& _error, size_t const& _sent);
-
-			// UDP
-			char *udp_data = 0;
-			boost::asio::ip::udp::socket udp_socket;
-
-			void UDP_Receive();
-			void Handle_UDP_Receive(boost::system::error_code const& _error, size_t const& _received);
-
-			void Handle_UDP_Send(boost::system::error_code const& _error, size_t const& _sent);
-		};
-	}
+    void TCP_SendCallback(boost::system::error_code const& _error, size_t const& _sent);
+    void UDP_SendCallback(boost::system::error_code const& _error, size_t const& _sent);
+};
 }
+}
+
+#endif

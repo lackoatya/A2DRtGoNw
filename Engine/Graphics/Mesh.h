@@ -1,188 +1,158 @@
-#pragma once
+#ifndef ENGINE_GRAPHICS_MESH_H_
+#define ENGINE_GRAPHICS_MESH_H_
 
 #include <string>
+#include <fstream>
 
-#include "Engine\Types.h"
+#include "Engine/Types.h"
 
-// TODO Use boost's ptr_vector?
+namespace Engine {
+namespace Graphics {
+struct Mesh {
+  public:
+    struct Element {
+      public:
+        struct Joint {
+          public:
+            Vector2 owner_location, target_location;
+            uint32 target_index = 0;
 
-namespace Engine
-{
-	namespace Graphics
-	{
-		class Mesh
-		{
-		public:
-			class Element
-			{
-			public:
-				class Joint
-				{
-				public:
-					Vector2 owner_location, target_location;
-					uint32 target_index = 0;
+            inline Joint(Vector2 && _owner_location, uint32 const& _target_index,
+                         Vector2 && _target_location)
+                : owner_location(std::move(_owner_location)),
+                  target_location(std::move(_target_location)),
+                  target_index(_target_index) { }
+            inline Joint(void) = delete;
+            inline Joint(Joint && _other) = delete;
+            inline Joint(Joint const& _other) = delete;
+            inline Joint & operator=(Joint && _other) = delete;
+            inline Joint & operator=(Joint const& _other) = delete;
+            inline virtual ~Joint(void) = default;
+          };
 
-					// Joint * next = nullptr;
+      public:
+        uint32 index, depth = 0;
 
-					// Constructor
-					inline Joint(Vector2 && _owner_location, uint32 const& _target_index, Vector2 && _target_location/*, Joint * _next*/) :
-						owner_location(std::move(_owner_location)),
-						target_location(std::move(_target_location)),
-						target_index(_target_index)/*,
-						next(_next)*/ { }
-					// Copy Constructor
-					inline Joint(Joint && _other) = delete;
-					inline Joint(Joint const& _other) = delete;
-					// Assignment operator
-					inline Joint & operator=(Joint && _other) = delete;
-					inline Joint & operator=(Joint const& _other) = delete;
-					// Destructor
-					/*virtual ~Joint(void)
-					{
-						// delete next;
-						next = nullptr;
-					}*/
-					inline virtual ~Joint(void) = default;
-				};
+        uint32 joints_count = 0;
+        Joint ** joints = nullptr;
 
-			public:
-				uint32 index, depth = 0;
+        inline Element(uint32 const& _index, uint32 const& _depth, uint32 const& _joints_count,
+                       Joint ** _joints)
+            : index(_index),
+              depth(_depth),
+              joints_count(_joints_count),
+              joints(_joints) { }
+        inline Element(void) = delete;
+        inline Element(Element && _other) = delete;
+        inline Element(Element const& _other) = delete;
+        inline Element & operator=(Element && _other) = delete;
+        inline Element & operator=(Element const& _other) = delete;
+        inline virtual ~Element(void) {
+          for (uint32 current = 0; current < joints_count; ++current)
+            delete joints[current];
+          delete[] joints;
+          joints = nullptr;
+      }
+    };
 
-				uint32 joints_count = 0;
-				Joint ** joints = nullptr;
+    struct Animation {
+      public:
+        struct Frame {
+          public:
+            struct Transformation {
+              public:
+                uint32 index = 0;
+                real32 rotation = 0.f;
 
-				// Constructor
-				inline Element(uint32 const& _index, uint32 const& _depth, uint32 const& _joints_count, Joint ** _joints) :
-					index(_index),
-					depth(_depth),
-					joints_count(_joints_count),
-					joints(_joints) { }
-				// Copy Constructor
-				inline Element(Element && _other) = delete;
-				inline Element(Element const& _other) = delete;
-				// Assignment operator
-				inline Element & operator=(Element && _other) = delete;
-				inline Element & operator=(Element const& _other) = delete;
-				// Destructor
-				inline virtual ~Element(void)
-				{
-					for (uint32 current = 0; current < joints_count; ++current)
-						delete joints[current];
-					delete[] joints;
-					joints = nullptr;
-				}
-			};
+                inline Transformation(uint32 const& _index, real32 const& _rotation)
+                    : index(_index),
+                      rotation(_rotation) { }
+                inline Transformation(void) = delete;
+                inline Transformation(Transformation && _other) = delete;
+                inline Transformation(Transformation const& _other) = delete;
+                inline Transformation & operator=(Transformation && _other) = delete;
+                inline Transformation & operator=(Transformation const& _other) = delete;
+                inline virtual ~Transformation(void) = default;
+              };
 
-			class Animation
-			{
-			public:
-				class Frame
-				{
-				public:
-					class Transformation
-					{
-					public:
-						uint32 index = 0;
-						real32 rotation = 0.f;
+          public:
+            real32 end = 0.f;
 
-						//Transformation * next = nullptr;
+            uint32 transformations_count = 0;
+            Transformation ** transformations = nullptr;
 
-						// Constructor
-						inline Transformation(void) = delete;
-						inline Transformation(uint32 const& _index, real32 const& _rotation) : index(_index), rotation(_rotation) { }
-						// Copy Constructor
-						inline Transformation(Transformation && _other) = delete;
-						inline Transformation(Transformation const& _other) = delete;
-						// Assignment operator
-						inline Transformation & operator=(Transformation && _other) = delete;
-						inline Transformation & operator=(Transformation const& _other) = delete;
-						// Destructor
-						inline virtual ~Transformation(void) = default;
-					};
+            inline Frame(real32 const& _end, uint32 const& _transformations_count,
+                         Transformation ** _transformations)
+                : end(_end),
+                  transformations_count(_transformations_count),
+                  transformations(_transformations) { }
+            inline Frame(void) = delete;
+            inline Frame(Frame && _other) = delete;
+            inline Frame(Frame const& _other) = delete;
+            inline Frame & operator=(Frame && _other) = delete;
+            inline Frame & operator=(Frame const& _other) = delete;
+            inline virtual ~Frame(void) {
+              for (uint32 current = 0; current < transformations_count; ++current)
+                delete transformations[current];
+              delete[] transformations;
+              transformations = nullptr;
+            }
+        };
 
-				public:
-					real32 end = 0.f;
+      public:
+        uint32 frames_count = 0;
+        Frame ** frames = nullptr;
 
-					uint32 transformations_count = 0;
-					Transformation ** transformations = nullptr;
+        inline Animation(uint32 const& _frames_count, Frame ** _frames)
+            : frames_count(_frames_count),
+              frames(_frames) { }
+        inline Animation(void) = delete;
+        inline Animation(Animation && _other) = delete;
+        inline Animation(Animation const& _other) = delete;
+        inline Animation & operator=(Animation && _other) = delete;
+        inline Animation & operator=(Animation const& _other) = delete;
+        inline virtual ~Animation(void) {
+          for (uint32 current = 0; current < frames_count; ++current)
+            delete frames[current];
+          delete[] frames;
+          frames = nullptr;
+        }
+    };
 
-					// Frame * next = nullptr;
+  public:
+    uint32 * depth_indexes = nullptr;
 
-					// Constructor
-					inline Frame(void) = delete;
-					inline Frame(real32 const& _end, uint32 const& _transformations_count, Transformation ** _transformations) :
-						end(_end),
-						transformations_count(_transformations_count),
-						transformations(_transformations) { }
-					// Copy Constructor
-					inline Frame(Frame && _other) = delete;
-					inline Frame(Frame const& _other) = delete;
-					// Assignment operator
-					inline Frame & operator=(Frame && _other) = delete;
-					inline Frame & operator=(Frame const& _other) = delete;
-					// Destructor
-					inline virtual ~Frame(void)
-					{
-						for (uint32 current = 0; current < transformations_count; ++current)
-							delete transformations[current];
-						delete[] transformations;
-						transformations = nullptr;
-					}
-				};
+    uint32 elements_count = 0;
+    Element ** elements = nullptr;
 
-			public:
-				uint32 frames_count = 0;
-				Frame ** frames = nullptr;
+    uint32 animations_count = 0;
+    Animation ** animations = nullptr;
 
-				// Constructor
-				inline Animation(void) = delete;
-				inline Animation(uint32 const& _frames_count, Frame ** _frames) : frames_count(_frames_count), frames(_frames) { }
-				// Copy Constructor
-				inline Animation(Animation && _other) = delete;
-				inline Animation(Animation const& _other) = delete;
-				// Assignment operator
-				inline Animation & operator=(Animation && _other) = delete;
-				inline Animation & operator=(Animation const& _other) = delete;
-				// Destructor
-				inline virtual ~Animation(void)
-				{
-					for (uint32 current = 0; current < frames_count; ++current)
-						delete frames[current];
-					delete[] frames;
-					frames = nullptr;
-				}
-			};
+    Mesh(std::string const& _mesh_path);
+    inline Mesh(void) = delete;
+    inline Mesh(Mesh && _other) = delete;
+    inline Mesh(Mesh const& _other) = delete;
+    inline Mesh & operator=(Mesh && _other) = delete;
+    inline Mesh & operator=(Mesh const& _other) = delete;
+    inline virtual ~Mesh(void) {
+      delete[] depth_indexes;
+      depth_indexes = nullptr;
 
-		public:
-                        uint32 * depth_indexes = nullptr;
+      for (uint32 current = 0; current < elements_count; ++current)
+        delete elements[current];
+      delete[] elements;
+      elements = nullptr;
 
-			uint32 elements_count = 0;
-			Element ** elements = nullptr;
+      for (uint32 current = 0; current < animations_count; ++current)
+        delete animations[current];
+      delete[] animations;
+      animations = nullptr;
+    }
 
-			uint32 animations_count = 0;
-			Animation ** animations = nullptr;
-
-			// Constructor
-			Mesh(std::string && _mesh_path);
-			// Copy Constructor
-			inline Mesh(Mesh && _other) = delete;
-			inline Mesh(Mesh const& _other) = delete;
-			// Assignment operator
-			inline Mesh & operator=(Mesh && _other) = delete;
-			inline Mesh & operator=(Mesh const& _other) = delete;
-			// Destructor
-			inline virtual ~Mesh(void)
-			{
-                                delete[] depth_indexes; depth_indexes = nullptr;
-
-				for (uint32 current = 0; current < elements_count; ++current)
-					delete elements[current];
-				delete[] elements;      elements = nullptr;
-
-				for (uint32 current = 0; current < animations_count; ++current)
-					delete animations[current];
-				delete[] animations;    animations = nullptr;
-			}
-		};
-	}
+  private:
+    void ReadPlaceholder(std::ifstream & _file);
+};
 }
+}
+
+#endif

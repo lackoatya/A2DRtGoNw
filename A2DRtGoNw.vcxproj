@@ -69,13 +69,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Engine\Graphics\Appearance.cpp" />
-    <ClCompile Include="Engine\Graphics\Camera.cpp" />
-    <ClCompile Include="Engine\Graphics\Mesh.cpp" />
-    <ClCompile Include="Engine\Graphics\Model_Base.cpp" />
+    <ClCompile Include="Engine\Core\Logger.cc" />
+    <ClCompile Include="Engine\Graphics\Appearance.cc" />
+    <ClCompile Include="Engine\Graphics\Camera.cc" />
+    <ClCompile Include="Engine\Graphics\Mesh.cc" />
+    <ClCompile Include="Engine\Graphics\ModelBase.cc" />
     <ClCompile Include="Engine\Graphics\Shader.cpp" />
-    <ClCompile Include="Engine\Graphics\Texture_Base.cpp" />
-    <ClCompile Include="Engine\Graphics\Context_Base.cpp" />
+    <ClCompile Include="Engine\Graphics\TextureBase.cc" />
+    <ClCompile Include="Engine\Graphics\ContextBase.cc" />
     <ClCompile Include="Engine\Physics\Body.cpp" />
     <ClCompile Include="Engine\Physics\Collision.cpp" />
     <ClCompile Include="Engine\Physics\Manifold.cpp" />
@@ -87,18 +88,19 @@
     <ClCompile Include="P3A\Graphics\Test.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Engine\Core\Processable.h" />
+    <ClInclude Include="Engine\Core\Logger.h" />
+    <ClInclude Include="Engine\Core\ProcessableInterface.h" />
     <ClInclude Include="Engine\Core\NonDeterministic.hpp" />
     <ClInclude Include="Engine\Core\Deterministic.hpp" />
-    <ClInclude Include="Engine\Core\Result.h" />
+    <ClInclude Include="Engine\Core\ProcessableResultInterface.h" />
     <ClInclude Include="Engine\Graphics\Appearance.h" />
     <ClInclude Include="Engine\Graphics\Camera.h" />
-    <ClInclude Include="Engine\Graphics\KeyHandler.hpp" />
+    <ClInclude Include="Engine\Graphics\KeyHandler.h" />
     <ClInclude Include="Engine\Graphics\Mesh.h" />
-    <ClInclude Include="Engine\Graphics\Context_Base.h" />
-    <ClInclude Include="Engine\Graphics\Model_Base.h" />
+    <ClInclude Include="Engine\Graphics\ContextBase.h" />
+    <ClInclude Include="Engine\Graphics\ModelBase.h" />
     <ClInclude Include="Engine\Graphics\Shader.h" />
-    <ClInclude Include="Engine\Graphics\Texture_Base.h" />
+    <ClInclude Include="Engine\Graphics\TextureBase.h" />
     <ClInclude Include="Engine\Network\Connection.h" />
     <ClInclude Include="Engine\Physics\Body.h" />
     <ClInclude Include="Engine\Physics\Collision.h" />
