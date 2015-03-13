@@ -45,23 +45,8 @@
     <ClCompile Include="Engine\Physics\Collision.cpp">
       <Filter>Engine\Physics</Filter>
     </ClCompile>
-    <ClCompile Include="P3A\Core.cpp">
-      <Filter>P3A</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Graphics\Shader.cpp">
       <Filter>Engine\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="P3A\Graphics\Menu.cpp">
-      <Filter>P3A\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="P3A\Graphics\GraphicsContext.cpp">
-      <Filter>P3A\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="P3A\Graphics\Test.cpp">
-      <Filter>P3A\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="P3A\Graphics\Model.cpp">
-      <Filter>P3A\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Graphics\Appearance.cc">
       <Filter>Engine\Graphics</Filter>
@@ -83,6 +68,21 @@
     </ClCompile>
     <ClCompile Include="Engine\Core\Logger.cc">
       <Filter>Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="P3A\Graphics\GraphicsContext.cc">
+      <Filter>P3A\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="P3A\Graphics\Menu.cc">
+      <Filter>P3A\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="P3A\Graphics\Model.cc">
+      <Filter>P3A\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="P3A\Graphics\Test.cc">
+      <Filter>P3A\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="P3A\Core.cc">
+      <Filter>P3A</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -81,11 +81,11 @@
     <ClCompile Include="Engine\Physics\Collision.cpp" />
     <ClCompile Include="Engine\Physics\Manifold.cpp" />
     <ClCompile Include="Engine\Physics\Reality.cpp" />
-    <ClCompile Include="P3A\Core.cpp" />
-    <ClCompile Include="P3A\Graphics\Menu.cpp" />
-    <ClCompile Include="P3A\Graphics\GraphicsContext.cpp" />
-    <ClCompile Include="P3A\Graphics\Model.cpp" />
-    <ClCompile Include="P3A\Graphics\Test.cpp" />
+    <ClCompile Include="P3A\Core.cc" />
+    <ClCompile Include="P3A\Graphics\Menu.cc" />
+    <ClCompile Include="P3A\Graphics\GraphicsContext.cc" />
+    <ClCompile Include="P3A\Graphics\Model.cc" />
+    <ClCompile Include="P3A\Graphics\Test.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Core\Logger.h" />
