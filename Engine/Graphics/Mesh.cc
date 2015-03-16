@@ -27,9 +27,9 @@ Mesh::Mesh(std::string const& _mesh_path) {
   for (uint32 current_element = 0; current_element < elements_count; ++current_element) {
     ReadPlaceholder(file);
 
-    uint32 depth = 0, joints_count = 0;
+    uint32 depth = 0, joints_count = 0, bindings_count = 0;
 
-    file >> depth >> joints_count;
+    file >> depth >> joints_count >> bindings_count;
     depth_indexes[depth] = current_element;
 
     Element::Joint ** joints = new Element::Joint*[joints_count];
@@ -44,7 +44,20 @@ Mesh::Mesh(std::string const& _mesh_path) {
                                                  Vector2(target_x, target_y));
     }
 
-    elements[current_element] = new Element(current_element, depth, joints_count, joints);
+    Element::Binding ** bindings = new Element::Binding*[bindings_count];
+
+    for (uint32 current_binding = 0; current_binding < bindings_count; ++current_binding) {
+      uint32 target_index = 0;
+      real32 owner_x = 0.f, owner_y = 0.f, target_x = 0.f, target_y = 0.f, angle = 0.f;
+
+      file >> owner_x >> owner_y >> target_index >> target_x >> target_y >> angle;
+
+      bindings[current_binding] = new Element::Binding(Vector2(owner_x, owner_y), target_index,
+                                                       Vector2(target_x, target_y), angle);
+    }
+
+    elements[current_element] = new Element(current_element, depth, joints_count, joints,
+                                            bindings_count, bindings);
   }
 
   ReadPlaceholder(file);

@@ -17,8 +17,8 @@ struct Mesh {
             Vector2 owner_location, target_location;
             uint32 target_index = 0;
 
-            inline Joint(Vector2 && _owner_location, uint32 const& _target_index,
-                         Vector2 && _target_location)
+            inline Joint(Vector2 const& _owner_location, uint32 const& _target_index,
+                         Vector2 const& _target_location)
                 : owner_location(std::move(_owner_location)),
                   target_location(std::move(_target_location)),
                   target_index(_target_index) { }
@@ -30,18 +30,37 @@ struct Mesh {
             inline virtual ~Joint(void) = default;
           };
 
+        struct Binding : public Joint {
+          real32 angle = 0.f;
+
+          inline Binding(Vector2 const& _owner_location, uint32 const& _target_index,
+                         Vector2 const& _target_location, real32 const& _angle)
+              : Joint(_owner_location, _target_index, _target_location), angle(_angle) { }
+          inline Binding(void) = delete;
+          inline Binding(Binding && _other) = delete;
+          inline Binding(Binding const& _other) = delete;
+          inline Binding & operator=(Binding && _other) = delete;
+          inline Binding & operator=(Binding const& _other) = delete;
+          inline virtual ~Binding(void) = default;
+        };
+
       public:
         uint32 index, depth = 0;
 
         uint32 joints_count = 0;
         Joint ** joints = nullptr;
 
+        uint32 bindings_count = 0;
+        Binding ** bindings = nullptr;
+
         inline Element(uint32 const& _index, uint32 const& _depth, uint32 const& _joints_count,
-                       Joint ** _joints)
+                       Joint ** _joints, uint32 const& _bindings_count, Binding ** _bindings)
             : index(_index),
               depth(_depth),
               joints_count(_joints_count),
-              joints(_joints) { }
+              joints(_joints),
+              bindings_count(_bindings_count),
+              bindings(_bindings) { }
         inline Element(void) = delete;
         inline Element(Element && _other) = delete;
         inline Element(Element const& _other) = delete;

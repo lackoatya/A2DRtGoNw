@@ -7,9 +7,21 @@ void ModelBase::SetFrame(uint32 const& _frame) {
 
   interpolation_end->time = mesh_->animations[animation_]->frames[frame_]->end;
   Mesh::Animation::Frame * current_frame = mesh_->animations[animation_]->frames[frame_];
-  for (uint32 current = 0; current < current_frame->transformations_count; ++current)
-    interpolation_end->rotations[current_frame->transformations[current]->index]
-        = current_frame->transformations[current]->rotation;
+  for (uint32 current = 0; current < current_frame->transformations_count; ++current) {
+    Mesh::Animation::Frame::Transformation * current_transformation =
+        current_frame->transformations[current];
+
+    interpolation_end->rotations[current_transformation->index] = current_transformation->rotation;
+
+    for (uint32 binding = 0;
+         binding < mesh_->elements[current_transformation->index]->bindings_count;
+         ++binding) {
+      Mesh::Element * curr_bind = mesh_->elements[current_transformation->index];
+
+      interpolation_end->rotations[curr_bind->bindings[binding]->target_index] =
+        current_transformation->rotation + curr_bind->bindings[binding]->angle;
+    }
+  }
 }
 
 void ModelBase::Animate(uint32 const& _animation) {
@@ -39,6 +51,7 @@ void ModelBase::Update(real32 const& _elapsed_time) {
 
   real32 dt = (interpolation_current->time - interpolation_start->time) /
       (interpolation_end->time - interpolation_start->time);
+
   for (uint32 element = 0; element < mesh_->elements_count; ++element)
     interpolation_current->rotations[element] = interpolation_start->rotations[element] +
         (interpolation_end->rotations[element] - interpolation_start->rotations[element]) * dt;
@@ -47,20 +60,25 @@ void ModelBase::Update(real32 const& _elapsed_time) {
 }
 
 void ModelBase::Update_ElementCenters(uint32 const& _element_index) {
-  for (uint32 current = 0; current < mesh_->elements[_element_index]->joints_count; ++current) {
-    uint32 target_index = mesh_->elements[_element_index]->joints[current]->target_index;
+  for (uint32 current = 0; current < mesh_->elements[_element_index]->joints_count; ++current)
+    Update_ElementJoint(_element_index, mesh_->elements[_element_index]->joints[current]);
 
-    Vector2 owner = mesh_->elements[_element_index]->joints[current]->owner_location;
-    owner.Rotate_Degree(interpolation_current->rotations[_element_index]);
-
-    Vector2 target = mesh_->elements[_element_index]->joints[current]->target_location;
-    target.Rotate_Degree(interpolation_current->rotations[target_index]);
-
-    element_centers[target_index] = owner - target + element_centers[_element_index];
-
-    Update_ElementCenters(target_index);
-  }
+  for (uint32 current = 0; current < mesh_->elements[_element_index]->bindings_count; ++current)
+    Update_ElementJoint(_element_index, mesh_->elements[_element_index]->bindings[current]);
 }
 
+void ModelBase::Update_ElementJoint(uint32 const& _element_index, Mesh::Element::Joint * _joint) {
+  uint32 target_index = _joint->target_index;
+
+  Vector2 owner = _joint->owner_location;
+  owner.Rotate_Degree(interpolation_current->rotations[_element_index]);
+
+  Vector2 target = _joint->target_location;
+  target.Rotate_Degree(interpolation_current->rotations[target_index]);
+
+  element_centers[target_index] = owner - target + element_centers[_element_index];
+
+  Update_ElementCenters(target_index);
+}
 }
 }

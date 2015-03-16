@@ -1,4 +1,4 @@
-14
+15
 body.png
 head.png
 right_arm1.png
@@ -7,9 +7,10 @@ right_hand.png
 left_arm1.png
 left_arm2.png
 left_hand.png
-right_leg1.png
-right_leg2.png
-right_feet.png
-left_leg1.png
-left_leg2.png
-left_feet.png
+leg1.png
+leg2.png
+feet.png
+leg1.png
+leg2.png
+feet.png
+sword.png

@@ -9,11 +9,11 @@ namespace Graphics {
 Test::Test(P3A::Graphics::GraphicsContext & _context)
     : context_(_context) {
   meshes_ = new Engine::Graphics::Mesh*[1];
-  meshes_[0] = new Engine::Graphics::Mesh(std::string("P3A\\Data\\Meshes\\dzsoni.mesh"));
+  meshes_[0] = new Engine::Graphics::Mesh(std::string("P3A\\Data\\Meshes\\samurai.mesh"));
 
   appearances_ = new Engine::Graphics::Appearance*[1];
   appearances_[0] = new Engine::Graphics::Appearance(
-      std::string("P3A\\Data\\Appearances\\dzsoni.appearance"), std::string("P3A\\Data\\Textures"));
+      std::string("P3A\\Data\\Appearances\\samurai.appearance"), std::string("P3A\\Data\\Textures"));
 
   model_ = new Model(meshes_[0], appearances_[0], 0, Vector2(0.f, 0.f), context_);
 }

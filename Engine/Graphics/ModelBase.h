@@ -77,6 +77,7 @@ class ModelBase {
     InterpolationBase * interpolation_end = nullptr;
 
     virtual void Update_ElementCenters(uint32 const& _element_index);
+    virtual void Update_ElementJoint(uint32 const& _element_index, Mesh::Element::Joint * _joint);
     virtual void SetFrame(uint32 const& _frame);
 };
 }
