@@ -10,7 +10,7 @@
 
 namespace P3A {
 namespace Graphics {
-class Menu : public Engine::Core::ProcessableInterface<P3A::Core::State> {
+class Menu : public Engine::Core::ProcessableInterface_Deterministic<P3A::Core::State> {
   public:
     enum class Keys {
       UP = 0,

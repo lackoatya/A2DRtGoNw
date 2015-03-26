@@ -1,11 +1,11 @@
-#include "Engine/Core/Logger.h"
+#include "Engine/Utility/Logger.h"
 
 #include <stdio.h>      /* fopen, fputs, fclose, stderr */
 #include <stdlib.h>     /* abort, NULL */
 #include <string>
 
 namespace Engine {
-namespace Core {
+namespace Utility {
   void AbortWithMessage(char const* _message) {
     fputs(_message, stderr);
     abort();

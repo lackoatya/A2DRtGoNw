@@ -5,7 +5,7 @@
 #include <fstream>
 #include <sstream>
 
-#include "Engine/Core/Logger.h"
+#include "Engine/Utility/Logger.h"
 
 namespace Engine {
 namespace Graphics{
@@ -39,7 +39,7 @@ Shader::Shader(const GLchar *_vertex_path, const GLchar *_fragment_path) {
   if (!success) {
     GLchar info_log[512];
     glGetShaderInfoLog(vertex, 512, NULL, info_log);
-    Engine::Core::AbortWithMessageAndData("Vertex Compilation failed:\0", info_log);
+    Engine::Utility::AbortWithMessageAndData("Vertex Compilation failed:\0", info_log);
   }
 
   fragment = glCreateShader(GL_FRAGMENT_SHADER);
@@ -50,7 +50,7 @@ Shader::Shader(const GLchar *_vertex_path, const GLchar *_fragment_path) {
   if (!success) {
     GLchar info_log[512];
     glGetShaderInfoLog(vertex, 512, NULL, info_log);
-    Engine::Core::AbortWithMessageAndData("Fragment Compilation failed:\0", info_log);
+    Engine::Utility::AbortWithMessageAndData("Fragment Compilation failed:\0", info_log);
   }
 
   shader_program_ = glCreateProgram();
@@ -63,7 +63,7 @@ Shader::Shader(const GLchar *_vertex_path, const GLchar *_fragment_path) {
     GLchar info_log[512];
     glGetProgramInfoLog(shader_program_, 512, NULL, info_log);
     char message[600] = "ERROR::SHADER::VERTEX::LINKING_FAILED\n\0";
-    Engine::Core::AbortWithMessageAndData("Shader Linking failed:\0", info_log);
+    Engine::Utility::AbortWithMessageAndData("Shader Linking failed:\0", info_log);
   }
 
   glDeleteShader(vertex);

@@ -31,20 +31,14 @@
     <Filter Include="P3A\Shader">
       <UniqueIdentifier>{cd78be72-dfa8-4fba-9017-903612b8d09b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Utility">
+      <UniqueIdentifier>{d8376a94-9dfa-495a-8c44-2b952ee2b7c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="P3A\Game">
+      <UniqueIdentifier>{71ff49a4-5f06-4db5-b446-7b85eae3c31c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Engine\Physics\Reality.cpp">
-      <Filter>Engine\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Physics\Body.cpp">
-      <Filter>Engine\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Physics\Manifold.cpp">
-      <Filter>Engine\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Physics\Collision.cpp">
-      <Filter>Engine\Physics</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Graphics\Shader.cpp">
       <Filter>Engine\Graphics</Filter>
     </ClCompile>
@@ -66,9 +60,6 @@
     <ClCompile Include="Engine\Graphics\TextureBase.cc">
       <Filter>Engine\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Core\Logger.cc">
-      <Filter>Engine\Core</Filter>
-    </ClCompile>
     <ClCompile Include="P3A\Graphics\GraphicsContext.cc">
       <Filter>P3A\Graphics</Filter>
     </ClCompile>
@@ -83,6 +74,21 @@
     </ClCompile>
     <ClCompile Include="P3A\Core.cc">
       <Filter>P3A</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Physics\Body.cc">
+      <Filter>Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Physics\Collision.cc">
+      <Filter>Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Physics\Manifold.cc">
+      <Filter>Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Physics\Reality.cc">
+      <Filter>Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Utility\Logger.cc">
+      <Filter>Engine\Utility</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -99,9 +105,6 @@
       <Filter>Engine\Physics</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Physics\Body.h">
-      <Filter>Engine\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Physics\Shape.h">
       <Filter>Engine\Physics</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Physics\Manifold.h">
@@ -158,8 +161,14 @@
     <ClInclude Include="Engine\Graphics\TextureBase.h">
       <Filter>Engine\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Core\Logger.h">
-      <Filter>Engine\Core</Filter>
+    <ClInclude Include="Engine\Physics\Shapes.h">
+      <Filter>Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Utility\Logger.h">
+      <Filter>Engine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="P3A\Game\World.h">
+      <Filter>P3A\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

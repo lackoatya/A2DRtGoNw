@@ -38,16 +38,6 @@ class ModelBase {
             inline Interpolator & operator=(Interpolator const& _other) = delete;
             inline virtual ~Interpolator(void) = default;
 
-            inline void Interpolate(uint32 const& _level, real32 const& _end_time,
-                                    real32 const& _end_rotation) {
-              level = _level;
-              start.time = 0.f;
-              start.rotation = current.rotation;
-              current.time = 0.f;
-              end.time = _end_time;
-              end.rotation = _end_rotation;
-            }
-
             inline void Interpolate(uint32 const& _level, real32 const& _start_time, 
                                     real32 const& _end_time, real32 const& _end_rotation) {
               level = _level;
@@ -152,9 +142,9 @@ class ModelBase {
   private:
     void Update_ElementCenters(uint32 const& _element_index);
     void Update_ElementJoint(uint32 const& _element_index, Mesh::Element::Joint * _joint);
-    void Update_Interpolation(Motion * _motion, uint32 const& _level, bool const& _force);
+    void Update_Interpolation(Motion * _motion, uint32 const& _level);
     void Update_Interpolation_CurrentTime(Motion * _motion);
-    // virtual void SetFrame(uint32 const& _frame);
+    void Update_Interpolation_Level(Motion * _motion, uint32 const& _level);
 };
 }
 }

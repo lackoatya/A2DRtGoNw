@@ -6,15 +6,14 @@
 namespace Engine {
 namespace Core {
 template <class ProcessResult>
-class ProcessableInterface {
+class ProcessableInterface_Deterministic {
   public:
-    inline ProcessableInterface(void) = default;
-    inline ProcessableInterface(ProcessableInterface && _other) = delete;
-    inline ProcessableInterface(ProcessableInterface const& _other) = delete;
-    inline ProcessableInterface & operator=(ProcessableInterface && _other) = delete;
-    inline ProcessableInterface & operator=(ProcessableInterface const& _other) = delete;
-    inline virtual ~ProcessableInterface(void) = default;
+    virtual ProcessResult Process(void) = 0;
+};
 
+template <class ProcessResult>
+class ProcessableInterface_NonDeterministic {
+  public:
     virtual ProcessResult Process(real32 const& _elapsed_time) = 0;
 };
 }

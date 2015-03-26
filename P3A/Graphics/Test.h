@@ -12,7 +12,7 @@
 
 namespace P3A {
 namespace Graphics {
-class Test : public Engine::Core::ProcessableInterface<P3A::Core::State> {
+class Test : public Engine::Core::ProcessableInterface_NonDeterministic<P3A::Core::State> {
   public:
     Test(P3A::Graphics::GraphicsContext & _context);
     inline Test(void) = delete;

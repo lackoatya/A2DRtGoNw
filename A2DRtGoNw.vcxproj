@@ -69,7 +69,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Engine\Core\Logger.cc" />
     <ClCompile Include="Engine\Graphics\Appearance.cc" />
     <ClCompile Include="Engine\Graphics\Camera.cc" />
     <ClCompile Include="Engine\Graphics\Mesh.cc" />
@@ -77,10 +76,11 @@
     <ClCompile Include="Engine\Graphics\Shader.cpp" />
     <ClCompile Include="Engine\Graphics\TextureBase.cc" />
     <ClCompile Include="Engine\Graphics\ContextBase.cc" />
-    <ClCompile Include="Engine\Physics\Body.cpp" />
-    <ClCompile Include="Engine\Physics\Collision.cpp" />
-    <ClCompile Include="Engine\Physics\Manifold.cpp" />
-    <ClCompile Include="Engine\Physics\Reality.cpp" />
+    <ClCompile Include="Engine\Physics\Body.cc" />
+    <ClCompile Include="Engine\Physics\Collision.cc" />
+    <ClCompile Include="Engine\Physics\Manifold.cc" />
+    <ClCompile Include="Engine\Physics\Reality.cc" />
+    <ClCompile Include="Engine\Utility\Logger.cc" />
     <ClCompile Include="P3A\Core.cc" />
     <ClCompile Include="P3A\Graphics\Menu.cc" />
     <ClCompile Include="P3A\Graphics\GraphicsContext.cc" />
@@ -88,7 +88,6 @@
     <ClCompile Include="P3A\Graphics\Test.cc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Engine\Core\Logger.h" />
     <ClInclude Include="Engine\Core\ProcessableInterface.h" />
     <ClInclude Include="Engine\Core\NonDeterministic.hpp" />
     <ClInclude Include="Engine\Core\Deterministic.hpp" />
@@ -106,9 +105,11 @@
     <ClInclude Include="Engine\Physics\Collision.h" />
     <ClInclude Include="Engine\Physics\Manifold.h" />
     <ClInclude Include="Engine\Physics\Reality.h" />
-    <ClInclude Include="Engine\Physics\Shape.h" />
+    <ClInclude Include="Engine\Physics\Shapes.h" />
     <ClInclude Include="Engine\Types.h" />
+    <ClInclude Include="Engine\Utility\Logger.h" />
     <ClInclude Include="P3A\Core\State.h" />
+    <ClInclude Include="P3A\Game\World.h" />
     <ClInclude Include="P3A\Graphics\Menu.h" />
     <ClInclude Include="P3A\Graphics\GraphicsContext.h" />
     <ClInclude Include="P3A\Graphics\Model.h" />

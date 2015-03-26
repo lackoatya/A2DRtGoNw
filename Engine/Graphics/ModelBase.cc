@@ -50,12 +50,12 @@ void ModelBase::Animate(uint32 const& _animation) {
 
   for (uint32 current = 0; current < frame->transformations_count; ++current) {
     Transformation * transformation = frame->transformations[current];
-    interpolation_->bases_[transformation->index]->Interpolate(level, frame->duration,
+    interpolation_->bases_[transformation->index]->Interpolate(level, 0.f, frame->duration,
         transformation->rotation);
 
     Element * element = mesh_->elements[transformation->index];
     for (uint32 binding = 0; binding < element->bindings_count; ++binding) {
-      interpolation_->bases_[element->bindings[binding]->target_index]->Interpolate(level,
+      interpolation_->bases_[element->bindings[binding]->target_index]->Interpolate(level, 0.f,
           frame->duration, transformation->rotation + element->bindings[binding]->angle);
     }
   }
@@ -75,13 +75,13 @@ void ModelBase::Animate_Loop(uint32 const& _animation) {
 
   for (uint32 current = 0; current < frame->transformations_count; ++current) {
     Transformation * transformation = frame->transformations[current];
-    interpolation_->bases_[transformation->index]->Interpolate(0, frame->duration,
+    interpolation_->bases_[transformation->index]->Interpolate(0, 0.f, frame->duration,
                                                                transformation->rotation);
 
     Element * element = mesh_->elements[transformation->index];
     for (uint32 binding = 0; binding < element->bindings_count; ++binding) {
-      interpolation_->bases_[element->bindings[binding]->target_index]->Interpolate(0, frame->duration,
-        transformation->rotation + element->bindings[binding]->angle);
+      interpolation_->bases_[element->bindings[binding]->target_index]->Interpolate(0, 0.f,
+        frame->duration, transformation->rotation + element->bindings[binding]->angle);
     }
   }
 }
@@ -102,7 +102,7 @@ void ModelBase::Update(real32 const& _elapsed_time) {
       motion_->time -= frame->duration;
       (motion_->frame) = ((motion_->frame) + 1) == animation->frames_count ? 0 : (motion_->frame) + 1;
 
-      Update_Interpolation(motion_, 0, false);
+      Update_Interpolation(motion_, 0);
     }
     else
       Update_Interpolation_CurrentTime(motion_);
@@ -119,45 +119,33 @@ void ModelBase::Update(real32 const& _elapsed_time) {
     current_motion->time += _elapsed_time;
 
     if (frame->duration < current_motion->time) {
-      current_motion->time -= frame->duration;
-      ++(current_motion->frame);
-      frame = animation->frames[current_motion->frame];
+      if (animation->frames_count == (current_motion->frame) + 1) {
+        Motion * motion = current_motion;
+        uint32 reduced_level = level - 1;
+        while (motion != nullptr) {
+          Update_Interpolation_Level(motion, reduced_level);
 
-      if (animation->frames_count == current_motion->frame) {
-        if (current_motion->next == nullptr) {
-          frame = animation->frames[(current_motion->frame) - 1];
+          ++reduced_level;
+          motion = motion->next;
+        }
 
-          level = 0;
-          Motion * forced_motion = motion_;
-          while (forced_motion->next != nullptr) {
-            Update_Interpolation(forced_motion, level, true);
+        level = 0;
+        motion = motion_;
+        while (motion != current_motion) {
+          Update_Interpolation(motion, level);
 
-            ++level;
-            forced_motion = forced_motion->next;
-          }
-
-          /*for (uint32 current = 0; current < frame->transformations_count; ++current) {
-            Transformation * transformation = frame->transformations[current];
-            if (interpolation_->bases_[transformation->index]->level <= level) {
-              interpolation_->bases_[transformation->index]->end.time = 0.f;
-              //Interpolate(level, frame->duration, transformation->rotation);
-
-              Element * element = mesh_->elements[transformation->index];
-              for (uint32 binding = 0; binding < element->bindings_count; ++binding) {
-                interpolation_->bases_[element->bindings[binding]->target_index]->end.time = 0.f;
-                  //Interpolate(level,
-                  //frame->duration, transformation->rotation + element->bindings[binding]->angle);
-              }
-            }*/
-        } else {
           ++level;
+          motion = motion->next;
         }
 
         previous_motion->next = current_motion->next;
         delete current_motion;
         current_motion = previous_motion->next;
       } else {
-        Update_Interpolation(current_motion, level, false);
+        current_motion->time -= frame->duration;
+        ++(current_motion->frame);
+
+        Update_Interpolation(current_motion, level);
 
         ++level;
         previous_motion = current_motion;
@@ -183,7 +171,7 @@ void ModelBase::Update(real32 const& _elapsed_time) {
   Update_ElementCenters(0);
 }
 
-void ModelBase::Update_Interpolation(Motion * _motion, uint32 const& _level, bool const& _force) {
+void ModelBase::Update_Interpolation(Motion * _motion, uint32 const& _level) {
   typedef Engine::Graphics::Mesh::Element Element;
   typedef Engine::Graphics::Mesh::Animation Animation;
   typedef Engine::Graphics::Mesh::Animation::Frame Frame;
@@ -194,7 +182,7 @@ void ModelBase::Update_Interpolation(Motion * _motion, uint32 const& _level, boo
 
   for (uint32 current = 0; current < frame->transformations_count; ++current) {
     Transformation * transformation = frame->transformations[current];
-    if (_force || interpolation_->bases_[transformation->index]->level <= _level) {
+    if (interpolation_->bases_[transformation->index]->level <= _level) {
       interpolation_->bases_[transformation->index]->Interpolate(_level, _motion->time, frame->duration,
         transformation->rotation);
 
@@ -226,6 +214,27 @@ void ModelBase::Update_Interpolation_CurrentTime(Motion * _motion) {
     }
   }
 }
+
+void ModelBase::Update_Interpolation_Level(Motion * _motion, uint32 const& _level) {
+  typedef Engine::Graphics::Mesh::Element Element;
+  typedef Engine::Graphics::Mesh::Animation Animation;
+  typedef Engine::Graphics::Mesh::Animation::Frame Frame;
+  typedef Engine::Graphics::Mesh::Animation::Frame::Transformation Transformation;
+
+  Animation * animation = mesh_->animations[_motion->animation];
+  Frame * frame = animation->frames[_motion->frame];
+
+  for (uint32 current = 0; current < frame->transformations_count; ++current) {
+    Transformation * transformation = frame->transformations[current];
+    interpolation_->bases_[transformation->index]->level = _level;
+
+    Element * element = mesh_->elements[transformation->index];
+    for (uint32 binding = 0; binding < element->bindings_count; ++binding) {
+      interpolation_->bases_[element->bindings[binding]->target_index]->level = _level;
+    }
+  }
+}
+
 
 void ModelBase::Update_ElementCenters(uint32 const& _element_index) {
   typedef Engine::Graphics::Mesh::Element Element;
