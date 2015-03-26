@@ -96,7 +96,7 @@ void ModelBase::Update(real32 const& _elapsed_time) {
     Animation * animation = mesh_->animations[motion_->animation];
     Frame * frame = animation->frames[motion_->frame];
 
-    motion_->time += _elapsed_time / 2.f;
+    motion_->time += _elapsed_time;
 
     if (frame->duration < motion_->time) {
       motion_->time -= frame->duration;
@@ -116,7 +116,7 @@ void ModelBase::Update(real32 const& _elapsed_time) {
     Animation * animation = mesh_->animations[current_motion->animation];
     Frame * frame = animation->frames[current_motion->frame];
 
-    current_motion->time += _elapsed_time / 2.f;
+    current_motion->time += _elapsed_time;
 
     if (frame->duration < current_motion->time) {
       current_motion->time -= frame->duration;

@@ -16,6 +16,8 @@ Test::Test(P3A::Graphics::GraphicsContext & _context)
       std::string("P3A\\Data\\Appearances\\samurai.appearance"), std::string("P3A\\Data\\Textures"));
 
   model_ = new Model(meshes_[0], appearances_[0], 0, Vector2(0.f, 0.f), context_);
+
+  clicked[0] = false; clicked[1] = false;
 }
 
 P3A::Core::State Test::Process(real32 const& _elapsed_time) {
@@ -62,12 +64,22 @@ void P3A::Graphics::Test::HandleKeys(void)
 void P3A::Graphics::Test::HandleMouse(void)
 {
   if (context_.GetMouse(GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS) {
-    if (!clicked) {
-      clicked = true;
+    if (!clicked[GLFW_MOUSE_BUTTON_LEFT]) {
+      clicked[GLFW_MOUSE_BUTTON_LEFT] = true;
       model_->Animate(1);
     }
   } else {
-    clicked = false;
+    clicked[GLFW_MOUSE_BUTTON_LEFT] = false;
+  }
+
+  if (context_.GetMouse(GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS) {
+    if (!clicked[GLFW_MOUSE_BUTTON_RIGHT]) {
+      clicked[GLFW_MOUSE_BUTTON_RIGHT] = true;
+      model_->Animate(3);
+    }
+  }
+  else {
+    clicked[GLFW_MOUSE_BUTTON_RIGHT] = false;
   }
 }
 }
