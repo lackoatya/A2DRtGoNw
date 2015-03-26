@@ -8,40 +8,117 @@
 namespace Engine {
 namespace Graphics {
 class ModelBase {
-  public:
-    struct InterpolationBase {
-    public:
-      real32 time = 0.f;
+  protected:
+    struct Interpolation {
+      public:
+        struct Interpolator {
+          public:
+            struct Base {
+              public:
+                real32 time = 0.f, rotation = 0.f;
 
-      uint32 rotations_count = 0;
-      real32 * rotations = nullptr;
+                inline Base(real32 const& _time, real32 const& _rotation)
+                  : time(_time),
+                    rotation(_rotation) { }
+                inline Base(void) = default;
+                inline Base(Base && _other) = delete;
+                inline Base(Base const& _other) = delete;
+                inline Base & operator=(Base && _other) = delete;
+                inline Base & operator=(Base const& _other) = delete;
+                inline virtual ~Base(void) = default;
+            };
+          public:
+            uint32 level = 0;
+            Base start, current, end;
 
-      inline InterpolationBase(real32 const& _time, uint32 const& _rotations_count)
-          : time(_time),
-            rotations_count(_rotations_count) {
-        rotations = new real32[rotations_count];
-        memset(rotations, (uint32)(0.f), rotations_count * sizeof(real32));
-      }
-      inline InterpolationBase(void) = delete;
-      inline InterpolationBase(InterpolationBase && _other) = delete;
-      inline InterpolationBase(InterpolationBase const& _other) = delete;
-      inline InterpolationBase & operator=(InterpolationBase && _other) = delete;
-      inline InterpolationBase & operator=(InterpolationBase const& _other) = delete;
-      inline virtual ~InterpolationBase(void) { delete[] rotations; }
+            inline Interpolator(void) = default;
+            inline Interpolator(Interpolator && _other) = delete;
+            inline Interpolator(Interpolator const& _other) = delete;
+            inline Interpolator & operator=(Interpolator && _other) = delete;
+            inline Interpolator & operator=(Interpolator const& _other) = delete;
+            inline virtual ~Interpolator(void) = default;
+
+            inline void Interpolate(uint32 const& _level, real32 const& _end_time,
+                                    real32 const& _end_rotation) {
+              level = _level;
+              start.time = 0.f;
+              start.rotation = current.rotation;
+              current.time = 0.f;
+              end.time = _end_time;
+              end.rotation = _end_rotation;
+            }
+
+            inline void Interpolate(uint32 const& _level, real32 const& _start_time, 
+                                    real32 const& _end_time, real32 const& _end_rotation) {
+              level = _level;
+              start.time = _start_time;
+              start.rotation = current.rotation;
+              current.time = _start_time;
+              end.time = _end_time;
+              end.rotation = _end_rotation;
+            }
+        };
+
+      public:
+        uint32 bases_count_ = 0;
+        Interpolator ** bases_ = nullptr;
+
+        inline Interpolation(uint32 const& _bases_count)
+            : bases_count_(_bases_count),
+              bases_(new Interpolator*[bases_count_]) {
+          for (uint32 current = 0; current < bases_count_; ++current)
+            bases_[current] = new Interpolator();
+        }
+        inline Interpolation(void) = delete;
+        inline Interpolation(Interpolation && _other) = delete;
+        inline Interpolation(Interpolation const& _other) = delete;
+        inline Interpolation & operator=(Interpolation && _other) = delete;
+        inline Interpolation & operator=(Interpolation const& _other) = delete;
+        inline virtual ~Interpolation(void) {
+          for (uint32 current = 0; current < bases_count_; ++current)
+            delete bases_[current];
+          delete[] bases_;
+          bases_ = nullptr;
+        }
+    };
+
+    struct Motion {
+      public:
+        Motion * next = nullptr;
+
+        real32 time = 0.f;
+        uint32 animation = 0, frame = 0;
+
+        inline explicit Motion(uint32 const& _animation)
+            : animation(_animation) { }
+        inline Motion(void) = default;
+        inline Motion(Motion && _other) = delete;
+        inline Motion(Motion const& _other) = delete;
+        inline Motion & operator=(Motion && _other) {
+          time = _other.time;
+          animation = _other.animation;
+          frame = _other.frame;
+
+          return *this;
+        }
+        inline Motion & operator=(Motion const& _other) {
+          time = _other.time;
+          animation = _other.animation;
+          frame = _other.frame;
+
+          return *this;
+        }
+        inline virtual ~Motion(void) = default;
     };
 
   public:
     inline ModelBase(Mesh * _mesh, Appearance * _appearance, uint32 const& _animation)
         : mesh_(_mesh),
           appearance_(_appearance),
-          animation_(_animation) {
-      element_centers = new Vector2[_mesh->elements_count];
-
-      interpolation_start = new InterpolationBase(0.f, _mesh->elements_count);
-      interpolation_current = new InterpolationBase(0.f, _mesh->elements_count);
-      interpolation_end = new InterpolationBase(0.f, _mesh->elements_count);
-
-      SetFrame(0);
+          motion_(new Motion(_animation)),
+          element_centers_(new Vector2[_mesh->elements_count]),
+          interpolation_(new Interpolation(_mesh->elements_count)){
+      Animate_Loop(_animation);
     }
     inline ModelBase(void) = delete;
     inline ModelBase(ModelBase && _other) = delete;
@@ -49,36 +126,35 @@ class ModelBase {
     inline ModelBase & operator=(ModelBase && _other) = delete;
     inline ModelBase & operator=(ModelBase const& _other) = delete;
     inline virtual ~ModelBase(void) {
-      delete[] element_centers;
-      element_centers = nullptr;
+      delete motion_;
+      motion_ = nullptr;
 
-      delete interpolation_start;
-      interpolation_start = nullptr;
-      delete interpolation_current;
-      interpolation_current = nullptr;
-      delete interpolation_end;
-      interpolation_end = nullptr;
+      delete[] element_centers_;
+      element_centers_ = nullptr;
+
+      delete interpolation_;
+      interpolation_ = nullptr;
     }
 
     virtual void Animate(uint32 const& _animation);
+    virtual void Animate_Loop(uint32 const& _animation);
     virtual void Update(real32 const& _elapsed_time);
 
   protected:
     Mesh * mesh_ = nullptr;
     Appearance * appearance_ = nullptr;
 
-    uint32 frame_ = 0, animation_ = 0;
+    Motion * motion_ = nullptr;
 
-    Vector2 * element_centers = nullptr;
-    InterpolationBase * interpolation_current = nullptr;
+    Vector2 * element_centers_ = nullptr;
+    Interpolation * interpolation_ = nullptr;
     
   private:
-    InterpolationBase * interpolation_start = nullptr;
-    InterpolationBase * interpolation_end = nullptr;
-
-    virtual void Update_ElementCenters(uint32 const& _element_index);
-    virtual void Update_ElementJoint(uint32 const& _element_index, Mesh::Element::Joint * _joint);
-    virtual void SetFrame(uint32 const& _frame);
+    void Update_ElementCenters(uint32 const& _element_index);
+    void Update_ElementJoint(uint32 const& _element_index, Mesh::Element::Joint * _joint);
+    void Update_Interpolation(Motion * _motion, uint32 const& _level, bool const& _force);
+    void Update_Interpolation_CurrentTime(Motion * _motion);
+    // virtual void SetFrame(uint32 const& _frame);
 };
 }
 }

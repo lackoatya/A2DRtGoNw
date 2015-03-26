@@ -77,10 +77,10 @@ Mesh::Mesh(std::string const& _mesh_path) {
     for (uint32 current_frame = 0; current_frame < frames_count; ++current_frame) {
       ReadPlaceholder(file);
 
-      real32 end = 0.f;
+      real32 duration = 0.f;
       uint32 transformations_count = 0;
 
-      file >> end >> transformations_count;
+      file >> duration >> transformations_count;
 
       Animation::Frame::Transformation ** transformations = 
         new Animation::Frame::Transformation*[transformations_count];
@@ -97,7 +97,7 @@ Mesh::Mesh(std::string const& _mesh_path) {
           new Animation::Frame::Transformation(index, rotation);
       }
 
-      frames[current_frame] = new Animation::Frame(end, transformations_count, transformations);
+      frames[current_frame] = new Animation::Frame(duration, transformations_count, transformations);
     }
 
     animations[current_animation] = new Animation(frames_count, frames);

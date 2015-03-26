@@ -31,6 +31,7 @@ class Test : public Engine::Core::ProcessableInterface<P3A::Core::State> {
     void HandleMouse(void);
 
   private:
+    bool clicked = false;
     Engine::Graphics::Mesh ** meshes_ = nullptr;
     Engine::Graphics::Appearance ** appearances_ = nullptr;
 

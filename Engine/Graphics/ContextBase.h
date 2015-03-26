@@ -32,7 +32,9 @@ class ContextBase {
     inline void SwapBuffers(void) const { glfwSwapBuffers(window_); }
     inline int ShouldClose(void) const { return glfwWindowShouldClose(window_); }
     inline void Close(void) const { glfwSetWindowShouldClose(window_, true); }
+
     inline int GetKey(int _key) const { return glfwGetKey(window_, _key); }
+    inline int GetMouse(int _button) const { return glfwGetMouseButton(window_, _button); }
 
     inline void UpdateCameraAndView(Vector2 const& _position){
       camera_.UpdateVectors(*this, _position);

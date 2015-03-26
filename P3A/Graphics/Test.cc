@@ -61,7 +61,14 @@ void P3A::Graphics::Test::HandleKeys(void)
 
 void P3A::Graphics::Test::HandleMouse(void)
 {
-
+  if (context_.GetMouse(GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS) {
+    if (!clicked) {
+      clicked = true;
+      model_->Animate(1);
+    }
+  } else {
+    clicked = false;
+  }
 }
 }
 }

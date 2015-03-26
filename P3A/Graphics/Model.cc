@@ -7,8 +7,8 @@ namespace Graphics{
 void Model::Render(void) {
   for (uint32 current = 0; current < mesh_->elements_count; ++current)
     context_.DrawBox(appearance_->element_textures()[mesh_->depth_indexes[current]],
-                     element_centers[mesh_->depth_indexes[current]],
-                     interpolation_current->rotations[mesh_->depth_indexes[current]]);
+                     element_centers_[mesh_->depth_indexes[current]],
+                     interpolation_->bases_[mesh_->depth_indexes[current]]->current.rotation);
 }
 }
 }

@@ -24,12 +24,19 @@ using shared_ptr = boost::shared_ptr <Type>;
 // Atomic
 #include "BOOST/atomic.hpp"
 template<class Type>
-using atomic = boost::atomic <Type> ;
+using atomic = boost::atomic <Type>;
+
+// Mutex
+#include "BOOST/thread/shared_mutex.hpp"
+typedef boost::shared_mutex Mutex;
+
+// Lock
+#include "BOOST/thread/locks.hpp"
+typedef boost::unique_lock<Mutex> Lock;
 
 // Constants
 const real32 PI = 3.141592741f;
 const real32 EPSILON = 0.0001f;
-
 
 // Vector2
 struct Vector2

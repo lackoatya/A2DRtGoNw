@@ -95,14 +95,14 @@ struct Mesh {
               };
 
           public:
-            real32 end = 0.f;
+            real32 duration = 0.f;
 
             uint32 transformations_count = 0;
             Transformation ** transformations = nullptr;
 
-            inline Frame(real32 const& _end, uint32 const& _transformations_count,
+            inline Frame(real32 const& _duration, uint32 const& _transformations_count,
                          Transformation ** _transformations)
-                : end(_end),
+                : duration(_duration),
                   transformations_count(_transformations_count),
                   transformations(_transformations) { }
             inline Frame(void) = delete;
