@@ -38,6 +38,22 @@ typedef boost::unique_lock<Mutex> Lock;
 const real32 PI = 3.141592741f;
 const real32 EPSILON = 0.0001f;
 
+namespace NonCopyable_{
+class NonCopyable {
+  protected:
+    inline NonCopyable(void) = default;
+    inline virtual ~NonCopyable(void) = default;
+
+  private:
+    inline NonCopyable(NonCopyable && _other) = delete;
+    inline NonCopyable(NonCopyable const& _other) = delete;
+    inline NonCopyable & operator=(NonCopyable && _other) = delete;
+    inline NonCopyable & operator=(NonCopyable const& _other) = delete;
+};
+}
+
+typedef NonCopyable_::NonCopyable NonCopyable;
+
 // Vector2
 struct Vector2
 {

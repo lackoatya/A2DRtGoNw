@@ -92,29 +92,29 @@ void ModelBase::Update(real32 const& _elapsed_time) {
   typedef Engine::Graphics::Mesh::Animation::Frame Frame;
   typedef Engine::Graphics::Mesh::Animation::Frame::Transformation Transformation;
 
-  {
-    Animation * animation = mesh_->animations[motion_->animation];
-    Frame * frame = animation->frames[motion_->frame];
+  // Update Base Motion (Looped Animation)
+  Animation * animation = mesh_->animations[motion_->animation];
+  Frame * frame = animation->frames[motion_->frame];
 
-    motion_->time += _elapsed_time;
+  motion_->time += _elapsed_time;
 
-    if (frame->duration < motion_->time) {
-      motion_->time -= frame->duration;
-      (motion_->frame) = ((motion_->frame) + 1) == animation->frames_count ? 0 : (motion_->frame) + 1;
+  if (frame->duration < motion_->time) {
+    motion_->time -= frame->duration;
+    (motion_->frame) = ((motion_->frame) + 1) == animation->frames_count ? 0 : (motion_->frame) + 1;
 
-      Update_Interpolation(motion_, 0);
-    }
-    else
-      Update_Interpolation_CurrentTime(motion_);
+    Update_Interpolation(motion_, 0);
   }
+  else
+    Update_Interpolation_CurrentTime(motion_);
 
+  // Update additional Motions
   Motion * previous_motion = motion_;
   Motion * current_motion = previous_motion->next;
 
   uint32 level = 1;
   while (current_motion != nullptr) {
-    Animation * animation = mesh_->animations[current_motion->animation];
-    Frame * frame = animation->frames[current_motion->frame];
+    animation = mesh_->animations[current_motion->animation];
+    frame = animation->frames[current_motion->frame];
 
     current_motion->time += _elapsed_time;
 

@@ -10,7 +10,7 @@ class GraphicsContext;
 class Model : public Engine::Graphics::ModelBase {
   public:
     inline Model(Engine::Graphics::Mesh * _mesh, Engine::Graphics::Appearance * _appearance,
-                 uint32 const& _animation, Vector2 const& _location, GraphicsContext & _context)
+                 uint32 const& _animation, Vector2 const& _location, GraphicsContext * _context)
         : ModelBase(_mesh, _appearance, _animation),
           location_(_location),
           context_(_context) { }
@@ -25,7 +25,7 @@ class Model : public Engine::Graphics::ModelBase {
 
   private:
     Vector2 location_;
-    GraphicsContext & context_;
+    GraphicsContext * context_ = nullptr;
   };
 }
 }
