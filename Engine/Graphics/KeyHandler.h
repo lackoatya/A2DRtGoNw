@@ -9,7 +9,7 @@
 namespace Engine {
 namespace Graphics {
 template <class Index>
-class KeyHandler {
+class KeyHandler : public NonCopyable {
   public:
     struct KeyBinding
     {
@@ -20,7 +20,6 @@ class KeyHandler {
         uint8 state = false;
 
         inline KeyBinding(Index const& _index, uint32 const& _key) : index(_index), key(_key) { }
-        inline KeyBinding(void) = delete;
         inline KeyBinding(KeyBinding const& _other)
             : index(_other.index), key(_other.key),
               state(_other.state) { }
@@ -35,11 +34,6 @@ class KeyHandler {
   public:
     KeyHandler(std::vector<KeyBinding> const& _state)
         : state(_state) { }
-    inline KeyHandler(void) = delete;
-    inline KeyHandler(KeyHandler &&& _other) = delete;
-    inline KeyHandler(KeyHandler const& _other) = delete;
-    inline KeyHandler & operator=(KeyHandler && _other) = delete;
-    inline KeyHandler & operator=(KeyHandler const& _other) = delete;
     inline virtual ~KeyHandler() = default;
 
     inline void Process(Engine::Graphics::Context_Base const& _context) {

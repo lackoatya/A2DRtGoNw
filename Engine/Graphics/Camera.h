@@ -9,13 +9,9 @@ namespace Engine {
 namespace Graphics {
 class ContextBase;
 
-class Camera {
+class Camera : public NonCopyable {
   public:
     inline Camera(void) = default;
-    inline Camera(Camera && _other) = delete;
-    inline Camera(Camera const& _other) = delete;
-    inline Camera & operator=(Camera && _other) = delete;
-    inline Camera & operator=(Camera const& _other) = delete;
     inline virtual ~Camera(void) = default;
 
     void UpdateVectors(ContextBase const& _context, Vector2 const& _position);

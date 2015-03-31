@@ -9,11 +9,11 @@ namespace Engine {
 namespace Graphics {
 class ModelBase {
   protected:
-    struct Interpolation {
+    struct Interpolation : public NonCopyable {
       public:
-        struct Interpolator {
+        struct Interpolator  : public NonCopyable {
           public:
-            struct Base {
+            struct Base : public NonCopyable {
               public:
                 real32 time = 0.f, rotation = 0.f;
 
@@ -21,21 +21,14 @@ class ModelBase {
                   : time(_time),
                     rotation(_rotation) { }
                 inline Base(void) = default;
-                inline Base(Base && _other) = delete;
-                inline Base(Base const& _other) = delete;
-                inline Base & operator=(Base && _other) = delete;
-                inline Base & operator=(Base const& _other) = delete;
                 inline virtual ~Base(void) = default;
             };
+
           public:
             uint32 level = 0;
             Base start, current, end;
 
             inline Interpolator(void) = default;
-            inline Interpolator(Interpolator && _other) = delete;
-            inline Interpolator(Interpolator const& _other) = delete;
-            inline Interpolator & operator=(Interpolator && _other) = delete;
-            inline Interpolator & operator=(Interpolator const& _other) = delete;
             inline virtual ~Interpolator(void) = default;
 
             inline void Interpolate(uint32 const& _level, real32 const& _start_time, 
@@ -59,11 +52,6 @@ class ModelBase {
           for (uint32 current = 0; current < bases_count_; ++current)
             bases_[current] = new Interpolator();
         }
-        inline Interpolation(void) = delete;
-        inline Interpolation(Interpolation && _other) = delete;
-        inline Interpolation(Interpolation const& _other) = delete;
-        inline Interpolation & operator=(Interpolation && _other) = delete;
-        inline Interpolation & operator=(Interpolation const& _other) = delete;
         inline virtual ~Interpolation(void) {
           for (uint32 current = 0; current < bases_count_; ++current)
             delete bases_[current];
@@ -110,11 +98,6 @@ class ModelBase {
           interpolation_(new Interpolation(_mesh->elements_count)){
       Animate_Loop(_animation);
     }
-    inline ModelBase(void) = delete;
-    inline ModelBase(ModelBase && _other) = delete;
-    inline ModelBase(ModelBase const& _other) = delete;
-    inline ModelBase & operator=(ModelBase && _other) = delete;
-    inline ModelBase & operator=(ModelBase const& _other) = delete;
     inline virtual ~ModelBase(void) {
       delete motion_;
       motion_ = nullptr;

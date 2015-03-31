@@ -14,11 +14,6 @@ namespace Network {
 class Connection {
   public:
     explicit Connection(boost::asio::io_service & _io_service);
-    inline Connection(void) = delete;
-    inline Connection(Connection && _other) = delete;
-    inline Connection(Connection const& _other) = delete;
-    inline Connection & operator=(Connection && _other) = delete;
-    inline Connection & operator=(Connection const& _other) = delete;
     virtual ~Connection(void);
 
     void Start(void);

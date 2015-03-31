@@ -8,14 +8,9 @@
 
 namespace Engine {
 namespace Graphics {
-class Appearance {
+class Appearance : public NonCopyable {
   public:
     Appearance(std::string const& _appearance_path, std::string const& _texture_directory);
-    inline Appearance(void) = delete;
-    inline Appearance(Appearance && _other) = delete;
-    inline Appearance(Appearance const& _other) = delete;
-    inline Appearance & operator=(Appearance && _other) = delete;
-    inline Appearance & operator=(Appearance const& _other) = delete;
     virtual ~Appearance(void);
 
     inline uint32 element_textures_count(void) const { return element_textures_count_; }

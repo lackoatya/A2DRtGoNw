@@ -33,11 +33,6 @@ class GraphicsContext : public Engine::Graphics::ContextBase {
       : GraphicsContext(_window_width, _window_height, 0.01f, 64.0f) { }
     GraphicsContext(uint32 const& _window_width, uint32 const& _window_height,
       real32 _camera_min_distance, real32 _camera_max_distance);
-    inline GraphicsContext(void) = delete;
-    inline GraphicsContext(GraphicsContext && _other) = delete;
-    inline GraphicsContext(GraphicsContext const& _other) = delete;
-    inline GraphicsContext & operator=(GraphicsContext && _other) = delete;
-    inline GraphicsContext & operator=(GraphicsContext const& _other) = delete;
     ~GraphicsContext(void);
 
     void PrepareBoxDraw(void) const { shader_box_->Use(); }

@@ -14,7 +14,7 @@
 
 namespace P3A {
 namespace Core {
-class Sole {
+class Sole : public NonCopyable {
   private:
     typedef P3A::GameResult GameResult;
     typedef P3A::Game::World GameProcessable;

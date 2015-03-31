@@ -15,11 +15,6 @@ class Object : public Engine::Physics::DescriptorInterface {
                                                         static_cast<real32>(_texture->height())),
           texture_(_texture),
           context_(_context) { }
-    inline Object(void) = delete;
-    inline Object(Object && _other) = delete;
-    inline Object(Object const& _other) = delete;
-    inline Object & operator=(Object && _other) = delete;
-    inline Object & operator=(Object const& _other) = delete;
     inline virtual ~Object(void) = default;
 
     void Describe(uint8 * _segment) { memcpy(_segment, this, sizeof(this)); };

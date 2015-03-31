@@ -1,9 +1,7 @@
 #include "Engine/Graphics/Mesh.h"
 
-namespace Engine
-{
-namespace Graphics
-{
+namespace Engine {
+namespace Graphics {
 void Mesh::ReadPlaceholder(std::ifstream & _file) {
   std::string placeholder;
   _file >> placeholder;
@@ -104,6 +102,21 @@ Mesh::Mesh(std::string const& _mesh_path) {
   }
 
   file.close();
+}
+
+Engine::Graphics::Mesh::~Mesh(void) {
+  delete[] depth_indexes;
+  depth_indexes = nullptr;
+
+  for (uint32 current = 0; current < elements_count; ++current)
+    delete elements[current];
+  delete[] elements;
+  elements = nullptr;
+
+  for (uint32 current = 0; current < animations_count; ++current)
+    delete animations[current];
+  delete[] animations;
+  animations = nullptr;
 }
 }
 }

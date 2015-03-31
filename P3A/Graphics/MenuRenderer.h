@@ -22,7 +22,6 @@ class MenuRenderer : public NonCopyable,
 
   public:
     explicit MenuRenderer(P3A::Graphics::GraphicsContext * _context);
-    inline MenuRenderer(void) = delete;
     inline virtual ~MenuRenderer(void) = default;
 
     P3A::CoreResult Process(void);

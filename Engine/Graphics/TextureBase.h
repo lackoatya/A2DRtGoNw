@@ -8,14 +8,9 @@
 
 namespace Engine {
 namespace Graphics {
-  class TextureBase {
+  class TextureBase : public NonCopyable {
   public:
     explicit TextureBase(const GLchar * _path);
-    inline TextureBase(void) = delete;
-    inline TextureBase(TextureBase && _other) = delete;
-    inline TextureBase(TextureBase const& _other) = delete;
-    inline TextureBase & operator=(TextureBase && _other) = delete;
-    inline TextureBase & operator=(TextureBase const& _other) = delete;
     inline virtual ~TextureBase(void) { glDeleteTextures(1, &id_); }
 
     void Render(Vector2 const& _center, real32 const& _rotation);

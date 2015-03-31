@@ -14,11 +14,6 @@ class Model : public Engine::Graphics::ModelBase {
         : ModelBase(_mesh, _appearance, _animation),
           location_(_location),
           context_(_context) { }
-    inline Model(void) = delete;
-    inline Model(Model && _other) = delete;
-    inline Model(Model const& _other) = delete;
-    inline Model & operator=(Model && _other) = delete;
-    inline Model & operator=(Model const& _other) = delete;
     inline virtual ~Model(void) = default;
 
     void Render(void);

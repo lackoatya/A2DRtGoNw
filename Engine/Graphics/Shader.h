@@ -4,16 +4,13 @@
 #define GLEW_STATIC
 #include "GLEW/glew.h"
 
+#include "Engine/Types.h"
+
 namespace Engine {
 namespace Graphics {
-class Shader {
+class Shader : public NonCopyable {
   public:
     Shader(const GLchar * _vertex_path, const GLchar * _fragment_path);
-    inline Shader(void) = delete;
-    inline Shader(Shader && _other) = delete;
-    inline Shader(Shader const& _other) = delete;
-    inline Shader & operator=(Shader && _other) = delete;
-    inline Shader & operator=(Shader const& _other) = delete;
     inline virtual ~Shader(void) { glDeleteProgram(shader_program_); }
 
     inline void Use(void) const { glUseProgram(shader_program_); }

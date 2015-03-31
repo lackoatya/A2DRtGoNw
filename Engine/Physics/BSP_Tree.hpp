@@ -11,9 +11,8 @@
 
 namespace Engine {
 namespace Physics {
-
 template< class T >
-class BSP_Tree {
+class BSP_Tree : public NonCopyable {
   private:
     enum class Partition {
       VERTICAL = 0,
@@ -23,7 +22,7 @@ class BSP_Tree {
     };
 
     template< class T >
-    class BSP_Separator {
+    class BSP_Separator : public NonCopyable {
     public:
       inline BSP_Separator(Partition const& _partition, real32 const& _value)
           : partition_(_partition),
@@ -80,12 +79,6 @@ class BSP_Tree {
           value = best_vertical_cut;
         }
       }
-
-      inline BSP_Separator(void) = delete;
-      inline BSP_Separator(BSP_Separator && _other) = delete;
-      inline BSP_Separator(BSP_Separator const& _other) = delete;
-      inline BSP_Separator & operator=(BSP_Separator && _other) = delete;
-      inline BSP_Separator & operator=(BSP_Separator const& _other) = delete;
       inline virtual ~BSP_Separator(void) = default;
 
       inline bool operator<(T _object) const {
@@ -117,7 +110,7 @@ class BSP_Tree {
     };
 
     template< class T >
-    class BSP_Node {
+    class BSP_Node : public NonCopyable {
       public:
         inline explicit BSP_Node< T >(T _object) : object(_object) { }
         BSP_Node< T >(SLL< T > * _sll, Vector2 const& _p1, Vector2 const& _p2) {
@@ -169,11 +162,6 @@ class BSP_Tree {
             if (_sll->count != 0)	right = new BSP_Node(_sll, separator->type == Partition::HORIZONTAL ? _p1 : Vector2(separator->value, _p1.y), separator->type == Partition::HORIZONTAL ? Vector2(_p2.x, separator->value) : _p2);
           }
         }
-        inline BSP_Node(void) = delete;
-        inline BSP_Node(BSP_Node && _other) = delete;
-        inline BSP_Node(BSP_Node const& _other) = delete;
-        inline BSP_Node & operator=(BSP_Node && _other) = delete;
-        inline BSP_Node & operator=(BSP_Node const& _other) = delete;
         inline virtual ~BSP_Node(void) {
           delete left;
           left = nullptr;
@@ -215,11 +203,6 @@ class BSP_Tree {
       // Create the BSP Tree
       root = new BSP_Node<T (_objects, p1, p2);
     }
-    inline BSP_Tree(void) = delete;
-    inline BSP_Tree(BSP_Tree && _other) = delete;
-    inline BSP_Tree(BSP_Tree const& _other) = delete;
-    inline BSP_Tree & operator=(BSP_Tree && _other) = delete;
-    inline BSP_Tree & operator=(BSP_Tree const& _other) = delete;
     inline virtual ~BSP_Tree(void) { delete root; root = nullptr; }
 
     T * Collision(Vector2 const& _point) {

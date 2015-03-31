@@ -5,7 +5,7 @@
 
 namespace Engine {
 namespace Physics {
-struct DescriptorInterface {
+struct DescriptorInterface : public NonCopyable {
   public:
     Vector2 center;
     real32 width, height;
@@ -17,11 +17,6 @@ struct DescriptorInterface {
         : center(_center),
           width(_widht),
           height(_height) { }
-    inline DescriptorInterface(void) = delete;
-    inline DescriptorInterface(DescriptorInterface && _other) = delete;
-    inline DescriptorInterface(DescriptorInterface const& _other) = delete;
-    inline DescriptorInterface & operator=(DescriptorInterface && _other) = delete;
-    inline DescriptorInterface & operator=(DescriptorInterface const& _other) = delete;
     inline virtual ~DescriptorInterface(void) = default;
 };
 
@@ -31,11 +26,6 @@ public:
 
   DynamicDescriptor(Vector2 const& _center, real32 const& _width, real32 const& _height)
     : DescriptorInterface(_center, _width, _height) { };
-  inline DynamicDescriptor(void) = delete;
-  inline DynamicDescriptor(DynamicDescriptor && _other) = delete;
-  inline DynamicDescriptor(DynamicDescriptor const& _other) = delete;
-  inline DynamicDescriptor & operator=(DynamicDescriptor && _other) = delete;
-  inline DynamicDescriptor & operator=(DynamicDescriptor const& _other) = delete;
   inline virtual ~DynamicDescriptor(void) = default;
 
   void Describe(uint8 * _segment) { memcpy(_segment, this, sizeof(this)); };

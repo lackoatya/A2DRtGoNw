@@ -5,14 +5,16 @@
 
 #include "BOOST/foreach.hpp"
 
+#include "Engine/Types.h"
+
 namespace Engine {
 namespace Physics {
 
 template< class T >
-struct SLL {
+struct SLL : public NonCopyable {
   private:
     template< class T >
-    struct SLL_Node {
+    struct SLL_Node : public NonCopyable {
       public:
         SLL_Node * prev = nullptr, *next = nullptr;
         T member;
@@ -24,11 +26,6 @@ struct SLL {
             : prev(_prev),
               member(_member),
               next(_next) { }
-        inline SLL_Node(void) = delete;
-        inline SLL_Node(SLL_Node && _other) = delete;
-        inline SLL_Node(SLL_Node const& _other) = delete;
-        inline SLL_Node & operator=(SLL_Node && _other) = delete;
-        inline SLL_Node & operator=(SLL_Node const& _other) = delete;
         inline virtual ~SLL_Node(void) { delete next; next = nullptr; }
     };
 
@@ -41,10 +38,6 @@ struct SLL {
       }
     }
     inline SLL(void) = default;
-    inline SLL(SLL && _other) = delete;
-    inline SLL(SLL const& _other) = delete;
-    inline SLL & operator=(SLL && _other) = delete;
-    inline SLL & operator=(SLL const& _other) = delete;
     inline virtual ~SLL(void) { delete first; first = nullptr; }
 
     SLL_Node< T > * Insert_Last(T const& _member) {

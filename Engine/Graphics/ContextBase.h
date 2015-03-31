@@ -15,17 +15,12 @@
 
 namespace Engine {
 namespace Graphics {
-class ContextBase {
+class ContextBase : public NonCopyable {
   public:
     inline ContextBase(uint32 const& _window_width, uint32 const& _window_height)
         : ContextBase(_window_width, _window_height, 0.01f, 64.0f) { }
     ContextBase(uint32 const& _window_width, uint32 const& _window_height,
                 real32 _camera_min_distance, real32 _camera_max_distance);
-    inline ContextBase(void) = delete;
-    inline ContextBase(ContextBase && _other) = delete;
-    inline ContextBase(ContextBase const& _other) = delete;
-    inline ContextBase & operator=(ContextBase && _other) = delete;
-    inline ContextBase & operator=(ContextBase const& _other) = delete;
     virtual ~ContextBase(void);
 
     inline void PollEvents(void) const { glfwPollEvents(); }

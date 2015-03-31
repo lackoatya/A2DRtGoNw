@@ -10,7 +10,7 @@
 
 namespace P3A {
 namespace Core {
-class Menu {
+class Menu : public NonCopyable {
   private:
     typedef P3A::CoreResult Result;
     typedef P3A::Graphics::MenuRenderer Renderer;

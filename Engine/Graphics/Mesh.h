@@ -10,9 +10,9 @@ namespace Engine {
 namespace Graphics {
 struct Mesh {
   public:
-    struct Element {
+    struct Element : public NonCopyable {
       public:
-        struct Joint {
+        struct Joint : public NonCopyable {
           public:
             Vector2 owner_location, target_location;
             uint32 target_index = 0;
@@ -22,11 +22,6 @@ struct Mesh {
                 : owner_location(std::move(_owner_location)),
                   target_location(std::move(_target_location)),
                   target_index(_target_index) { }
-            inline Joint(void) = delete;
-            inline Joint(Joint && _other) = delete;
-            inline Joint(Joint const& _other) = delete;
-            inline Joint & operator=(Joint && _other) = delete;
-            inline Joint & operator=(Joint const& _other) = delete;
             inline virtual ~Joint(void) = default;
           };
 
@@ -36,11 +31,6 @@ struct Mesh {
           inline Binding(Vector2 const& _owner_location, uint32 const& _target_index,
                          Vector2 const& _target_location, real32 const& _angle)
               : Joint(_owner_location, _target_index, _target_location), angle(_angle) { }
-          inline Binding(void) = delete;
-          inline Binding(Binding && _other) = delete;
-          inline Binding(Binding const& _other) = delete;
-          inline Binding & operator=(Binding && _other) = delete;
-          inline Binding & operator=(Binding const& _other) = delete;
           inline virtual ~Binding(void) = default;
         };
 
@@ -61,11 +51,6 @@ struct Mesh {
               joints(_joints),
               bindings_count(_bindings_count),
               bindings(_bindings) { }
-        inline Element(void) = delete;
-        inline Element(Element && _other) = delete;
-        inline Element(Element const& _other) = delete;
-        inline Element & operator=(Element && _other) = delete;
-        inline Element & operator=(Element const& _other) = delete;
         inline virtual ~Element(void) {
           for (uint32 current = 0; current < joints_count; ++current)
             delete joints[current];
@@ -74,11 +59,11 @@ struct Mesh {
       }
     };
 
-    struct Animation {
+    struct Animation : public NonCopyable {
       public:
-        struct Frame {
+        struct Frame : public NonCopyable {
           public:
-            struct Transformation {
+            struct Transformation : public NonCopyable {
               public:
                 uint32 index = 0;
                 real32 rotation = 0.f;
@@ -86,11 +71,6 @@ struct Mesh {
                 inline Transformation(uint32 const& _index, real32 const& _rotation)
                     : index(_index),
                       rotation(_rotation) { }
-                inline Transformation(void) = delete;
-                inline Transformation(Transformation && _other) = delete;
-                inline Transformation(Transformation const& _other) = delete;
-                inline Transformation & operator=(Transformation && _other) = delete;
-                inline Transformation & operator=(Transformation const& _other) = delete;
                 inline virtual ~Transformation(void) = default;
               };
 
@@ -105,11 +85,6 @@ struct Mesh {
                 : duration(_duration),
                   transformations_count(_transformations_count),
                   transformations(_transformations) { }
-            inline Frame(void) = delete;
-            inline Frame(Frame && _other) = delete;
-            inline Frame(Frame const& _other) = delete;
-            inline Frame & operator=(Frame && _other) = delete;
-            inline Frame & operator=(Frame const& _other) = delete;
             inline virtual ~Frame(void) {
               for (uint32 current = 0; current < transformations_count; ++current)
                 delete transformations[current];
@@ -125,11 +100,6 @@ struct Mesh {
         inline Animation(uint32 const& _frames_count, Frame ** _frames)
             : frames_count(_frames_count),
               frames(_frames) { }
-        inline Animation(void) = delete;
-        inline Animation(Animation && _other) = delete;
-        inline Animation(Animation const& _other) = delete;
-        inline Animation & operator=(Animation && _other) = delete;
-        inline Animation & operator=(Animation const& _other) = delete;
         inline virtual ~Animation(void) {
           for (uint32 current = 0; current < frames_count; ++current)
             delete frames[current];
@@ -148,25 +118,7 @@ struct Mesh {
     Animation ** animations = nullptr;
 
     Mesh(std::string const& _mesh_path);
-    inline Mesh(void) = delete;
-    inline Mesh(Mesh && _other) = delete;
-    inline Mesh(Mesh const& _other) = delete;
-    inline Mesh & operator=(Mesh && _other) = delete;
-    inline Mesh & operator=(Mesh const& _other) = delete;
-    inline virtual ~Mesh(void) {
-      delete[] depth_indexes;
-      depth_indexes = nullptr;
-
-      for (uint32 current = 0; current < elements_count; ++current)
-        delete elements[current];
-      delete[] elements;
-      elements = nullptr;
-
-      for (uint32 current = 0; current < animations_count; ++current)
-        delete animations[current];
-      delete[] animations;
-      animations = nullptr;
-    }
+    virtual ~Mesh(void);
 
   private:
     void ReadPlaceholder(std::ifstream & _file);
