@@ -21,6 +21,7 @@ class Service : public RunnableInterface<Updatable, Processable, void> {
 
     // inline virtual void Start(void) { service_.run(); }
     inline void Run(void) {
+      instance_->Start();
       service_.post(strand_.wrap(boost::bind(&Service::Work, this)));
       service_.run();
     }

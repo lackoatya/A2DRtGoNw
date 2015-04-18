@@ -8,6 +8,8 @@ namespace Processor {
 template<class Processable, class Result>
 class UpdaterInterface : public NonCopyable {
   public:
+    void Start(void) { last_time_ = boost::chrono::steady_clock::now(); }
+
     virtual Result Update(void) = 0;
 
   protected:

@@ -1,5 +1,5 @@
-#ifndef ENGINE_PHYSICS_SEPARATABLE_LINKED_LIST_HPP_
-#define ENGINE_PHYSICS_SEPARATABLE_LINKED_LIST_HPP_
+#ifndef ENGINE_CONTAINER_SEPARATABLE_LINKED_LIST_HPP_
+#define ENGINE_CONTAINER_SEPARATABLE_LINKED_LIST_HPP_
 
 #include <list>
 
@@ -8,8 +8,7 @@
 #include "Engine/Types.h"
 
 namespace Engine {
-namespace Physics {
-
+namespace Container {
 template< class T >
 struct SLL : public NonCopyable {
   private:

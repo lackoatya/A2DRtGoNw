@@ -6,6 +6,7 @@
 #include "Engine/Types.h"
 #include "Engine/Graphics/Shader.h"
 #include "Engine/Graphics/TextureBase.h"
+#include "Engine/Graphics/ModelBase.h"
 #include "Engine/Graphics/ContextBase.h"
 
 namespace P3A {

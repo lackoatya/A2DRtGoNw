@@ -18,5 +18,15 @@ namespace Utility {
     fputs(concatenated_message, stderr);
     abort();
   }
+
+  // TODO
+  void ReportAssert(const char* _condition, const char* _file, int _line, const char* _message) {
+    /*fputs("%s(%d): Assert Failure: ", file, line);
+
+    if (_condition != NULL) std::printf("'%s' ", condition);
+    if (msg != NULL) std::printf("%s", msg);
+
+    std::printf("\n");*/
+  }
 }
 }

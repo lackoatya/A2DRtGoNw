@@ -1,6 +1,9 @@
 #ifndef ENGINE_TYPES_H_
 #define ENGINE_TYPES_H_
 
+// Assert
+#include "assert.h"
+
 // Basic types
 #include "BOOST/cstdint.hpp"
 

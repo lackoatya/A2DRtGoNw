@@ -1,16 +1,15 @@
-#ifndef ENGINE_PHYSICS_BSP_TREE_HPP_
-#define ENGINE_PHYSICS_BSP_TREE_HPP_
+#ifndef ENGINE_CONTAINER_BSP_TREE_HPP_
+#define ENGINE_CONTAINER_BSP_TREE_HPP_
+
+// TODO: FLatten BSP_Tree structure!
 
 #include <list>
 
-// #include "BOOST/shared_ptr.hpp"
-// #include "BOOST/lexical_cast.hpp"
-
 #include "Engine/Types.h"
-#include "Engine/Physics/SeparatableLinkedList.hpp"
+#include "Engine/Container/SeparatableLinkedList.hpp"
 
 namespace Engine {
-namespace Physics {
+namespace Container {
 template< class T >
 class BSP_Tree : public NonCopyable {
   private:
