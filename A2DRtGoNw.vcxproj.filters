@@ -52,6 +52,9 @@
     <Filter Include="P3A\Menu">
       <UniqueIdentifier>{db786e21-d892-4457-ac49-6a93ec9e76a0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Updater">
+      <UniqueIdentifier>{e4ae8521-4a6c-41ae-afd1-0064b0574d2b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Graphics\Shader.cpp">
@@ -93,17 +96,11 @@
     <ClCompile Include="P3A\Menu\MenuRenderer.cc">
       <Filter>P3A\Menu</Filter>
     </ClCompile>
-    <ClCompile Include="P3A\Game\GameInterface.cc">
-      <Filter>P3A\Game</Filter>
-    </ClCompile>
     <ClCompile Include="P3A\Sole\SoleGame.cc">
       <Filter>P3A\Sole</Filter>
     </ClCompile>
     <ClCompile Include="P3A\Host\HostGame.cc">
       <Filter>P3A\Host</Filter>
-    </ClCompile>
-    <ClCompile Include="P3A\Client\Client.cc">
-      <Filter>P3A\Client</Filter>
     </ClCompile>
     <ClCompile Include="P3A\Client\ClientGame.cc">
       <Filter>P3A\Client</Filter>
@@ -179,12 +176,6 @@
     <ClInclude Include="Engine\Processor\Blocked.hpp">
       <Filter>Engine\Processor</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Processor\NonDeterministicUpdater.hpp">
-      <Filter>Engine\Processor</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Processor\DeterministicUpdater.hpp">
-      <Filter>Engine\Processor</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Processor\ResultInterface.hpp">
       <Filter>Engine\Processor</Filter>
     </ClInclude>
@@ -196,9 +187,6 @@
     </ClInclude>
     <ClInclude Include="P3A\GameResult.h">
       <Filter>P3A</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Processor\UpdaterInterface.hpp">
-      <Filter>Engine\Processor</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Physics\ShapeInterface.h">
       <Filter>Engine\Physics</Filter>
@@ -275,9 +263,6 @@
     <ClInclude Include="P3A\Client\ClientGame.h">
       <Filter>P3A\Client</Filter>
     </ClInclude>
-    <ClInclude Include="P3A\Client\Client.h">
-      <Filter>P3A\Client</Filter>
-    </ClInclude>
     <ClInclude Include="P3A\Client\ClientInput.h">
       <Filter>P3A\Client</Filter>
     </ClInclude>
@@ -334,6 +319,15 @@
     </ClInclude>
     <ClInclude Include="Engine\Network\LobbyInterface.h">
       <Filter>Engine\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Updater\Deterministic.hpp">
+      <Filter>Engine\Updater</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Updater\NonDeterministic.hpp">
+      <Filter>Engine\Updater</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Updater\UpdaterInterface.hpp">
+      <Filter>Engine\Updater</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

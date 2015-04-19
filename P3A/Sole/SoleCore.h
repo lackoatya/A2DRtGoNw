@@ -3,8 +3,8 @@
 
 #include "Engine/Container/Buffer.hpp"
 #include "Engine/Container/IntervalBuffer.hpp"
-#include "Engine/Processor/DeterministicUpdater.hpp"
-#include "Engine/Processor/NonDeterministicUpdater.hpp"
+#include "Engine/Updater/Deterministic.hpp"
+#include "Engine/Updater/NonDeterministic.hpp"
 #include "Engine/Processor/Blocked.hpp"
 #include "Engine/Processor/ThreadedBlocked.hpp"
 
@@ -23,15 +23,13 @@ class SoleCore : public NonCopyable {
   private:
     typedef GameResult GameResult;
     typedef SoleGame GameProcessable;
-    typedef Engine::Processor::DeterministicUpdater < GameProcessable, GameResult > GameUpdater;
+    typedef Engine::Updater::Deterministic < GameProcessable, GameResult > GameUpdater;
     typedef Engine::Processor::ThreadedBlocked < GameUpdater, GameResult > GameProcessor;
 
     typedef CoreResult RendererResult;
     typedef SoleObserver RendererProcessable;
-    typedef Engine::Processor::NonDeterministicUpdater < RendererProcessable, RendererResult >
-        RendererUpdater;
-    typedef Engine::Processor::Blocked < RendererUpdater, RendererResult >
-        RendererProcessor;
+    typedef Engine::Updater::NonDeterministic < RendererProcessable, RendererResult > RendererUpdater;
+    typedef Engine::Processor::Blocked < RendererUpdater, RendererResult > RendererProcessor;
 
   public:
     explicit SoleCore( Graphics::GraphicsContext * _context

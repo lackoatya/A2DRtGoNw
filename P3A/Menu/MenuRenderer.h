@@ -2,7 +2,7 @@
 #define P3A_MENU_MENU_RENDERER_H_
 
 #include "Engine/Types.h"
-#include "Engine/Processor/Deterministicupdater.hpp"
+#include "Engine/Updater/Deterministic.hpp"
 
 #include "P3A/CoreResult.h"
 #include "P3A/Graphics/GraphicsContext.h"
@@ -10,7 +10,7 @@
 namespace P3A {
 namespace Menu {
 class MenuRenderer : public NonCopyable,
-                     public Engine::Processor::DeterministicProcessInterface<CoreResult> {
+                     public Engine::Updater::DeterministicProcessInterface<CoreResult> {
   public:
     enum class Keys {
       UP = 0,

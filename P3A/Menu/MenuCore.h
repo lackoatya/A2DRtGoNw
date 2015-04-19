@@ -2,7 +2,7 @@
 #define P3A_MENU_MENU_CORE_H_
 
 #include "Engine/Types.h"
-#include "Engine/Processor/DeterministicUpdater.hpp"
+#include "Engine/Updater/Deterministic.hpp"
 #include "Engine/Processor/Blocked.hpp"
 
 #include "P3A/CoreResult.h"
@@ -15,7 +15,7 @@ class MenuCore : public NonCopyable {
     typedef CoreResult Result;
     typedef MenuRenderer Renderer;
 
-    typedef Engine::Processor::DeterministicUpdater<Renderer, Result> Updater;
+    typedef Engine::Updater::Deterministic < Renderer, Result > Updater;
     typedef Engine::Processor::Blocked<Updater, Result> Processor;
 
   public:

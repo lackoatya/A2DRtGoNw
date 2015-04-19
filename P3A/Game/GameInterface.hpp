@@ -3,17 +3,17 @@
 
 #include "Engine/Container/Buffer.hpp"
 #include "Engine/Container/IntervalBuffer.hpp"
-#include "Engine/Processor/DeterministicUpdater.hpp"
+#include "Engine/Updater/Deterministic.hpp"
 
 namespace P3A {
 namespace Game {
-template<class Snapshot, class Result>
-class GameInterface : public Engine::Processor::DeterministicProcessInterface<Result> {
+template < class Snapshot, class Result >
+class GameInterface : public Engine::Updater::DeterministicProcessInterface < Result > {
   public:
     real32 internal_time = 0.f;
 
-    GameInterface(Engine::Container::IntervalBuffer<Snapshot> * _state_buffer)
-        : Engine::Processor::DeterministicProcessInterface < Result >( _state_buffer->interval() )
+    GameInterface(Engine::Container::IntervalBuffer < Snapshot > * _state_buffer)
+        : Engine::Updater::DeterministicProcessInterface < Result >( _state_buffer->interval() )
         , state_buffer_(_state_buffer) { }
     inline virtual ~GameInterface(void) = default;
 
@@ -26,7 +26,7 @@ class GameInterface : public Engine::Processor::DeterministicProcessInterface<Re
     }
 
   protected:
-    Engine::Container::IntervalBuffer<Snapshot> * state_buffer_ = nullptr;
+    Engine::Container::IntervalBuffer < Snapshot > * state_buffer_ = nullptr;
 
     virtual void Process_Inputs(void) = 0;
     virtual void Process_States(void) = 0;

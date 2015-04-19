@@ -1,11 +1,11 @@
-#ifndef ENGINE_PROCESSOR_DETERMINISTIC_UPDATER_HPP_
-#define ENGINE_PROCESSOR_DETERMINISTIC_UPDATER_HPP_
+#ifndef ENGINE_UPDATER_DETERMINISTIC_HPP_
+#define ENGINE_UPDATER_DETERMINISTIC_HPP_
 
-#include "Engine/Processor/UpdaterInterface.hpp"
+#include "Engine/Updater/UpdaterInterface.hpp"
 
 namespace Engine { 
-namespace Processor {
-template <class Result>
+namespace Updater {
+template < class Result >
 class DeterministicProcessInterface {
   public:
     virtual Result Process(void) = 0;
@@ -19,13 +19,12 @@ class DeterministicProcessInterface {
     const real32 interval_ = 0.f;
 };
 
-template <class Processable, class Result>
-class DeterministicUpdater : public UpdaterInterface<Processable, Result> {
+template < class Processable, class Result >
+class Deterministic : public UpdaterInterface < Processable, Result > {
   public:
-    inline DeterministicUpdater(Processable * _instance)
-        : UpdaterInterface<Processable, Result>(_instance) { }
-    inline DeterministicUpdater(void) = delete;
-    inline virtual ~DeterministicUpdater(void) = default;
+    inline Deterministic(Processable * _instance)
+        : UpdaterInterface < Processable, Result >(_instance) { }
+    inline virtual ~Deterministic(void) = default;
 
     Result Update(void) {
       UpdateTime();

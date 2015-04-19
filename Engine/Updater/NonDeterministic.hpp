@@ -1,11 +1,11 @@
-#ifndef ENGINE_PROCESSOR_NONDETERMINISTIC_UPDATER_HPP_
-#define ENGINE_PROCESSOR_NONDETERMINISTIC_UPDATER_HPP_
+#ifndef ENGINE_UPDATER_NONDETERMINISTIC_HPP_
+#define ENGINE_UPDATER_NONDETERMINISTIC_HPP_
 
-#include "Engine/Processor/UpdaterInterface.hpp"
+#include "Engine/Updater/UpdaterInterface.hpp"
 
 namespace Engine {
-namespace Processor {
-template <class Result>
+namespace Updater {
+template < class Result >
 class NonDeterministicProcessInterface {
   public:
     virtual Result Process(real32 const& _elapsed_time) = 0;
@@ -20,12 +20,11 @@ class NonDeterministicProcessInterface {
 };
 
 template <class Processable, class Result>
-class NonDeterministicUpdater : public UpdaterInterface<Processable, Result> {
+class NonDeterministic : public UpdaterInterface < Processable, Result > {
   public:
-    inline NonDeterministicUpdater(Processable * _instance)
-        : UpdaterInterface<Processable, Result>(_instance) { }
-    inline NonDeterministicUpdater(void) = delete;
-    inline virtual ~NonDeterministicUpdater(void) = default;
+    inline NonDeterministic(Processable * _instance)
+        : UpdaterInterface < Processable, Result >(_instance) { }
+    inline virtual ~NonDeterministic(void) = default;
 
     Result Update(void) {
       UpdateTime();

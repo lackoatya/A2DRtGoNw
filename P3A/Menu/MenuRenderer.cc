@@ -3,7 +3,7 @@
 namespace P3A {
 namespace Menu {
 MenuRenderer::MenuRenderer(real32 const& _interval, Graphics::GraphicsContext * _context)
-    : Engine::Processor::DeterministicProcessInterface<CoreResult>(_interval),
+    : Engine::Updater::DeterministicProcessInterface < CoreResult >(_interval),
       context_(_context) {
   // bindings.state.push_back(Engine::Graphics::KeyHandler<Keys>::KeyBinding(Keys::UP, GLFW_KEY_W));
   // bindings.state.push_back(Engine::Graphics::KeyHandler<Keys>::KeyBinding(Keys::DOWN, GLFW_KEY_S));

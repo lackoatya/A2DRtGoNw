@@ -1,10 +1,10 @@
-#ifndef ENGINE_PROCESSOR_UPDATER_INTERFACE_HPP_
-#define ENGINE_PROCESSOR_UPDATER_INTERFACE_HPP_
+#ifndef ENGINE_UPDATER_UPDATER_INTERFACE_HPP_
+#define ENGINE_UPDATER_UPDATER_INTERFACE_HPP_
 
 #include "Engine/Types.h"
 
 namespace Engine {
-namespace Processor {
+namespace Updater {
 template < class Processable, class Result >
 class UpdaterInterface : public NonCopyable {
   public:
@@ -23,9 +23,8 @@ class UpdaterInterface : public NonCopyable {
 
     void UpdateTime(void) {
       boost::chrono::steady_clock::time_point now = boost::chrono::steady_clock::now();
-      boost::chrono::duration<real32> difference = now - last_time_;
-      real32 elapsed = difference.count();
-      elapsed_time_ += elapsed;
+      boost::chrono::duration < real32 > difference = now - last_time_;
+      elapsed_time_ += difference.count();
       last_time_ = now;
     }
 };

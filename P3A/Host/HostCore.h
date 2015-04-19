@@ -4,8 +4,8 @@
 #include "Engine/Types.h"
 #include "Engine/Container/Buffer.hpp"
 #include "Engine/Container/IntervalBuffer.hpp"
-#include "Engine/Processor/DeterministicUpdater.hpp"
-#include "Engine/Processor/NonDeterministicUpdater.hpp"
+#include "Engine/Updater/Deterministic.hpp"
+#include "Engine/Updater/NonDeterministic.hpp"
 #include "Engine/Processor/Blocked.hpp"
 #include "Engine/Processor/ThreadedBlocked.hpp"
 
@@ -40,15 +40,13 @@ class HostCore : public NonCopyable {
       private:
         typedef GameResult GameResult;
         typedef HostGame GameProcessable;
-        typedef Engine::Processor::DeterministicUpdater < GameProcessable, GameResult > GameUpdater;
+        typedef Engine::Updater::Deterministic < GameProcessable, GameResult > GameUpdater;
         typedef Engine::Processor::ThreadedBlocked < GameUpdater, GameResult > GameProcessor;
 
         typedef CoreResult RendererResult;
         typedef HostObserver RendererProcessable;
-        typedef Engine::Processor::NonDeterministicUpdater < RendererProcessable, RendererResult >
-          RendererUpdater;
-        typedef Engine::Processor::Blocked < RendererUpdater, RendererResult >
-          RendererProcessor;
+        typedef Engine::Updater::NonDeterministic < RendererProcessable, RendererResult > RendererUpdater;
+        typedef Engine::Processor::Blocked < RendererUpdater, RendererResult > RendererProcessor;
 
       public:
         HostCoreGame( Graphics::GraphicsContext * _context
