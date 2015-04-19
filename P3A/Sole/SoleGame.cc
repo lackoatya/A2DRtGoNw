@@ -3,15 +3,42 @@
 namespace P3A {
 namespace Sole {
 void SoleGame::Process_Inputs(void) {
+  Snapshot * current = state_buffer_->get_last();
+
   uint32 last_input = character_->input_buffer.last();
   while (last_character_input != last_input) {
     last_character_input = character_->input_buffer.next(last_character_input);
-    Process_Hero_Input(character_->input_buffer.get(last_character_input));
+    Process_Hero_Input(&(current->character), character_->input_buffer.get(last_character_input));
   }
 }
 
-void SoleGame::Process_Hero_Input(Game::HeroInput * _input) {
-  // TODO
+void SoleGame::Process_Hero_Input(Game::HeroState * _current, const Game::HeroInput * _input) {
+  switch (*_input) {
+    case Game::HeroInput::MOVE_UP: {
+      _current->body.set_velocity(Vector2(0.f, 1.f) * _current->speed);
+      // TODO set animation
+    } break;
+
+    case Game::HeroInput::MOVE_DOWN: {
+      _current->body.set_velocity(Vector2(0.f, -1.f) * _current->speed);
+      // TODO set animation
+    } break;
+
+    case Game::HeroInput::MOVE_LEFT: {
+      _current->body.set_velocity(Vector2(-1.f, 0.f) * _current->speed);
+      // TODO set animation
+    } break;
+
+    case Game::HeroInput::MOVE_RIGHT: {
+      _current->body.set_velocity(Vector2(1.f, 0.f) * _current->speed);
+      // TODO set animation
+    } break;
+
+    case Game::HeroInput::STOP: {
+      _current->body.set_velocity(Vector2(0.f, 0.f) * _current->speed);
+      // TODO set animation
+    } break;
+  }
 }
 
 

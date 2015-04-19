@@ -7,7 +7,7 @@
 
 namespace Engine {
 namespace Processor {
-template <class Updatable, class Processable, class Result>
+template <class Updatable, class Result>
 class RunnableInterface : public NonCopyable {
   public:
     virtual Result Run(void) = 0;

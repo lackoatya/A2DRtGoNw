@@ -8,18 +8,17 @@
 namespace P3A {
 namespace Game {
 template<class Snapshot, class Result>
-class GameInterface : public NonCopyable, public Engine::Processor::DeterministicProcessInterface<Result> {
+class GameInterface : public Engine::Processor::DeterministicProcessInterface<Result> {
   public:
     real32 internal_time = 0.f;
 
-    GameInterface(real32 const& _interval, Engine::Container::IntervalBuffer<Snapshot> * _state_buffer)
-        : Engine::Processor::DeterministicProcessInterface<Result>(_interval)
+    GameInterface(Engine::Container::IntervalBuffer<Snapshot> * _state_buffer)
+        : Engine::Processor::DeterministicProcessInterface < Result >( _state_buffer->interval() )
         , state_buffer_(_state_buffer) { }
     inline virtual ~GameInterface(void) = default;
 
     Result Process(void) {
       internal_time += interval_;
-
       Process_Inputs();
       Process_States();
 

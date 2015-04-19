@@ -32,6 +32,16 @@ public:
     last_ = next(last_);
   }
 
+  inline void add(DataType _value) {
+    memcpy(&(data_[next(last_)]), &_value, sizeof(DataType));
+    last_ = next(last_);
+  }
+
+  inline void add(DataType * _value) {
+    memcpy(&(data_[next(last_)]), _value, sizeof(DataType));
+    last_ = next(last_);
+  }
+
   inline uint32 size(void) const { return size_; }
   inline uint32 last(void) const { return last_; }
   inline DataType * get(uint32 const& _index) const { return &data_[_index]; }

@@ -99,9 +99,6 @@
     <ClCompile Include="P3A\Sole\SoleGame.cc">
       <Filter>P3A\Sole</Filter>
     </ClCompile>
-    <ClCompile Include="P3A\Host\Host.cc">
-      <Filter>P3A\Host</Filter>
-    </ClCompile>
     <ClCompile Include="P3A\Host\HostGame.cc">
       <Filter>P3A\Host</Filter>
     </ClCompile>
@@ -129,6 +126,12 @@
     <ClCompile Include="P3A\Menu\MenuCore.cc">
       <Filter>P3A\Menu</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Network\Packet.cpp">
+      <Filter>Engine\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="P3A\Host\HostCore.cc">
+      <Filter>P3A\Host</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Types.h">
@@ -136,9 +139,6 @@
     </ClInclude>
     <ClInclude Include="Engine\Graphics\Shader.h">
       <Filter>Engine\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Network\Connection.h">
-      <Filter>Engine\Network</Filter>
     </ClInclude>
     <ClInclude Include="P3A\Graphics\GraphicsContext.h">
       <Filter>P3A\Graphics</Filter>
@@ -189,12 +189,6 @@
       <Filter>Engine\Processor</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Processor\RunnableInterface.hpp">
-      <Filter>Engine\Processor</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Processor\Service.hpp">
-      <Filter>Engine\Processor</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Processor\ThreadedService.hpp">
       <Filter>Engine\Processor</Filter>
     </ClInclude>
     <ClInclude Include="P3A\CoreResult.h">
@@ -254,9 +248,6 @@
     <ClInclude Include="Engine\Numerics\LinearInterpolation.hpp">
       <Filter>Engine\Numerics</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Processor\Threaded.hpp">
-      <Filter>Engine\Processor</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Container\BitField.h">
       <Filter>Engine\Container</Filter>
     </ClInclude>
@@ -276,12 +267,6 @@
       <Filter>P3A\Sole</Filter>
     </ClInclude>
     <ClInclude Include="P3A\Host\HostGame.h">
-      <Filter>P3A\Host</Filter>
-    </ClInclude>
-    <ClInclude Include="P3A\Host\Host.h">
-      <Filter>P3A\Host</Filter>
-    </ClInclude>
-    <ClInclude Include="P3A\Host\HostInput.h">
       <Filter>P3A\Host</Filter>
     </ClInclude>
     <ClInclude Include="P3A\Host\HostSnapshot.h">
@@ -316,6 +301,39 @@
     </ClInclude>
     <ClInclude Include="P3A\Menu\MenuCore.h">
       <Filter>P3A\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Network\Packet.h">
+      <Filter>Engine\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Container\PoolInterface.hpp">
+      <Filter>Engine\Container</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Processor\StrandedService.hpp">
+      <Filter>Engine\Processor</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Processor\Service.h">
+      <Filter>Engine\Processor</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Processor\ThreadedService.h">
+      <Filter>Engine\Processor</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Processor\ThreadedBlocked.hpp">
+      <Filter>Engine\Processor</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Network\GatewayInterface.h">
+      <Filter>Engine\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="P3A\Host\HostCore.h">
+      <Filter>P3A\Host</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Network\ConnectionInterface.h">
+      <Filter>Engine\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Network\CommandHandlerInterface.h">
+      <Filter>Engine\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Network\LobbyInterface.h">
+      <Filter>Engine\Network</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

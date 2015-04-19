@@ -7,11 +7,11 @@
 
 namespace Engine {
 namespace Processor {
-template<class Updatable, class Processable, class Result>
-class Blocked : public RunnableInterface<Updatable, Processable, Result> {
+template < class Updatable, class Result >
+class Blocked : public RunnableInterface < Updatable,  Result > {
   public:
     inline Blocked(Updatable * _instance)
-        : RunnableInterface<Updatable, Processable, Result>(_instance) { }
+        : RunnableInterface<Updatable, Result>(_instance) { }
     inline virtual ~Blocked(void) = default;
 
     inline Result Run(void) {

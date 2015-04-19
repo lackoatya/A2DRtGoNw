@@ -17,23 +17,27 @@ class SoleObserver : public ObserverInterface {
                , Game::Hero * _observed
                , Graphics::GraphicsContext * _graphics_context
                , Graphics::GameArtSource * _art_source
-               , Engine::Container::IntervalBuffer < SoleSnapshot > * _state_buffer)
-        : ObserverInterface(_interval, _observed, _graphics_context, _art_source, _state_buffer) { }
+               , Engine::Container::IntervalBuffer < SoleSnapshot > * _state_buffer);
     inline virtual ~SoleObserver(void) = default;
 
   protected:
-    bool clicked[2];
+    // TODO Use KeyBindings!
+    bool pressed[6];
+    uint32 inp_cnt = 0;
+    int32 last_direction = -1;
 
     void Render(void);
     void Render_Hero(const Game::HeroState * _current, const Game::HeroState * _next);
 
     void HandleInput(void);
+    void Handle_Keys(void);
+    void Handle_Mouse(void);
 
     inline CoreResult GetResult(void) {
       if (graphics_context_->ShouldClose()) return CoreState::EXIT;
       else return CoreState::CONTINUE;
     }
-  };
+};
 }
 }
 

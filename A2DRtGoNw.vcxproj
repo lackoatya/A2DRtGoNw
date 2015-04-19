@@ -76,6 +76,7 @@
     <ClCompile Include="Engine\Graphics\Shader.cpp" />
     <ClCompile Include="Engine\Graphics\TextureBase.cc" />
     <ClCompile Include="Engine\Graphics\ContextBase.cc" />
+    <ClCompile Include="Engine\Network\Packet.cpp" />
     <ClCompile Include="Engine\Utility\Logger.cc" />
     <ClCompile Include="P3A\Client\Client.cc" />
     <ClCompile Include="P3A\Client\ClientGame.cc" />
@@ -83,7 +84,7 @@
     <ClCompile Include="P3A\Game\GameInterface.cc" />
     <ClCompile Include="P3A\Graphics\GameArtSource.cc" />
     <ClCompile Include="P3A\Graphics\GameObserverInterface.cc" />
-    <ClCompile Include="P3A\Host\Host.cc" />
+    <ClCompile Include="P3A\Host\HostCore.cc" />
     <ClCompile Include="P3A\Host\HostGame.cc" />
     <ClCompile Include="P3A\Host\HostObserver.cc" />
     <ClCompile Include="P3A\Main.cc" />
@@ -100,6 +101,7 @@
     <ClInclude Include="Engine\Container\BSP_Tree.hpp" />
     <ClInclude Include="Engine\Container\Buffer.hpp" />
     <ClInclude Include="Engine\Container\IntervalBuffer.hpp" />
+    <ClInclude Include="Engine\Container\PoolInterface.hpp" />
     <ClInclude Include="Engine\Container\SeparatableLinkedList.hpp" />
     <ClInclude Include="Engine\Graphics\Appearance.h" />
     <ClInclude Include="Engine\Graphics\Camera.h" />
@@ -110,7 +112,11 @@
     <ClInclude Include="Engine\Graphics\Motion.h" />
     <ClInclude Include="Engine\Graphics\Shader.h" />
     <ClInclude Include="Engine\Graphics\TextureBase.h" />
-    <ClInclude Include="Engine\Network\Connection.h" />
+    <ClInclude Include="Engine\Network\CommandHandlerInterface.h" />
+    <ClInclude Include="Engine\Network\ConnectionInterface.h" />
+    <ClInclude Include="Engine\Network\GatewayInterface.h" />
+    <ClInclude Include="Engine\Network\LobbyInterface.h" />
+    <ClInclude Include="Engine\Network\Packet.h" />
     <ClInclude Include="Engine\Numerics\IntegratorInterface.hpp" />
     <ClInclude Include="Engine\Numerics\LinearInterpolation.hpp" />
     <ClInclude Include="Engine\Numerics\RungeKutta4Integrator.hpp" />
@@ -126,9 +132,10 @@
     <ClInclude Include="Engine\Processor\NonDeterministicUpdater.hpp" />
     <ClInclude Include="Engine\Processor\RunnableInterface.hpp" />
     <ClInclude Include="Engine\Processor\ResultInterface.hpp" />
-    <ClInclude Include="Engine\Processor\Service.hpp" />
-    <ClInclude Include="Engine\Processor\Threaded.hpp" />
-    <ClInclude Include="Engine\Processor\ThreadedService.hpp" />
+    <ClInclude Include="Engine\Processor\Service.h" />
+    <ClInclude Include="Engine\Processor\StrandedService.hpp" />
+    <ClInclude Include="Engine\Processor\ThreadedBlocked.hpp" />
+    <ClInclude Include="Engine\Processor\ThreadedService.h" />
     <ClInclude Include="Engine\Processor\UpdaterInterface.hpp" />
     <ClInclude Include="Engine\Types.h" />
     <ClInclude Include="Engine\Utility\Logger.h" />
@@ -147,9 +154,8 @@
     <ClInclude Include="P3A\Graphics\GraphicsContext.h" />
     <ClInclude Include="P3A\Graphics\Model.h" />
     <ClInclude Include="P3A\Graphics\GameObserverInterface.hpp" />
-    <ClInclude Include="P3A\Host\Host.h" />
+    <ClInclude Include="P3A\Host\HostCore.h" />
     <ClInclude Include="P3A\Host\HostGame.h" />
-    <ClInclude Include="P3A\Host\HostInput.h" />
     <ClInclude Include="P3A\Host\HostObserver.h" />
     <ClInclude Include="P3A\Host\HostSnapshot.h" />
     <ClInclude Include="P3A\Menu\MenuCore.h" />

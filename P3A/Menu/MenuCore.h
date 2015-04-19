@@ -16,7 +16,7 @@ class MenuCore : public NonCopyable {
     typedef MenuRenderer Renderer;
 
     typedef Engine::Processor::DeterministicUpdater<Renderer, Result> Updater;
-    typedef Engine::Processor::Blocked<Updater, Renderer, Result> Processor;
+    typedef Engine::Processor::Blocked<Updater, Result> Processor;
 
   public:
   MenuCore(Graphics::GraphicsContext * _context);

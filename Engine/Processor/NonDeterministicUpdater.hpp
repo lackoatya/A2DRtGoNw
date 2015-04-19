@@ -12,11 +12,11 @@ class NonDeterministicProcessInterface {
 
     inline const real32 interval(void) const { return interval_; }
 
-protected:
-  inline NonDeterministicProcessInterface(real32 const& _interval) : interval_(_interval) { }
-  inline virtual ~NonDeterministicProcessInterface(void) = default;
+  protected:
+    inline NonDeterministicProcessInterface(real32 const& _interval) : interval_(_interval) { }
+    inline virtual ~NonDeterministicProcessInterface(void) = default;
 
-  const real32 interval_ = 0.f;
+    const real32 interval_ = 0.f;
 };
 
 template <class Processable, class Result>

@@ -1,10 +1,12 @@
 #include <assert.h>
 
+#include "P3A/Graphics/GameArtSource.h"
+#include "P3A/Graphics/GraphicsContext.h"
+
 #include "P3A/CoreResult.h"
 #include "P3A/Sole/SoleCore.h"
 #include "P3A/Menu/MenuCore.h"
-#include "P3A/Graphics/GameArtSource.h"
-#include "P3A/Graphics/GraphicsContext.h"
+#include "P3A/Host/HostCore.h"
 
 int main(void) {
   P3A::Graphics::GraphicsContext graphics(1024, 768);
@@ -23,8 +25,14 @@ int main(void) {
         state = sole.Run();
       } continue;
 
+      case P3A::CoreState::HOST: {
+        P3A::Graphics::GameArtSource art_source;
+        P3A::Host::HostCore host(&graphics, &art_source);
+        state = host.Run();
+      } continue;
+
       default: {
-        assert(false && "Unknown CoreState!");
+        assert(false && "Unknown CoreState! ");
       } return 0;
     }
   }

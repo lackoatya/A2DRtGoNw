@@ -17,9 +17,11 @@ struct HeroState {
   public:
     Hero * hero = nullptr;
 
-    Engine::Physics::Body<Engine::Physics::AABB> body;
+    Engine::Physics::Body < Engine::Physics::AABB > body;
 
     uint32 mesh = 0, appearance = 0;
+
+    real32 speed = 128.f;
 
     uint32 motions_count = 0;
     Engine::Graphics::Motion motions[MOTIONS_MAX];
@@ -49,8 +51,14 @@ struct HeroState {
     }
 };
 
-struct HeroInput {
+enum class HeroInput {
+    NONE = 0,
 
+    MOVE_UP,
+    MOVE_DOWN,
+    MOVE_LEFT,
+    MOVE_RIGHT,
+    STOP
 };
 
 class Hero : public NonCopyable {

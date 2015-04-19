@@ -33,8 +33,8 @@ void MenuRenderer::HandleKeys(void) {
     switch (selected_option_)
     {
     case 0: result_ = P3A::CoreState::SOLE; break;
-    case 1: result_ = P3A::CoreState::SERVER; break;
-    case 2: result_ = P3A::CoreState::CLIENT; break;
+    case 1: result_ = P3A::CoreState::CLIENT; break;
+    case 2: result_ = P3A::CoreState::HOST; break;
     case 3: result_ = P3A::CoreState::OPTIONS; break;
     case 4: result_ = P3A::CoreState::EXIT; break;
     default: assert(false && "Unknown CoreState!");

@@ -9,7 +9,7 @@ enum class CoreState {
 
   MENU,
   SOLE,
-  SERVER,
+  HOST,
   CLIENT,
   OPTIONS,
   EXIT,

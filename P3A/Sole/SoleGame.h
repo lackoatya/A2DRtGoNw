@@ -16,12 +16,11 @@ typedef SoleSnapshot Snapshot;
 // TODO Integrator template here!
 class SoleGame : public Game::GameInterface < Snapshot, GameResult > {
   public:
-    inline SoleGame(real32 const& _interval
-                    , Engine::Container::IntervalBuffer<Snapshot> * _state_buffer
+    inline SoleGame( Engine::Container::IntervalBuffer<Snapshot> * _state_buffer
                     , Game::Hero * _character)
-        : Game::GameInterface < Snapshot, GameResult >(_interval, _state_buffer)
+        : Game::GameInterface < Snapshot, GameResult >( _state_buffer )
         , character_(_character)
-        , integrator_(_interval) {
+        , integrator_(_state_buffer->interval()) {
       assert(_state_buffer);
       assert(_character);
     }
@@ -35,7 +34,7 @@ class SoleGame : public Game::GameInterface < Snapshot, GameResult > {
     Engine::Numerics::SymplecticEulerIntegrator < Engine::Physics::Body < Engine::Physics::AABB > > integrator_;
 
     void Process_Inputs(void);
-    void Process_Hero_Input(Game::HeroInput * _input);
+    void Process_Hero_Input(Game::HeroState * _current, const Game::HeroInput * _input);
 
     void Process_States(void);
     void Process_Hero_State(const Game::HeroState * _current, Game::HeroState * _next);

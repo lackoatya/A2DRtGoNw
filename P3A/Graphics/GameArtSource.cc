@@ -8,8 +8,9 @@ P3A::Graphics::GameArtSource::GameArtSource(void) {
   appearances_[0] = new Engine::Graphics::Appearance(
     std::string("P3A\\Data\\Appearances\\samurai.appearance"), std::string("P3A\\Data\\Textures"));
 
-  textures_ = new Engine::Graphics::TextureBase*[1];
-  textures_[0] = new Engine::Graphics::TextureBase("P3A\\Data\\Textures\\crypt_wall.png");
+  textures_ = new Engine::Graphics::TextureBase*[2];
+  textures_[0] = new Engine::Graphics::TextureBase("P3A\\Data\\Textures\\tmp.png");
+  textures_[1] = new Engine::Graphics::TextureBase("P3A\\Data\\Textures\\crypt_wall.png");
 }
 
 P3A::Graphics::GameArtSource::~GameArtSource(void) {

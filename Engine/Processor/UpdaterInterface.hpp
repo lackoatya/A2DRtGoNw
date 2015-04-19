@@ -5,7 +5,7 @@
 
 namespace Engine {
 namespace Processor {
-template<class Processable, class Result>
+template < class Processable, class Result >
 class UpdaterInterface : public NonCopyable {
   public:
     void Start(void) { last_time_ = boost::chrono::steady_clock::now(); }
@@ -24,7 +24,8 @@ class UpdaterInterface : public NonCopyable {
     void UpdateTime(void) {
       boost::chrono::steady_clock::time_point now = boost::chrono::steady_clock::now();
       boost::chrono::duration<real32> difference = now - last_time_;
-      elapsed_time_ += difference.count();
+      real32 elapsed = difference.count();
+      elapsed_time_ += elapsed;
       last_time_ = now;
     }
 };
