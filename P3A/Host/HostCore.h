@@ -38,15 +38,11 @@ class HostCore : public NonCopyable {
 
     class HostCoreGame {
       private:
-        typedef GameResult GameResult;
-        typedef HostGame GameProcessable;
-        typedef Engine::Updater::Deterministic < GameProcessable, GameResult > GameUpdater;
+        typedef Engine::Updater::Deterministic < GameResult > GameUpdater;
         typedef Engine::Processor::ThreadedBlocked < GameUpdater, GameResult > GameProcessor;
 
-        typedef CoreResult RendererResult;
-        typedef HostObserver RendererProcessable;
-        typedef Engine::Updater::NonDeterministic < RendererProcessable, RendererResult > RendererUpdater;
-        typedef Engine::Processor::Blocked < RendererUpdater, RendererResult > RendererProcessor;
+        typedef Engine::Updater::NonDeterministic < CoreResult > RendererUpdater;
+        typedef Engine::Processor::Blocked < RendererUpdater, CoreResult > RendererProcessor;
 
       public:
         HostCoreGame( Graphics::GraphicsContext * _context
@@ -58,11 +54,11 @@ class HostCore : public NonCopyable {
 
         Engine::Container::IntervalBuffer < HostSnapshot > * state_buffer_ = nullptr;
 
-        GameProcessable * game_ = nullptr;
+        HostGame * game_ = nullptr;
         GameUpdater game_updater_;
         GameProcessor game_processor_;
 
-        RendererProcessable * renderer_ = nullptr;
+        HostObserver * renderer_ = nullptr;
         RendererUpdater renderer_updater_;
         RendererProcessor renderer_processor_;
     } * host_core_game = nullptr;

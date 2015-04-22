@@ -19,11 +19,11 @@ class DeterministicProcessInterface {
     const real32 interval_ = 0.f;
 };
 
-template < class Processable, class Result >
-class Deterministic : public UpdaterInterface < Processable, Result > {
+template < class Result >
+class Deterministic : public UpdaterInterface < DeterministicProcessInterface < Result >, Result > {
   public:
-    inline Deterministic(Processable * _instance)
-        : UpdaterInterface < Processable, Result >(_instance) { }
+    inline Deterministic(DeterministicProcessInterface < Result > * _instance)
+        : UpdaterInterface < DeterministicProcessInterface < Result >, Result >(_instance) { }
     inline virtual ~Deterministic(void) = default;
 
     Result Update(void) {

@@ -10,7 +10,7 @@
 namespace P3A {
 namespace Menu {
 class MenuRenderer : public NonCopyable,
-                     public Engine::Updater::DeterministicProcessInterface<CoreResult> {
+                     public Engine::Updater::DeterministicProcessInterface < CoreResult > {
   public:
     enum class Keys {
       UP = 0,

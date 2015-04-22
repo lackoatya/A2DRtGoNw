@@ -12,20 +12,17 @@ namespace P3A {
 namespace Menu {
 class MenuCore : public NonCopyable {
   private:
-    typedef CoreResult Result;
-    typedef MenuRenderer Renderer;
-
-    typedef Engine::Updater::Deterministic < Renderer, Result > Updater;
-    typedef Engine::Processor::Blocked<Updater, Result> Processor;
+    typedef Engine::Updater::Deterministic < CoreResult > Updater;
+    typedef Engine::Processor::Blocked < Updater, CoreResult > Processor;
 
   public:
-  MenuCore(Graphics::GraphicsContext * _context);
-  virtual ~MenuCore(void);
+    MenuCore(Graphics::GraphicsContext * _context);
+    virtual ~MenuCore(void);
 
-    inline Result Run(void) { return processor_.Run(); }
+    inline CoreResult Run(void) { return processor_.Run(); }
 
   private:
-    Renderer * renderer_ = nullptr;
+    MenuRenderer * renderer_ = nullptr;
     Updater updater_;
     Processor processor_;
 };

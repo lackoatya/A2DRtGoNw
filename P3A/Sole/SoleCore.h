@@ -21,15 +21,11 @@ namespace P3A {
 namespace Sole {
 class SoleCore : public NonCopyable {
   private:
-    typedef GameResult GameResult;
-    typedef SoleGame GameProcessable;
-    typedef Engine::Updater::Deterministic < GameProcessable, GameResult > GameUpdater;
+    typedef Engine::Updater::Deterministic < GameResult > GameUpdater;
     typedef Engine::Processor::ThreadedBlocked < GameUpdater, GameResult > GameProcessor;
 
-    typedef CoreResult RendererResult;
-    typedef SoleObserver RendererProcessable;
-    typedef Engine::Updater::NonDeterministic < RendererProcessable, RendererResult > RendererUpdater;
-    typedef Engine::Processor::Blocked < RendererUpdater, RendererResult > RendererProcessor;
+    typedef Engine::Updater::NonDeterministic < CoreResult > RendererUpdater;
+    typedef Engine::Processor::Blocked < RendererUpdater, CoreResult > RendererProcessor;
 
   public:
     explicit SoleCore( Graphics::GraphicsContext * _context
@@ -43,11 +39,11 @@ class SoleCore : public NonCopyable {
 
     Engine::Container::IntervalBuffer < SoleSnapshot > * state_buffer_ = nullptr;
 
-    GameProcessable * game_ = nullptr;
+    SoleGame * game_ = nullptr;
     GameUpdater game_updater_;
     GameProcessor game_processor_;
 
-    RendererProcessable * renderer_ = nullptr;
+    SoleObserver * renderer_ = nullptr;
     RendererUpdater renderer_updater_;
     RendererProcessor renderer_processor_;
 

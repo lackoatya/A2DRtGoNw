@@ -19,11 +19,11 @@ class NonDeterministicProcessInterface {
     const real32 interval_ = 0.f;
 };
 
-template <class Processable, class Result>
-class NonDeterministic : public UpdaterInterface < Processable, Result > {
+template < class Result >
+class NonDeterministic : public UpdaterInterface < NonDeterministicProcessInterface < Result >, Result > {
   public:
-    inline NonDeterministic(Processable * _instance)
-        : UpdaterInterface < Processable, Result >(_instance) { }
+  inline NonDeterministic(NonDeterministicProcessInterface < Result > * _instance)
+        : UpdaterInterface < NonDeterministicProcessInterface < Result >, Result >(_instance) { }
     inline virtual ~NonDeterministic(void) = default;
 
     Result Update(void) {

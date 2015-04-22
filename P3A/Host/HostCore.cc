@@ -31,13 +31,13 @@ HostCore::HostCoreGame::HostCoreGame( Graphics::GraphicsContext * _context
                                     , Graphics::GameArtSource * _art_source)
     : character(new Game::Hero(0))
 
-    , state_buffer_(new Engine::Container::IntervalBuffer < HostSnapshot > (64, 1.f / 30.f))
+    , state_buffer_(new Engine::Container::IntervalBuffer < HostSnapshot >(64, 1.f / 30.f))
 
-    , game_(new GameProcessable(state_buffer_, character))
+    , game_(new HostGame(state_buffer_, character))
     , game_updater_(game_)
     , game_processor_(&game_updater_)
 
-    , renderer_(new RendererProcessable(1.f / 60.f, character, _context, _art_source, state_buffer_))
+    , renderer_(new HostObserver(1.f / 60.f, character, _context, _art_source, state_buffer_))
     , renderer_updater_(renderer_)
     , renderer_processor_(&renderer_updater_) {
 }
