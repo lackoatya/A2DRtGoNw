@@ -99,7 +99,7 @@
     <ClInclude Include="Engine\Container\BSP_Tree.hpp" />
     <ClInclude Include="Engine\Container\Buffer.hpp" />
     <ClInclude Include="Engine\Container\IntervalBuffer.hpp" />
-    <ClInclude Include="Engine\Container\PoolInterface.hpp" />
+    <ClInclude Include="Engine\Container\Pool.h" />
     <ClInclude Include="Engine\Container\SeparatableLinkedList.hpp" />
     <ClInclude Include="Engine\Graphics\Appearance.h" />
     <ClInclude Include="Engine\Graphics\Camera.h" />
@@ -111,7 +111,7 @@
     <ClInclude Include="Engine\Graphics\Shader.h" />
     <ClInclude Include="Engine\Graphics\TextureBase.h" />
     <ClInclude Include="Engine\Network\CommandHandlerInterface.h" />
-    <ClInclude Include="Engine\Network\ConnectionInterface.h" />
+    <ClInclude Include="Engine\Network\Connection.h" />
     <ClInclude Include="Engine\Network\GatewayInterface.h" />
     <ClInclude Include="Engine\Network\LobbyInterface.h" />
     <ClInclude Include="Engine\Network\Packet.h" />

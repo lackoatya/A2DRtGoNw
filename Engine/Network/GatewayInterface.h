@@ -1,75 +1,89 @@
-#ifndef ENGINE_NETWORK_GATEWAY_INTERFACE_H_
-#define ENGINE_NETWORK_GATEWAY_INTERFACE_H_
+#ifndef ENGINE_NETWORK_GATEWAY_H_
+#define ENGINE_NETWORK_GATEWAY_H_
 
 #include "BOOST/asio.hpp"
 #include "BOOST/bind.hpp"
 
-#include "Engine/Container/PoolInterface.hpp"
+#include "Engine/Container/Pool.h"
 #include "Engine/Processor/Service.h"
 
 namespace Engine {
 namespace Network {
-struct GatewayConfiguration {
-  const uint32 connections_max;
-  const uint32 port_offset;
-};
+typedef boost::asio::ip::tcp::socket tcp_socket;
 
-class GatewayInterface : public NonCopyable {
+class Gateway : public NonCopyable {
   public:
+    class ConnectionHandlerInterface : public NonCopyable {
+      public:
+        virtual void Handle_Connection(shared_ptr < tcp_socket > _socket) = 0;
+    };
+
+  public:
+    struct Configuration {
+      uint32 connections_max;
+      uint32 port_offset;
+    } const m_configuration;
+
+    atomic < shared_ptr < ConnectionHandlerInterface > > m_handler;
+
+    // TODO This is not the perfect place for this!
     inline void ReturnPort(uint32 const& _port) {
-      port_offsets_.push(_port - configuration.port_offset);
+      m_port_offsets.push(_port - m_configuration.port_offset);
+    }
+
+    inline void Listen(void) {
+      shared_ptr < tcp_socket > accepted(new tcp_socket(m_service->service()));
+      if (m_gateway.is_open) m_gateway.async_accept(*accepted
+                                                    , boost::bind(&Handle_Accept
+                                                    , this
+                                                    , accepted
+                                                    , boost::asio::placeholders::error));
     }
 
   protected:
-    boost::asio::ip::tcp::socket accepted_;
-
-    inline GatewayInterface( Processor::Service * _service
-                           , boost::asio::ip::tcp::endpoint const& _endpoint )
-      : service_(_service)
-      , accepted_(_service->service())
-      , gateway_(_service->service(), _endpoint) { assert(_service); Listen(); }
-    inline virtual ~GatewayInterface(void) = default;
-
-    virtual void Handle_Connection(void) = 0;
+  inline Gateway( Configuration const& _configuration
+                , shared_ptr < ConnectionHandlerInterface > _handler
+                , Processor::Service * _service
+                , boost::asio::ip::tcp::endpoint const& _endpoint )
+        : m_configuration(_configuration)
+        , m_handler(_handler)
+        , m_service(_service)
+        , m_gateway(_service->service(), _endpoint)
+        , m_port_offsets(m_configuration.connections_max) {
+      assert( _service );
+      Listen();
+    }
+  inline virtual ~Gateway(void) = default;
 
     inline virtual void Dispose(void) {
-      service_->Stop();
+      // TODO Is this 100% good?
+      assert( m_service );
+      m_service->Stop();
 
-      gateway_.cancel();
-      gateway_.close();
+      m_gateway.cancel();
+      m_gateway.close();
 
-      // TODO?!?
+      // TODO ?!?
       delete this;
     }
 
   private:
-    template < uint32 size >
-    class PortOffsetPool : public Container::PoolInterface < uint32, size > {
-      public:
-      inline PortOffsetPool(void) : Container::PoolInterface < uint32, size >() {
-        for (uint32 current = 0; current < size; ++current)
-          data_[current] = current;
+
+    Processor::Service * m_service = nullptr;
+    boost::asio::ip::tcp::acceptor m_gateway;
+
+    Engine::Container::OffsetPool m_port_offsets;
+
+    inline void Handle_Accept( shared_ptr < tcp_socket > _socket
+                             , boost::system::error_code const& _error) {
+      if ( !_error ) {
+        shared_ptr < ConnectionHandlerInterface > handler = m_handler.load();
+        if (handler) {
+          m_handler.load()->Handle_Connection( _socket );
+        }
+
+        Listen();
       }
-      inline ~PortOffsetPool(void) = default;
-    };
-
-  private:
-    const GatewayConfiguration configuration;
-
-    Processor::Service * service_ = nullptr;
-
-    // TODO use some kind of configuration!
-    PortOffsetPool < 5 > port_offsets_;
-    boost::asio::ip::tcp::acceptor gateway_;
-
-    inline void Listen(void) {
-      if (gateway_.is_open) gateway_.async_accept(accepted_, boost::bind(&Handle_Accept
-                                                                       , this
-                                                                       , boost::asio::placeholders::error));
-    }
-    inline void Handle_Accept(boost::system::error_code const& _error) {
-      if (!_error) Handle_Connection();
-      Listen();
     }
 };
 }

@@ -290,9 +290,6 @@
     <ClInclude Include="Engine\Network\Packet.h">
       <Filter>Engine\Network</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Container\PoolInterface.hpp">
-      <Filter>Engine\Container</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Processor\StrandedService.hpp">
       <Filter>Engine\Processor</Filter>
     </ClInclude>
@@ -311,9 +308,6 @@
     <ClInclude Include="P3A\Host\HostCore.h">
       <Filter>P3A\Host</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Network\ConnectionInterface.h">
-      <Filter>Engine\Network</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Network\CommandHandlerInterface.h">
       <Filter>Engine\Network</Filter>
     </ClInclude>
@@ -328,6 +322,12 @@
     </ClInclude>
     <ClInclude Include="Engine\Updater\UpdaterInterface.hpp">
       <Filter>Engine\Updater</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Container\Pool.h">
+      <Filter>Engine\Container</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Network\Connection.h">
+      <Filter>Engine\Network</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
