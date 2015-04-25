@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Container">
+      <UniqueIdentifier>{b3651e51-1e93-4d50-9cdd-ae6f44f6464f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{b81b286a-b724-4fde-8c24-35e41119708f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network">
+      <UniqueIdentifier>{79ee4e86-a366-4fa8-9ef2-bdb4baa2d7c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Numerics">
+      <UniqueIdentifier>{4dbb6d33-34ba-4cd3-b341-45c6028a070e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics">
+      <UniqueIdentifier>{06fcc956-9bba-4e73-9f71-344840a8868e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Processor">
+      <UniqueIdentifier>{adf83205-5c1f-4a8e-a483-3f079b035092}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Updater">
+      <UniqueIdentifier>{10c271c9-3884-4f7d-bdea-9e4ae95fdd01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{2736ae5a-3509-4075-8f87-b17bc90ded78}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Engine\Container\BitField.h">
+      <Filter>Container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Container\BSP_Tree.hpp">
+      <Filter>Container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Container\Buffer.hpp">
+      <Filter>Container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Container\IntervalBuffer.hpp">
+      <Filter>Container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Container\Pool.h">
+      <Filter>Container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Container\SeparatableLinkedList.hpp">
+      <Filter>Container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Graphics\Appearance.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Graphics\Camera.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Graphics\ContextBase.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Graphics\KeyHandler.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Graphics\Mesh.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Graphics\ModelBase.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Graphics\Motion.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Graphics\Shader.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Graphics\TextureBase.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Network\Connection.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Network\Gateway.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Network\Packet.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Utility\Logger.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Updater\Deterministic.hpp">
+      <Filter>Updater</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Updater\NonDeterministic.hpp">
+      <Filter>Updater</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Updater\UpdaterInterface.hpp">
+      <Filter>Updater</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Processor\Blocked.hpp">
+      <Filter>Processor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Processor\ResultInterface.hpp">
+      <Filter>Processor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Processor\RunnableInterface.hpp">
+      <Filter>Processor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Processor\Service.h">
+      <Filter>Processor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Processor\StrandedService.hpp">
+      <Filter>Processor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Processor\ThreadedBlocked.hpp">
+      <Filter>Processor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Processor\ThreadedService.h">
+      <Filter>Processor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Physics\AABB.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Physics\Body.hpp">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Physics\Circle.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Physics\ShapeInterface.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Numerics\IntegratorInterface.hpp">
+      <Filter>Numerics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Numerics\LinearInterpolation.hpp">
+      <Filter>Numerics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Numerics\RungeKutta4Integrator.hpp">
+      <Filter>Numerics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Numerics\SymplecticEulerIntegrator.hpp">
+      <Filter>Numerics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Types.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Engine\Graphics\Appearance.cc">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Graphics\Camera.cc">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Graphics\ContextBase.cc">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Graphics\Mesh.cc">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Graphics\ModelBase.cc">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Graphics\Shader.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Graphics\TextureBase.cc">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Network\Packet.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Utility\Logger.cc">
+      <Filter>Utility</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

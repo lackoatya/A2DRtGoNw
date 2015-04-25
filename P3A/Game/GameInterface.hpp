@@ -19,6 +19,7 @@ class GameInterface : public Engine::Updater::DeterministicProcessInterface < Re
 
     Result Process(void) {
       internal_time += interval_;
+
       Process_Inputs();
       Process_States();
 
@@ -30,6 +31,7 @@ class GameInterface : public Engine::Updater::DeterministicProcessInterface < Re
 
     virtual void Process_Inputs(void) = 0;
     virtual void Process_States(void) = 0;
+
     virtual Result GetResult(void) = 0;
 };
 }

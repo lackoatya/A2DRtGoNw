@@ -1,5 +1,5 @@
-/*#include "Macro"
-#include "Network\Packet.h"
+/*#include "Engine/Macro"
+#include "Engine/Network\Packet.h"
 
 Packet::Packet(const int &_command, const std::string &_message) : data(new char[4 + _message.size() + 1]), size(4 + _message.size() + 1)
 {

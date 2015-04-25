@@ -2,7 +2,7 @@
 #define ENGINE_TYPES_H_
 
 // Assert
-#include "assert.h"
+#include <assert.h>
 
 // Basic types
 #include "BOOST/cstdint.hpp"
@@ -36,6 +36,11 @@ typedef boost::shared_mutex Mutex;
 // Lock
 #include "BOOST/thread/locks.hpp"
 typedef boost::unique_lock<Mutex> Lock;
+
+// Sockets
+#include "BOOST/asio.hpp"
+typedef boost::asio::ip::tcp::socket tcp_socket;
+typedef boost::asio::ip::udp::socket udp_socket;
 
 // Constants
 const real32 PI = 3.141592741f;

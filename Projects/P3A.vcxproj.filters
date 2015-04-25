@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="..\P3A\CoreResult.h" />
+    <ClInclude Include="..\P3A\GameResult.h" />
+    <ClInclude Include="..\P3A\Client\ClientGame.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\P3A\Client\ClientInput.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\P3A\Client\ClientObserver.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\P3A\Client\ClientSnapshot.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\P3A\Game\Configuration.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\P3A\Game\GameInterface.hpp">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\P3A\Game\Player.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\P3A\Game\Unit.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\P3A\Graphics\GameArtSource.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\P3A\Graphics\GameObserverInterface.hpp">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\P3A\Graphics\GraphicsContext.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\P3A\Graphics\Model.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\P3A\Host\HostCore.h">
+      <Filter>Host</Filter>
+    </ClInclude>
+    <ClInclude Include="..\P3A\Host\HostGame.h">
+      <Filter>Host</Filter>
+    </ClInclude>
+    <ClInclude Include="..\P3A\Host\HostLobby.h">
+      <Filter>Host</Filter>
+    </ClInclude>
+    <ClInclude Include="..\P3A\Host\HostLobbyObserver.h">
+      <Filter>Host</Filter>
+    </ClInclude>
+    <ClInclude Include="..\P3A\Host\HostObserver.h">
+      <Filter>Host</Filter>
+    </ClInclude>
+    <ClInclude Include="..\P3A\Host\HostSnapshot.h">
+      <Filter>Host</Filter>
+    </ClInclude>
+    <ClInclude Include="..\P3A\Host\LobbyInterface.hpp">
+      <Filter>Host</Filter>
+    </ClInclude>
+    <ClInclude Include="..\P3A\Menu\MenuCore.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\P3A\Menu\MenuRenderer.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\P3A\Sole\SoleCore.h">
+      <Filter>Sole</Filter>
+    </ClInclude>
+    <ClInclude Include="..\P3A\Sole\SoleGame.h">
+      <Filter>Sole</Filter>
+    </ClInclude>
+    <ClInclude Include="..\P3A\Sole\SoleObserver.h">
+      <Filter>Sole</Filter>
+    </ClInclude>
+    <ClInclude Include="..\P3A\Sole\SoleSnapshot.h">
+      <Filter>Sole</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\P3A\Main.cc" />
+    <ClCompile Include="..\P3A\Client\ClientGame.cc">
+      <Filter>Client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\P3A\Client\ClientObserver.cc">
+      <Filter>Client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\P3A\Graphics\GameArtSource.cc">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\P3A\Graphics\GameObserverInterface.cc">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\P3A\Graphics\GraphicsContext.cc">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\P3A\Graphics\Model.cc">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\P3A\Host\HostCore.cc">
+      <Filter>Host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\P3A\Host\HostGame.cc">
+      <Filter>Host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\P3A\Host\HostObserver.cc">
+      <Filter>Host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\P3A\Menu\MenuCore.cc">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\P3A\Menu\MenuRenderer.cc">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\P3A\Sole\SoleCore.cc">
+      <Filter>Sole</Filter>
+    </ClCompile>
+    <ClCompile Include="..\P3A\Sole\SoleGame.cc">
+      <Filter>Sole</Filter>
+    </ClCompile>
+    <ClCompile Include="..\P3A\Sole\SoleObserver.cc">
+      <Filter>Sole</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Client">
+      <UniqueIdentifier>{5942dcd3-985a-4216-ad1d-4e4145f022ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{7e70b2d9-f21d-4805-b3bf-6ccd3f8647f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{53b4f63b-ffd5-42db-90b1-5be1ded289a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Host">
+      <UniqueIdentifier>{8c9b5571-851b-4a15-a06f-2a0c080b9c0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menu">
+      <UniqueIdentifier>{6c38384d-dfa2-4979-9498-343241d6e4d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{e3c0017e-5c9b-4868-83c3-2b8ccbe1725b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sole">
+      <UniqueIdentifier>{91a40684-9706-4900-b21f-797b860dbe99}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\P3A\Shaders\Box.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\P3A\Shaders\Box.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\P3A\Shaders\Text.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\P3A\Shaders\Text.vs">
+      <Filter>Shaders</Filter>
+    </None>
+  </ItemGroup>
+</Project>

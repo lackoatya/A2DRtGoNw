@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{AD9370EC-DDF8-4CB1-8CC5-0E7F7234C79C}</ProjectGuid>
+    <RootNamespace>P3A</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)\Binary\$(ProjectName)\</OutDir>
+    <IncludePath>$(SolutionDir);$(SolutionDir)\Libraries\Include;D:\boost_1_57_0;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\Libraries\$(Configuration)\$(Platform);D:\boost_1_57_0\stage\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>engine.lib;opengl32.lib;glew32sd.lib;glfw3.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\P3A\Client\ClientGame.h" />
+    <ClInclude Include="..\P3A\Client\ClientInput.h" />
+    <ClInclude Include="..\P3A\Client\ClientObserver.h" />
+    <ClInclude Include="..\P3A\Client\ClientSnapshot.h" />
+    <ClInclude Include="..\P3A\CoreResult.h" />
+    <ClInclude Include="..\P3A\GameResult.h" />
+    <ClInclude Include="..\P3A\Game\Configuration.h" />
+    <ClInclude Include="..\P3A\Game\GameInterface.hpp" />
+    <ClInclude Include="..\P3A\Game\Player.h" />
+    <ClInclude Include="..\P3A\Game\Unit.h" />
+    <ClInclude Include="..\P3A\Graphics\GameArtSource.h" />
+    <ClInclude Include="..\P3A\Graphics\GameObserverInterface.hpp" />
+    <ClInclude Include="..\P3A\Graphics\GraphicsContext.h" />
+    <ClInclude Include="..\P3A\Graphics\Model.h" />
+    <ClInclude Include="..\P3A\Host\HostCore.h" />
+    <ClInclude Include="..\P3A\Host\HostGame.h" />
+    <ClInclude Include="..\P3A\Host\HostLobby.h" />
+    <ClInclude Include="..\P3A\Host\HostLobbyObserver.h" />
+    <ClInclude Include="..\P3A\Host\HostObserver.h" />
+    <ClInclude Include="..\P3A\Host\HostSnapshot.h" />
+    <ClInclude Include="..\P3A\Host\LobbyInterface.hpp" />
+    <ClInclude Include="..\P3A\Menu\MenuCore.h" />
+    <ClInclude Include="..\P3A\Menu\MenuRenderer.h" />
+    <ClInclude Include="..\P3A\Sole\SoleCore.h" />
+    <ClInclude Include="..\P3A\Sole\SoleGame.h" />
+    <ClInclude Include="..\P3A\Sole\SoleObserver.h" />
+    <ClInclude Include="..\P3A\Sole\SoleSnapshot.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\P3A\Client\ClientGame.cc" />
+    <ClCompile Include="..\P3A\Client\ClientObserver.cc" />
+    <ClCompile Include="..\P3A\Graphics\GameArtSource.cc" />
+    <ClCompile Include="..\P3A\Graphics\GameObserverInterface.cc" />
+    <ClCompile Include="..\P3A\Graphics\GraphicsContext.cc" />
+    <ClCompile Include="..\P3A\Graphics\Model.cc" />
+    <ClCompile Include="..\P3A\Host\HostCore.cc" />
+    <ClCompile Include="..\P3A\Host\HostGame.cc" />
+    <ClCompile Include="..\P3A\Host\HostObserver.cc" />
+    <ClCompile Include="..\P3A\Main.cc" />
+    <ClCompile Include="..\P3A\Menu\MenuCore.cc" />
+    <ClCompile Include="..\P3A\Menu\MenuRenderer.cc" />
+    <ClCompile Include="..\P3A\Sole\SoleCore.cc" />
+    <ClCompile Include="..\P3A\Sole\SoleGame.cc" />
+    <ClCompile Include="..\P3A\Sole\SoleObserver.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\P3A\Shaders\Box.frag" />
+    <None Include="..\P3A\Shaders\Box.vs" />
+    <None Include="..\P3A\Shaders\Text.frag" />
+    <None Include="..\P3A\Shaders\Text.vs" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

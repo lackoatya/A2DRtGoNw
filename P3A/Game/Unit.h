@@ -1,6 +1,7 @@
-#ifndef P3A_GAME_HERO_STATE_H_
-#define P3A_GAME_HERO_STATE_H_
+#ifndef P3A_GAME_UNIT_H_
+#define P3A_GAME_UNIT_H_
 
+// TODO ..........
 #define MOTIONS_MAX 8
 
 #include "Engine/Types.h"
@@ -11,12 +12,8 @@
 
 namespace P3A {
 namespace Game {
-class Hero;
-
-struct HeroState {
+struct UnitState {
   public:
-    Hero * hero = nullptr;
-
     Engine::Physics::Body < Engine::Physics::AABB > body;
 
     uint32 mesh = 0, appearance = 0;
@@ -26,12 +23,12 @@ struct HeroState {
     uint32 motions_count = 0;
     Engine::Graphics::Motion motions[MOTIONS_MAX];
 
-    inline HeroState(void) : body(Engine::Physics::AABB(Vector2(0.f, 0.f), 64., 64.)) { }
-    inline HeroState(Vector2 const& _location, Vector2 const& _velocity)
+    inline UnitState(void) : body(Engine::Physics::AABB(Vector2(0.f, 0.f), 64., 64.)) { }
+    inline UnitState(Vector2 const& _location, Vector2 const& _velocity)
       : body(Engine::Physics::AABB(_location, 64., 64.)) {
       body.set_velocity(_velocity);
     }
-    inline HeroState & operator=(HeroState const& _other) {
+    inline UnitState & operator=(UnitState const& _other) {
       body = _other.body;
 
       mesh = _other.mesh;
@@ -42,36 +39,31 @@ struct HeroState {
 
       return *this;
     }
-    inline virtual ~HeroState(void) { }
+    inline virtual ~UnitState(void) { }
 
-    inline void copy(HeroState const& _other) {
-      hero = _other.hero;
+    inline void copy(UnitState const& _other) {
       mesh = _other.mesh;
       appearance = _other.appearance;
     }
 };
 
-enum class HeroInput {
-    NONE = 0,
-
-    MOVE_UP,
-    MOVE_DOWN,
-    MOVE_LEFT,
-    MOVE_RIGHT,
-    STOP
-};
-
-class Hero : public NonCopyable {
+template < class Command >
+class UnitController : public NonCopyable {
   public:
+    struct Configuration {
+      uint32 command_buffer_size;
+    } const configuration;
+
     const uint32 id;
-    Engine::Container::Buffer < HeroInput > input_buffer;
+    Engine::Container::Buffer < Command > m_command_buffer;
 
     // TODO get size from configuration.
-    inline Hero(uint32 _id) : id(_id), input_buffer(Engine::Container::Buffer < HeroInput >(8)) { }
-    inline virtual ~Hero(void) { }
-
-
-  private:
+    inline UnitController(Configuration _configuration, uint32 _id)
+        : configuration(_configuration)
+        , id(_id)
+        , command_buffer(Engine::Container::Buffer < Command >(configuration.command_buffer_size)) {
+    }
+    inline virtual ~UnitController(void) { }
 };
 }
 }

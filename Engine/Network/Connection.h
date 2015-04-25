@@ -9,28 +9,25 @@
 
 #include "Engine/Types.h"
 #include "Engine/Processor/Service.h"
-#include "Engine/Network/CommandHandlerInterface.h"
 
 // TODO Modify char * to void * and get an Allocator?
 
 namespace Engine {
 namespace Network {
-typedef boost::asio::ip::tcp::socket tcp_socket;
-typedef boost::asio::ip::udp::socket udp_socket;
+class CommandHandlerInterface {
+  public:
+    virtual void Handle_TCP(char const* _data, size_t _received) = 0;
+    virtual void Handle_UDP(char const* _data, size_t _received) = 0;
+};
+
+class PacketInterface {
+  public:
+    virtual char * const data(void) = 0;
+    virtual uint32 const size(void) = 0;
+};
 
 class Connection {
   public:
-    class CommandHandlerInterface {
-      public:
-        virtual void Handle_TCP(char const* _data, size_t _received) = 0;
-        virtual void Handle_UDP(char const* _data, size_t _received) = 0;
-    };
-
-    class PacketInterface {
-      public:
-        virtual char * const data(void) = 0;
-        virtual uint32 const size(void) = 0;
-    };
 
   public:
     struct Configuration {

@@ -1,5 +1,3 @@
-#include <assert.h>
-
 #include "P3A/Graphics/GameArtSource.h"
 #include "P3A/Graphics/GraphicsContext.h"
 

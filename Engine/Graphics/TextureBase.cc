@@ -1,8 +1,8 @@
 #include "Engine/Graphics/TextureBase.h"
 
-#include <assert.h>
+#include "SOIL/SOIL.h"
 
-#include "SOIL\SOIL.h"
+#include "Engine/Types.h"
 
 namespace Engine{
 namespace Graphics {
