@@ -1,6 +1,8 @@
 #ifndef ENGINE_TYPES_H_
 #define ENGINE_TYPES_H_
 
+#define _WIN32_WINNT 0x0501
+
 // Assert
 #include <assert.h>
 
@@ -21,8 +23,14 @@ typedef double real64;
 // Shared Pointer
 #include "BOOST/shared_ptr.hpp"
 
-template<class Type>
-using shared_ptr = boost::shared_ptr <Type>;
+template < class Type >
+using shared_ptr = boost::shared_ptr < Type >;
+
+// Shared Pointer from This
+#include "BOOST/enable_shared_from_this.hpp"
+
+template < class Type >
+using enable_shared_from_this = boost::enable_shared_from_this < Type >;
 
 // Atomic
 #include "BOOST/atomic.hpp"
@@ -33,9 +41,11 @@ using atomic = boost::atomic <Type>;
 #include "BOOST/thread/shared_mutex.hpp"
 typedef boost::shared_mutex Mutex;
 
-// Lock
 #include "BOOST/thread/locks.hpp"
-typedef boost::unique_lock<Mutex> Lock;
+// Lock_Guard
+typedef boost::lock_guard< Mutex > Lock_Guard;
+// Unique_Lock
+typedef boost::unique_lock < Mutex > Unique_Lock;
 
 // Sockets
 #include "BOOST/asio.hpp"

@@ -1,4 +1,4 @@
-#ifndef P3A_SOLE_SOLE_GAME_H_
+/*#ifndef P3A_SOLE_SOLE_GAME_H_
 #define P3A_SOLE_SOLE_GAME_H_
 
 // TODO Get integrator from template!!
@@ -43,4 +43,4 @@ class SoleGame : public Game::GameInterface < Snapshot, GameResult > {
 };
 }
 }
-#endif
+#endif*/

@@ -2,7 +2,7 @@
 #include "P3A/Graphics/GraphicsContext.h"
 
 #include "P3A/CoreResult.h"
-#include "P3A/Sole/SoleCore.h"
+// #include "P3A/Sole/SoleCore.h"
 #include "P3A/Menu/MenuCore.h"
 #include "P3A/Host/HostCore.h"
 
@@ -18,9 +18,9 @@ int main(void) {
       } continue;
 
       case P3A::CoreState::SOLE: {
-        P3A::Graphics::GameArtSource art_source;
+        /*P3A::Graphics::GameArtSource art_source;
         P3A::Sole::SoleCore sole(&graphics, &art_source);
-        state = sole.Run();
+        state = sole.Run();*/
       } continue;
 
       case P3A::CoreState::HOST: {

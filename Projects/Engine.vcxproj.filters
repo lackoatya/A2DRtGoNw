@@ -25,6 +25,9 @@
     <Filter Include="Utility">
       <UniqueIdentifier>{2736ae5a-3509-4075-8f87-b17bc90ded78}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{38ed2308-04d2-4e7b-b8a5-6feace20e829}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Engine\Container\BitField.h">
@@ -139,6 +142,15 @@
       <Filter>Numerics</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine\Types.h" />
+    <ClInclude Include="..\Engine\Game\IController.hpp">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Game\IGame.hpp">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Game\IGameObserver.hpp">
+      <Filter>Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Engine\Graphics\Appearance.cc">

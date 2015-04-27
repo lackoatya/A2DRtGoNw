@@ -1,4 +1,4 @@
-#include "P3A/Sole/SoleObserver.h"
+/*#include "P3A/Sole/SoleObserver.h"
 
 #include "BOOST/lexical_cast.hpp"
 
@@ -139,4 +139,4 @@ void SoleObserver::Handle_Mouse(void) {
   }
 }
 }
-}
+}*/

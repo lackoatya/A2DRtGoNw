@@ -14,12 +14,12 @@ class HostLobby : public NonCopyable
 
     inline HostLobby(Engine::Network::Gateway * _gateway)
         : m_gateway(_gateway)
-        , m_players_max(m_gateway->m_configuration.connections_max) {
+        , m_players_max(m_gateway->configuration.connections_max) {
       assert(_gateway);
     }
     inline ~HostLobby(void) = default;
 
-    void Handle_Connection(shared_ptr < Engine::Network::tcp_socket > _socket);
+    void Handle_Connection(shared_ptr < tcp_socket > _socket);
 
   private:
     Engine::Network::Gateway * m_gateway = nullptr;

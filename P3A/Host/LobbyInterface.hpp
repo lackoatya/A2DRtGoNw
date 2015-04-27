@@ -1,4 +1,4 @@
-#ifndef ENGINE_NETWORK_LOBBY_INTERFACE_HPP_
+/*#ifndef ENGINE_NETWORK_LOBBY_INTERFACE_HPP_
 #define ENGINE_NETWORK_LOBBY_INTERFACE_HPP_
 
 #include "Engine/Types.h"
@@ -27,4 +27,4 @@ class LobbyInterface : public NonCopyable
 }
 }
 
-#endif
+#endif*/

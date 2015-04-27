@@ -1,4 +1,4 @@
-#include "P3A/Sole/SoleCore.h"
+/*#include "P3A/Sole/SoleCore.h"
 
 namespace P3A {
 namespace Sole {
@@ -37,3 +37,4 @@ SoleCore::~SoleCore(void) {
 }
 }
 }
+*/

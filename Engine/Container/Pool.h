@@ -15,19 +15,19 @@ class PoolInterface : public NonCopyable {
     }
 
     inline Type pop(void) {
-      assert(m_data);
-      uint32 index = last_--; 
-      return data_[index];
+      assert( m_data );
+      uint32 index = m_last--; 
+      return m_data[index];
     }
     inline void push(Type const& _value) {
-      assert(m_data);
-      uint32 index = last_++;
-      data_[index] = _value;
+      assert( m_data );
+      uint32 index = m_last++;
+      m_data[index] = _value;
     }
 
   protected:
     uint32 m_size = 0;
-    atomic < uint32 > m_last_ = m_size;
+    atomic < uint32 > m_last = m_size;
     Type * m_data = nullptr;
     
     virtual void Fill(void) = 0;

@@ -1,4 +1,4 @@
-#include "P3A/Sole/SoleGame.h"
+/*#include "P3A/Sole/SoleGame.h"
 
 namespace P3A {
 namespace Sole {
@@ -48,7 +48,7 @@ void SoleGame::Process_States(void) {
 
   Process_Hero_State(&(current->character), &(next->character));
 
-  /*for (uint32 hero = 0; hero < current->hero_state_count; ++hero) {
+  for (uint32 hero = 0; hero < current->hero_state_count; ++hero) {
     next->hero_states[hero].copy(current->hero_states[hero]);
     integrator.Integrate(current->hero_states[hero].body, &(next->hero_states[hero].body));
 
@@ -63,7 +63,7 @@ void SoleGame::Process_States(void) {
     next->hero_states[hero].motions_count = motions_count;
   }
 
-  next->hero_state_count = current->hero_state_count;*/
+  next->hero_state_count = current->hero_state_count;
 
   state_buffer_->procede();
 }
@@ -84,3 +84,4 @@ void SoleGame::Process_Hero_State(const Game::HeroState * _current, Game::HeroSt
 }
 }
 }
+*/

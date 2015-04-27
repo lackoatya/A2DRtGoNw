@@ -15,22 +15,7 @@
     <ClInclude Include="..\P3A\Client\ClientSnapshot.h">
       <Filter>Client</Filter>
     </ClInclude>
-    <ClInclude Include="..\P3A\Game\Configuration.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\P3A\Game\GameInterface.hpp">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\P3A\Game\Player.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\P3A\Game\Unit.h">
-      <Filter>Game</Filter>
-    </ClInclude>
     <ClInclude Include="..\P3A\Graphics\GameArtSource.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\P3A\Graphics\GameObserverInterface.hpp">
       <Filter>Graphics</Filter>
     </ClInclude>
     <ClInclude Include="..\P3A\Graphics\GraphicsContext.h">
@@ -78,6 +63,24 @@
     <ClInclude Include="..\P3A\Sole\SoleSnapshot.h">
       <Filter>Sole</Filter>
     </ClInclude>
+    <ClInclude Include="..\P3A\Game\Ninja.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\P3A\Game\Object.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\P3A\Game\Missile.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\P3A\Game\Ninja_Connection.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\P3A\Game\Ninja_Player.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\P3A\Game\Ninja_Agent.h">
+      <Filter>Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\P3A\Main.cc" />
@@ -88,9 +91,6 @@
       <Filter>Client</Filter>
     </ClCompile>
     <ClCompile Include="..\P3A\Graphics\GameArtSource.cc">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="..\P3A\Graphics\GameObserverInterface.cc">
       <Filter>Graphics</Filter>
     </ClCompile>
     <ClCompile Include="..\P3A\Graphics\GraphicsContext.cc">

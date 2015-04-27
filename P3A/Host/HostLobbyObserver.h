@@ -1,4 +1,4 @@
-#ifndef P3A_HOST_HOST_LOBBY_OBSERVER_H_
+/*#ifndef P3A_HOST_HOST_LOBBY_OBSERVER_H_
 #define P3A_HOST_HOST_LOBBY_OBSERVER_H_
 
 #include "Engine/Types.h"
@@ -47,6 +47,6 @@ class HostLobbyObserver : public NonCopyable,
 
 };
 }
-}
+}*/
 
 #endif

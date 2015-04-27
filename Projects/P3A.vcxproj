@@ -42,6 +42,7 @@
     <OutDir>$(SolutionDir)\Binary\$(ProjectName)\</OutDir>
     <IncludePath>$(SolutionDir);$(SolutionDir)\Libraries\Include;D:\boost_1_57_0;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\Libraries\$(Configuration)\$(Platform);D:\boost_1_57_0\stage\lib;$(LibraryPath)</LibraryPath>
+    <IntDir>$(SolutionDir)\Intermediate\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -75,12 +76,13 @@
     <ClInclude Include="..\P3A\Client\ClientSnapshot.h" />
     <ClInclude Include="..\P3A\CoreResult.h" />
     <ClInclude Include="..\P3A\GameResult.h" />
-    <ClInclude Include="..\P3A\Game\Configuration.h" />
-    <ClInclude Include="..\P3A\Game\GameInterface.hpp" />
-    <ClInclude Include="..\P3A\Game\Player.h" />
-    <ClInclude Include="..\P3A\Game\Unit.h" />
+    <ClInclude Include="..\P3A\Game\Missile.h" />
+    <ClInclude Include="..\P3A\Game\Ninja_Agent.h" />
+    <ClInclude Include="..\P3A\Game\Ninja_Player.h" />
+    <ClInclude Include="..\P3A\Game\Ninja_Connection.h" />
+    <ClInclude Include="..\P3A\Game\Object.h" />
+    <ClInclude Include="..\P3A\Game\Ninja.h" />
     <ClInclude Include="..\P3A\Graphics\GameArtSource.h" />
-    <ClInclude Include="..\P3A\Graphics\GameObserverInterface.hpp" />
     <ClInclude Include="..\P3A\Graphics\GraphicsContext.h" />
     <ClInclude Include="..\P3A\Graphics\Model.h" />
     <ClInclude Include="..\P3A\Host\HostCore.h" />
@@ -101,7 +103,6 @@
     <ClCompile Include="..\P3A\Client\ClientGame.cc" />
     <ClCompile Include="..\P3A\Client\ClientObserver.cc" />
     <ClCompile Include="..\P3A\Graphics\GameArtSource.cc" />
-    <ClCompile Include="..\P3A\Graphics\GameObserverInterface.cc" />
     <ClCompile Include="..\P3A\Graphics\GraphicsContext.cc" />
     <ClCompile Include="..\P3A\Graphics\Model.cc" />
     <ClCompile Include="..\P3A\Host\HostCore.cc" />

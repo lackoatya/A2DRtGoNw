@@ -1,3 +1,4 @@
+/*
 #ifndef P3A_SOLE_SOLE_CORE_H_
 #define P3A_SOLE_SOLE_CORE_H_
 
@@ -53,4 +54,4 @@ class SoleCore : public NonCopyable {
 }
 }
 
-#endif
+#endif*/

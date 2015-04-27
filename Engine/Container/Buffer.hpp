@@ -7,7 +7,7 @@
 
 namespace Engine {
 namespace Container {
-template<class DataType>
+template < class DataType >
 class Buffer : public NonCopyable {
 public:
   inline Buffer(uint32 const& _size)

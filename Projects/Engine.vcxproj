@@ -78,6 +78,9 @@
     <ClInclude Include="..\Engine\Container\IntervalBuffer.hpp" />
     <ClInclude Include="..\Engine\Container\Pool.h" />
     <ClInclude Include="..\Engine\Container\SeparatableLinkedList.hpp" />
+    <ClInclude Include="..\Engine\Game\IController.hpp" />
+    <ClInclude Include="..\Engine\Game\IGame.hpp" />
+    <ClInclude Include="..\Engine\Game\IGameObserver.hpp" />
     <ClInclude Include="..\Engine\Graphics\Appearance.h" />
     <ClInclude Include="..\Engine\Graphics\Camera.h" />
     <ClInclude Include="..\Engine\Graphics\ContextBase.h" />
