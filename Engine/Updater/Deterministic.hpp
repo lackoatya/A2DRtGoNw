@@ -1,41 +1,46 @@
 #ifndef ENGINE_UPDATER_DETERMINISTIC_HPP_
 #define ENGINE_UPDATER_DETERMINISTIC_HPP_
 
-#include "Engine/Updater/UpdaterInterface.hpp"
+#include "Engine/Types.h"
+#include "Engine/Updater/ITimeUpdatable.hpp"
 
 namespace Engine { 
 namespace Updater {
 template < class Result >
-class DeterministicProcessInterface {
-  public:
-    virtual Result Process(void) = 0;
+class IDeterministicProcess {
+public:
+  const real32 m_interval;
 
-    inline const real32 interval(void) const { return interval_; }
+  virtual Result Process(void) = 0;
 
-  protected:
-    inline DeterministicProcessInterface(real32 const& _interval) : interval_(_interval) { }
-    inline virtual ~DeterministicProcessInterface(void) = default;
-
-    const real32 interval_ = 0.f;
+protected:
+  inline IDeterministicProcess(real32 const& _interval) : m_interval(_interval) { }
+  inline virtual ~IDeterministicProcess(void) { }
 };
 
 template < class Result >
-class Deterministic : public UpdaterInterface < DeterministicProcessInterface < Result >, Result > {
-  public:
-    inline Deterministic(DeterministicProcessInterface < Result > * _instance)
-        : UpdaterInterface < DeterministicProcessInterface < Result >, Result >(_instance) { }
-    inline virtual ~Deterministic(void) = default;
+class Deterministic : public ITimeUpdatable < Result > {
+public:
+  inline Deterministic(IDeterministicProcess < Result > * _process)
+      : ITimeUpdatable < Result > ()
+      , m_process(_process) {
+    assert(_process);
+  }
+  inline virtual ~Deterministic(void) { }
 
-    Result Update(void) {
-      UpdateTime();
+  Result Update(void) {
+    UpdateTime();
 
-      Result result;
-      while (instance_->interval() <= elapsed_time_) {
-        result = instance_->Process();
-        elapsed_time_ -= instance_->interval();
-      }
-      return result;
+    Result result;
+    while (m_process->m_interval <= m_elapsed_time) {
+      result = m_process->Process();
+      m_elapsed_time -= m_process->m_interval;
     }
+    return result;
+  }
+
+private:
+  IDeterministicProcess < Result > * m_process = nullptr;
 };
 }
 }

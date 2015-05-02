@@ -1,42 +1,46 @@
 #ifndef ENGINE_UPDATER_NONDETERMINISTIC_HPP_
 #define ENGINE_UPDATER_NONDETERMINISTIC_HPP_
 
-#include "Engine/Updater/UpdaterInterface.hpp"
+#include "Engine/Types.h"
+#include "Engine/Updater/ITimeUpdatable.hpp"
 
 namespace Engine {
 namespace Updater {
 template < class Result >
-class NonDeterministicProcessInterface {
-  public:
-    virtual Result Process(real32 const& _elapsed_time) = 0;
+class INonDeterministicProcess {
+public:
+  const real32 m_interval;
 
-    inline const real32 interval(void) const { return interval_; }
+  virtual Result Process(real32 const& _elapsed_time) = 0;
 
-  protected:
-    inline NonDeterministicProcessInterface(real32 const& _interval) : interval_(_interval) { }
-    inline virtual ~NonDeterministicProcessInterface(void) = default;
-
-    const real32 interval_ = 0.f;
+protected:
+  inline INonDeterministicProcess(real32 const& _interval) : m_interval(_interval) { }
+  inline virtual ~INonDeterministicProcess(void) = default;
 };
 
 template < class Result >
-class NonDeterministic : public UpdaterInterface < NonDeterministicProcessInterface < Result >, Result > {
-  public:
-  inline NonDeterministic(NonDeterministicProcessInterface < Result > * _instance)
-        : UpdaterInterface < NonDeterministicProcessInterface < Result >, Result >(_instance) { }
-    inline virtual ~NonDeterministic(void) = default;
+class NonDeterministic : public ITimeUpdatable < Result > {
+public:
+  inline NonDeterministic(INonDeterministicProcess < Result > * _process)
+      : ITimeUpdatable < Result > ()
+      , m_process(_process) {
+    assert(_process);
+  }
+  inline virtual ~NonDeterministic(void) { }
 
-    Result Update(void) {
-      UpdateTime();
+  Result Update(void) {
+    UpdateTime();
 
-      if (instance_->interval() <= elapsed_time_) {
-        Result result = instance_->Process(elapsed_time_);
-        elapsed_time_ = 0.f;
-        return result;
-      } else {
-        return Result();
-      }
+    Result result;
+    if (m_process->m_interval <= m_elapsed_time) {
+      result = m_process->Process(m_elapsed_time);
+      m_elapsed_time = 0.f;
     }
+    return result;
+  }
+
+private:
+  INonDeterministicProcess < Result > * m_process = nullptr;
 };
 }
 }

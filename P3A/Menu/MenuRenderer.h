@@ -9,31 +9,19 @@
 
 namespace P3A {
 namespace Menu {
-class MenuRenderer : public NonCopyable,
-                     public Engine::Updater::DeterministicProcessInterface < CoreResult > {
-  public:
-    enum class Keys {
-      UP = 0,
-      DOWN,
-      ESCAPE,
-
-      Count
-    };
-
+class MenuRenderer : public NonCopyable
+                   , public Engine::Updater::IDeterministicProcess < CoreResult > {
   public:
     explicit MenuRenderer(real32 const& _interval, Graphics::GraphicsContext * _context);
     inline virtual ~MenuRenderer(void) = default;
 
-    P3A::CoreResult Process(void);
+    CoreResult Process(void);
 
   private:
-    uint32 selected_option_ = 0;
-    CoreResult result_ = P3A::CoreResult(P3A::CoreState::CONTINUE);
+    uint32 m_selected_option = 0;
+    CoreResult m_result = CoreResult(CoreState::CONTINUE);
 
-    // Engine::Graphics::KeyHandler<Keys> bindings_; //(std::array < Keys, (uint32)Keys::Count > { KeyHandler< Keys, (uint32)Keys::Count >(Keys::UP, GLFW_KEY_W)});
-    //bool keys[(uint32)Keys::Count];
-
-    Graphics::GraphicsContext * context_;  
+    Graphics::GraphicsContext * m_context;
 
     void Render(void);
 

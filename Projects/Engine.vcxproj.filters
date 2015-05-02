@@ -93,16 +93,7 @@
     <ClInclude Include="..\Engine\Updater\NonDeterministic.hpp">
       <Filter>Updater</Filter>
     </ClInclude>
-    <ClInclude Include="..\Engine\Updater\UpdaterInterface.hpp">
-      <Filter>Updater</Filter>
-    </ClInclude>
     <ClInclude Include="..\Engine\Processor\Blocked.hpp">
-      <Filter>Processor</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Engine\Processor\ResultInterface.hpp">
-      <Filter>Processor</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Engine\Processor\RunnableInterface.hpp">
       <Filter>Processor</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine\Processor\Service.h">
@@ -150,6 +141,18 @@
     </ClInclude>
     <ClInclude Include="..\Engine\Game\IGameObserver.hpp">
       <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Updater\IUpdatable.hpp">
+      <Filter>Updater</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Updater\ITimeUpdatable.hpp">
+      <Filter>Updater</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Processor\IRunnable.hpp">
+      <Filter>Processor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Processor\IResult.hpp">
+      <Filter>Processor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

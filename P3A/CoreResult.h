@@ -1,7 +1,7 @@
 #ifndef P3A_CORE_RESULT_H_
 #define P3A_CORE_RESULT_H_
 
-#include "Engine/Processor/ResultInterface.hpp"
+#include "Engine/Processor/IResult.hpp"
 
 namespace P3A {
 enum class CoreState {
@@ -17,28 +17,17 @@ enum class CoreState {
   Count
 };
 
-class CoreResult : public Engine::Processor::ResultInterface<CoreState> {
+class CoreResult : public Engine::Processor::IResult < CoreState > {
   public:
     inline CoreResult(void)
-        : Engine::Processor::ResultInterface<CoreState>(CoreState::CONTINUE) { }
+        : Engine::Processor::IResult < CoreState >(CoreState::CONTINUE) {
+    }
     inline CoreResult(CoreState const& _result)
-        : Engine::Processor::ResultInterface<CoreState>(_result) { }
-    inline CoreResult(CoreResult && _other)
-        : Engine::Processor::ResultInterface<CoreState>(_other) { }
-    inline CoreResult(CoreResult const& _other)
-        : Engine::Processor::ResultInterface<CoreState>(_other) { }
-    inline CoreResult & operator=(CoreResult && _other) {
-      Engine::Processor::ResultInterface<CoreState>::operator=(_other);
-      return *this;
+        : Engine::Processor::IResult < CoreState > (_result) {
     }
-    inline CoreResult & operator=(CoreResult const& _other) {
-      Engine::Processor::ResultInterface<CoreState>::operator=(_other);
-      return *this;
-    }
-    inline ~CoreResult(void) = default;
 
     bool IsValid(void) const { return result() != CoreState::CONTINUE; }
-    CoreState NotValid(void) const { return CoreState::CONTINUE; }
+    // CoreState NotValid(void) const { return CoreState::CONTINUE; }
 };
 }
 

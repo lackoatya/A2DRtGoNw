@@ -36,7 +36,6 @@ class Gateway : public NonCopyable {
         , m_gateway(_service->service())
         , m_port_offsets(configuration.connections_max) {
       assert( _service );
-      Listen();
     }
 
     inline virtual ~Gateway(void) {

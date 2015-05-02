@@ -9,17 +9,17 @@ namespace Engine {
 namespace Processor {
 class ThreadedService : public Service {
   public:
-    inline ThreadedService() : Service(), thread_() { }
-    inline virtual ~ThreadedService(void) = default;
+    inline ThreadedService() : Service(), m_thread() { }
+    inline virtual ~ThreadedService(void) { }
 
     inline void Run(void) {
-      thread_ = boost::thread(boost::bind(&boost::asio::io_service::run, &service_));
+      m_thread = boost::thread(boost::bind(&boost::asio::io_service::run, &service_));
     }
-    inline virtual void Stop(void) { service_.stop(); thread_.interrupt(); }
-    inline virtual void Join(void) { thread_.join(); }
+    inline virtual void Stop(void) { service_.stop(); m_thread.interrupt(); }
+    inline virtual void Join(void) { m_thread.join(); }
 
   protected:
-    boost::thread thread_;
+    boost::thread m_thread;
 };
 }
 }

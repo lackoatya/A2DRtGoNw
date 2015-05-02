@@ -86,6 +86,9 @@
     <ClInclude Include="..\P3A\Graphics\GraphicsContext.h" />
     <ClInclude Include="..\P3A\Graphics\Model.h" />
     <ClInclude Include="..\P3A\Host\HostCore.h" />
+    <ClInclude Include="..\P3A\Host\HostCore_Configurator.h" />
+    <ClInclude Include="..\P3A\Host\HostCore_Game.h" />
+    <ClInclude Include="..\P3A\Host\HostCore_Lobby.h" />
     <ClInclude Include="..\P3A\Host\HostGame.h" />
     <ClInclude Include="..\P3A\Host\HostLobby.h" />
     <ClInclude Include="..\P3A\Host\HostLobbyObserver.h" />
@@ -106,6 +109,9 @@
     <ClCompile Include="..\P3A\Graphics\GraphicsContext.cc" />
     <ClCompile Include="..\P3A\Graphics\Model.cc" />
     <ClCompile Include="..\P3A\Host\HostCore.cc" />
+    <ClCompile Include="..\P3A\Host\HostCore_Configurator.cc" />
+    <ClCompile Include="..\P3A\Host\HostCore_Game.cc" />
+    <ClCompile Include="..\P3A\Host\HostCore_Lobby.cc" />
     <ClCompile Include="..\P3A\Host\HostGame.cc" />
     <ClCompile Include="..\P3A\Host\HostObserver.cc" />
     <ClCompile Include="..\P3A\Main.cc" />

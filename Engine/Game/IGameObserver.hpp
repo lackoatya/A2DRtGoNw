@@ -1,5 +1,5 @@
-#ifndef ENGINE_GAME_IGAMEOBSERVER_HPP_
-#define ENGINE_GAME_IGAMEOBSERVER_HPP_
+#ifndef ENGINE_GAME_IGAME_OBSERVER_HPP_
+#define ENGINE_GAME_IGAME_OBSERVER_HPP_
 
 #include "Engine/Types.h"
 #include "Engine/Updater/NonDeterministic.hpp"
@@ -8,16 +8,18 @@
 namespace Engine {
 namespace Game {
 template < class Snapshot, class Observed, class Result >
-class IGameObserver : public NonCopyable
-                    , public Updater::NonDeterministicProcessInterface < Result > {
+class IGameObserver : public Updater::INonDeterministicProcess < Result > {
 public:
-  IGameObserver(real32 const& _interval
-                , Observed * _observed
-                , Engine::Container::IntervalBuffer < Snapshot > * _state_buffer)
-      : Engine::Updater::NonDeterministicProcessInterface < Result >(_interval)
+  IGameObserver( real32 const& _interval
+               , Observed * _observed
+               , Engine::Container::IntervalBuffer < Snapshot > * _state_buffer)
+      : Engine::Updater::INonDeterministicProcess < Result >(_interval)
       , m_observed(_observed)
-      , m_state_buffer(_state_buffer) { }
-  inline virtual ~IGameObserver(void) { }
+      , m_state_buffer(_state_buffer) {
+  }
+
+  inline virtual ~IGameObserver(void) {
+  }
 
   virtual Result Process(real32 const& _elapsed_time) {
     m_internal_time += _elapsed_time;

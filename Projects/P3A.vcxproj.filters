@@ -81,6 +81,15 @@
     <ClInclude Include="..\P3A\Game\Ninja_Agent.h">
       <Filter>Game</Filter>
     </ClInclude>
+    <ClInclude Include="..\P3A\Host\HostCore_Lobby.h">
+      <Filter>Host</Filter>
+    </ClInclude>
+    <ClInclude Include="..\P3A\Host\HostCore_Game.h">
+      <Filter>Host</Filter>
+    </ClInclude>
+    <ClInclude Include="..\P3A\Host\HostCore_Configurator.h">
+      <Filter>Host</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\P3A\Main.cc" />
@@ -122,6 +131,15 @@
     </ClCompile>
     <ClCompile Include="..\P3A\Sole\SoleObserver.cc">
       <Filter>Sole</Filter>
+    </ClCompile>
+    <ClCompile Include="..\P3A\Host\HostCore_Lobby.cc">
+      <Filter>Host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\P3A\Host\HostCore_Game.cc">
+      <Filter>Host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\P3A\Host\HostCore_Configurator.cc">
+      <Filter>Host</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -102,16 +102,17 @@
     <ClInclude Include="..\Engine\Physics\Circle.h" />
     <ClInclude Include="..\Engine\Physics\ShapeInterface.h" />
     <ClInclude Include="..\Engine\Processor\Blocked.hpp" />
-    <ClInclude Include="..\Engine\Processor\ResultInterface.hpp" />
-    <ClInclude Include="..\Engine\Processor\RunnableInterface.hpp" />
+    <ClInclude Include="..\Engine\Processor\IResult.hpp" />
+    <ClInclude Include="..\Engine\Processor\IRunnable.hpp" />
     <ClInclude Include="..\Engine\Processor\Service.h" />
     <ClInclude Include="..\Engine\Processor\StrandedService.hpp" />
     <ClInclude Include="..\Engine\Processor\ThreadedBlocked.hpp" />
     <ClInclude Include="..\Engine\Processor\ThreadedService.h" />
     <ClInclude Include="..\Engine\Types.h" />
     <ClInclude Include="..\Engine\Updater\Deterministic.hpp" />
+    <ClInclude Include="..\Engine\Updater\IUpdatable.hpp" />
     <ClInclude Include="..\Engine\Updater\NonDeterministic.hpp" />
-    <ClInclude Include="..\Engine\Updater\UpdaterInterface.hpp" />
+    <ClInclude Include="..\Engine\Updater\ITimeUpdatable.hpp" />
     <ClInclude Include="..\Engine\Utility\Logger.h" />
   </ItemGroup>
   <ItemGroup>

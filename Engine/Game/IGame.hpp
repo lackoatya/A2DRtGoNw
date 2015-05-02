@@ -8,12 +8,12 @@
 namespace Engine {
 namespace Game {
 template < class Snapshot, class Result >
-class IGame : public Updater::DeterministicProcessInterface < Result > {
+class IGame : public Updater::IDeterministicProcess < Result > {
 public:
-  real32 internal_time = 0.f;
+  real32 m_internal_time = 0.f;
 
   inline Result Process(void) {
-    internal_time += interval_;
+    m_internal_time += m_interval;
 
     Process_Inputs();
     Process_States();
@@ -25,7 +25,7 @@ protected:
   Engine::Container::IntervalBuffer < Snapshot > * m_state_buffer = nullptr;
 
   inline IGame(Engine::Container::IntervalBuffer < Snapshot > * _state_buffer)
-      : Engine::Updater::DeterministicProcessInterface < Result >(_state_buffer->interval())
+      : Engine::Updater::IDeterministicProcess < Result >(_state_buffer->interval())
       , m_state_buffer(_state_buffer) { }
   inline virtual ~IGame(void) { };
 

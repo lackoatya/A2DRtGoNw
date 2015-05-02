@@ -3,27 +3,29 @@
 
 #include "BOOST/thread.hpp"
 
+#include "Engine/Updater/IUpdatable.hpp"
 #include "Engine/Processor/Blocked.hpp"
 
 namespace Engine {
 namespace Processor {
-template<class Updatable, class Result>
+template < class Result >
 class ThreadedBlocked {
   public:
-    inline ThreadedBlocked(Updatable * _instance)
-        : blocked_(_instance),
-          thread_() {}
-    inline virtual ~ThreadedBlocked(void) = default;
+    inline ThreadedBlocked(Updater::IUpdatable < Result > * _instance)
+        : m_blocked(_instance)
+        , m_thread() {
+    }
+    inline virtual ~ThreadedBlocked(void) { }
 
     inline void Run(void) {
-      thread_ = boost::thread(boost::bind(&Blocked < Updatable, Result >::Run, &blocked_));
+      m_thread = boost::thread(boost::bind(&Blocked < Result >::Run, &m_blocked));
     }
-    inline virtual void Stop(void) { thread_.interrupt(); }
-    inline virtual void Join(void) { thread_.join(); }
+    inline virtual void Stop(void) { m_thread.interrupt(); }
+    inline virtual void Join(void) { m_thread.join(); }
 
   private:
-    Blocked < Updatable, Result > blocked_;
-    boost::thread thread_;
+    Blocked < Result > m_blocked;
+    boost::thread m_thread;
 };
 }
 }
