@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="..\Labyrinth\CoreResult.h" />
+    <ClInclude Include="..\Labyrinth\GameResult.h" />
+    <ClInclude Include="..\Labyrinth\Graphics\GL\Context.h">
+      <Filter>Graphics\GL</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Labyrinth\Main.cc" />
+    <ClCompile Include="..\Labyrinth\Graphics\GL\Context.cc">
+      <Filter>Graphics\GL</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Client">
+      <UniqueIdentifier>{577c1a5d-b5a6-404a-bccf-f36ae9fb6bea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{cb2cb62a-1a8e-49df-a175-9acfe2a6c2df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{5217bbe9-f6d6-4f7f-94d3-8c75bcff9d89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Host">
+      <UniqueIdentifier>{97aeb7ff-b7db-4967-b3df-26bf760242b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menu">
+      <UniqueIdentifier>{31c08cc8-d6ba-44fd-a566-7b44b57965a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{fe905cbd-bcd1-430b-b0d0-cfdffc3fc9e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sole">
+      <UniqueIdentifier>{85d924ec-6ef3-4f9e-a393-b15aad3ce040}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\GL">
+      <UniqueIdentifier>{63f92030-6214-4165-9692-ee2235fb1cba}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
