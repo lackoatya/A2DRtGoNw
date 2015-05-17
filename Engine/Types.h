@@ -5,7 +5,7 @@
 
 #if _DEBUG
 #undef DEBUG
-#define DEBUG 1
+#define DEBUG
 #endif
 
 // TODO Let the bytes go! :(

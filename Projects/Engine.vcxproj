@@ -90,6 +90,7 @@
     <ClInclude Include="..\Engine\Graphics\GL\Shader.h" />
     <ClInclude Include="..\Engine\Graphics\GL\Texture.h" />
     <ClInclude Include="..\Engine\Graphics\IContext.h" />
+    <ClInclude Include="..\Engine\Graphics\IMesh.h" />
     <ClInclude Include="..\Engine\Graphics\IShader.h" />
     <ClInclude Include="..\Engine\Graphics\ITexture.h" />
     <ClInclude Include="..\Engine\Network\Connection.h" />

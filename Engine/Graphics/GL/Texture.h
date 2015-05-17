@@ -12,9 +12,19 @@ namespace Graphics {
 namespace GL {
 class Texture : public ITexture {
 public:
-  inline Texture(const GLchar * _path);
+  inline Texture(void) {
+  }
+  
   inline virtual ~Texture(void) {
-    glDeleteTextures(1, &m_id);
+    Release();
+  }
+
+  bool Load(const char * _path);
+  inline bool Release(void) {
+    bool expected = true;
+    if (m_loaded.compare_exchange_strong(expected, false))
+      glDeleteTextures(1, &m_id);
+    return expected;
   }
 
   GLuint operator()(void) const { return m_id; }

@@ -3,16 +3,25 @@
 
 #include "Engine/Types.h"
 
-// TODO Nemyo
-
 namespace Engine {
 namespace Graphics {
 class ITexture : public NonCopyable {
 public:
-  inline uint32 width(void) const { return m_width; }
+  virtual bool Load(const char * _path) = 0;
+  virtual bool Release(void) = 0;
+
+  inline bool IsLoaded(void) const { return m_loaded.load(); }
+  inline uint32 width(void) const {return m_width; }
   inline uint32 height(void) const { return m_height; }
 
 protected:
+  ITexture(void)
+      : m_loaded(false) {
+  }
+
+  inline virtual ~ITexture(void) = default;
+
+  atomic < bool > m_loaded;
   int32 m_width = 0, m_height = 0;
 };
 }
