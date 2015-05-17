@@ -1,32 +1,44 @@
-#include "Labyrinth/Graphics/GameArtSource.h"
-#include "Labyrinth/Graphics/GraphicsContext.h"
+//#include "Labyrinth/Graphics/GameArtSource.h"
+#include "Labyrinth/Graphics/GL/Context.h"
 
 #include "P3A/CoreResult.h"
 // #include "P3A/Sole/SoleCore.h"
-#include "Labyrinth/Menu/MenuCore.h"
-#include "Labyrinth/Host/HostCore.h"
+#include "Labyrinth/Menu/Core.h"
+// #include "Labyrinth/Host/HostCore.h"
+
+class ASD : public BaseClass < ASD > {
+public:
+  uint32 asdasdasd = 0;
+};
+
 
 int main(void) {
-  Labyrinth::Graphics::GraphicsContext graphics(1024, 768);
+  Labyrinth::Graphics::IContext * context = nullptr;
+  
+  if ("OpenGL" == "OpenGL") {
+    context = new Labyrinth::Graphics::GL::Context(1024, 768);
+  } else {
+    assert( false );
+  }
 
   Labyrinth::CoreResult state(Labyrinth::CoreState::MENU);
-  while (state.result() != P3A::CoreState::EXIT) {
+  while (state.result() != Labyrinth::CoreState::EXIT) {
     switch (state.result()) {
-      case P3A::CoreState::MENU: {
-        P3A::Menu::MenuCore menu(&graphics);
+      case Labyrinth::CoreState::MENU: {
+        Labyrinth::Menu::Core menu(1.f / 60.f, context);
         state = menu.Run();
       } continue;
 
-      case P3A::CoreState::SOLE: {
+      case Labyrinth::CoreState::SOLE: {
         /*P3A::Graphics::GameArtSource art_source;
         P3A::Sole::SoleCore sole(&graphics, &art_source);
         state = sole.Run();*/
       } continue;
 
-      case P3A::CoreState::HOST: {
-        P3A::Graphics::GameArtSource art_source;
-        P3A::Host::HostCore host(&graphics, &art_source);
-        state = host.Run();
+      case Labyrinth::CoreState::HOST: {
+        /*Labyrinth::Graphics::GameArtSource art_source;
+        Labyrinth::Host::HostCore host(&graphics, &art_source);
+        state = host.Run();*/
       } continue;
 
       default: {

@@ -3,20 +3,33 @@
 
 #include "BOOST/asio/io_service.hpp"
 
+#include "Engine/Types.h"
+#include "Engine/Processor/IRunnable.hpp"
+
 namespace Engine {
 namespace Processor {
-class Service {
-  public:
-    inline Service(void) : service_() { }
-    inline virtual ~Service(void) = default;
+class Service : public NonCopyable
+              , public IRunnable < void > {
+public:
+  inline Service(void)
+      : m_service() {
+  }
 
-    inline virtual void Run(void) { service_.run(); }
-    inline virtual void Stop(void) { service_.stop(); }
+  inline virtual ~Service(void) {
+  }
 
-    inline boost::asio::io_service & service(void) { return service_; }
+  inline virtual void Run(void) override {
+    m_service.run();
+  }
+  
+  inline virtual void Stop(void) {
+    m_service.stop();
+  }
 
-  protected:
-    boost::asio::io_service service_;
+  inline boost::asio::io_service & service(void) { return m_service; }
+
+protected:
+  boost::asio::io_service m_service;
 };
 }
 }

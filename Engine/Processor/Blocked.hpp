@@ -3,18 +3,20 @@
 
 #include "BOOST/thread.hpp"
 
-#include "Engine/Processor/IRunnable.hpp"
+#include "Engine/Processor/IUpdatableRunner.hpp"
 
 namespace Engine {
 namespace Processor {
 template < class Result >
-class Blocked : public IRunnable < Result > {
+class Blocked : public IUpdatableRunner < Result > {
 public:
   inline Blocked(Updater::IUpdatable < Result > * _updatable)
-      : IRunnable < Result > (_updatable) {
+      : IUpdatableRunner < Result >(_updatable) {
     assert(_updatable);
   }
-  inline virtual ~Blocked(void) { }
+
+  inline virtual ~Blocked(void) {
+  }
 
   inline Result Run(void) {
     while (true) {

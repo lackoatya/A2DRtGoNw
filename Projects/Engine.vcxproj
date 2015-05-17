@@ -22,7 +22,7 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -33,16 +33,20 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="Engine.props" />
+    <Import Project="Shared.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="Engine.props" />
+    <Import Project="Shared.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(SolutionDir);$(SolutionDir)\Libraries\Include;D:\boost_1_57_0;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\Libraries\$(Configuration)\$(Platform);D:\boost_1_57_0\stage\lib;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)\Libraries\$(Configuration)\$(Platform)\</OutDir>
-    <IntDir>$(SolutionDir)\Intermediate\$(Configuration)\$(Platform)\$(ProjectName)</IntDir>
+    <IntDir>$(SolutionDir)\Intermediate\$(Configuration)\$(Platform)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -83,19 +87,16 @@
     <ClInclude Include="..\Engine\Game\IController.hpp" />
     <ClInclude Include="..\Engine\Game\IGame.hpp" />
     <ClInclude Include="..\Engine\Game\IGameObserver.hpp" />
-    <ClInclude Include="..\Engine\Graphics\Appearance.h" />
-    <ClInclude Include="..\Engine\Graphics\Camera.h" />
-    <ClInclude Include="..\Engine\Graphics\ContextBase.h" />
-    <ClInclude Include="..\Engine\Graphics\KeyHandler.h" />
-    <ClInclude Include="..\Engine\Graphics\Mesh.h" />
-    <ClInclude Include="..\Engine\Graphics\ModelBase.h" />
-    <ClInclude Include="..\Engine\Graphics\Motion.h" />
-    <ClInclude Include="..\Engine\Graphics\Shader.h" />
-    <ClInclude Include="..\Engine\Graphics\TextureBase.h" />
+    <ClInclude Include="..\Engine\Graphics\GL\Shader.h" />
+    <ClInclude Include="..\Engine\Graphics\GL\Texture.h" />
+    <ClInclude Include="..\Engine\Graphics\IContext.h" />
+    <ClInclude Include="..\Engine\Graphics\IShader.h" />
+    <ClInclude Include="..\Engine\Graphics\ITexture.h" />
     <ClInclude Include="..\Engine\Network\Connection.h" />
     <ClInclude Include="..\Engine\Network\Gateway.h" />
     <ClInclude Include="..\Engine\Network\Packet.h" />
-    <ClInclude Include="..\Engine\Numerics\IntegratorInterface.hpp" />
+    <ClInclude Include="..\Engine\Numerics\IIntegrator.hpp" />
+    <ClInclude Include="..\Engine\Numerics\IInterpolator.hpp" />
     <ClInclude Include="..\Engine\Numerics\LinearInterpolation.hpp" />
     <ClInclude Include="..\Engine\Numerics\RungeKutta4Integrator.hpp" />
     <ClInclude Include="..\Engine\Numerics\SymplecticEulerIntegrator.hpp" />
@@ -106,25 +107,21 @@
     <ClInclude Include="..\Engine\Processor\Blocked.hpp" />
     <ClInclude Include="..\Engine\Processor\IResult.hpp" />
     <ClInclude Include="..\Engine\Processor\IRunnable.hpp" />
+    <ClInclude Include="..\Engine\Processor\IUpdatableRunner.hpp" />
     <ClInclude Include="..\Engine\Processor\Service.h" />
-    <ClInclude Include="..\Engine\Processor\StrandedService.hpp" />
-    <ClInclude Include="..\Engine\Processor\ThreadedBlocked.hpp" />
-    <ClInclude Include="..\Engine\Processor\ThreadedService.h" />
+    <ClInclude Include="..\Engine\Processor\StrandedService.h" />
+    <ClInclude Include="..\Engine\Processor\Threaded.hpp" />
     <ClInclude Include="..\Engine\Types.h" />
     <ClInclude Include="..\Engine\Updater\Deterministic.hpp" />
     <ClInclude Include="..\Engine\Updater\IUpdatable.hpp" />
     <ClInclude Include="..\Engine\Updater\NonDeterministic.hpp" />
     <ClInclude Include="..\Engine\Updater\ITimeUpdatable.hpp" />
     <ClInclude Include="..\Engine\Utility\Logger.h" />
+    <ClInclude Include="..\Engine\Utility\ObjectCounter.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Engine\Graphics\Appearance.cc" />
-    <ClCompile Include="..\Engine\Graphics\Camera.cc" />
-    <ClCompile Include="..\Engine\Graphics\ContextBase.cc" />
-    <ClCompile Include="..\Engine\Graphics\Mesh.cc" />
-    <ClCompile Include="..\Engine\Graphics\ModelBase.cc" />
-    <ClCompile Include="..\Engine\Graphics\Shader.cpp" />
-    <ClCompile Include="..\Engine\Graphics\TextureBase.cc" />
+    <ClCompile Include="..\Engine\Graphics\GL\Shader.cpp" />
+    <ClCompile Include="..\Engine\Graphics\GL\Texture.cc" />
     <ClCompile Include="..\Engine\Network\Packet.cpp" />
     <ClCompile Include="..\Engine\Utility\Logger.cc" />
   </ItemGroup>

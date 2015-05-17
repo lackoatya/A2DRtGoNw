@@ -33,14 +33,18 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="Shared.props" />
+    <Import Project="Game.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="Shared.props" />
+    <Import Project="Game.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)\Binary\$(ProjectName)\</OutDir>
-    <IntDir>$(SolutionDir)\Intermediate\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
+    <IntDir>$(SolutionDir)\Intermediate\$(Configuration)\$(Platform)\$(ProjectName)\</IntDir>
     <IncludePath>$(SolutionDir);$(SolutionDir)\Libraries\Include;D:\boost_1_57_0;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\Libraries\$(Configuration)\$(Platform);D:\boost_1_57_0\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
@@ -53,6 +57,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>engine.lib;opengl32.lib;glew32sd.lib;glfw3.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
       <OutputFile>engine.lib;opengl32.lib;glew32sd.lib;glfw3.lib;SOIL.lib;%(AdditionalDependencies)</OutputFile>
@@ -76,10 +81,19 @@
     <ClInclude Include="..\Labyrinth\CoreResult.h" />
     <ClInclude Include="..\Labyrinth\GameResult.h" />
     <ClInclude Include="..\Labyrinth\Graphics\GL\Context.h" />
+    <ClInclude Include="..\Labyrinth\Graphics\IContext.h" />
+    <ClInclude Include="..\Labyrinth\Menu\Core.h" />
+    <ClInclude Include="..\Labyrinth\Menu\Renderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Labyrinth\Graphics\GL\Context.cc" />
     <ClCompile Include="..\Labyrinth\Main.cc" />
+    <ClCompile Include="..\Labyrinth\Menu\Core.cc" />
+    <ClCompile Include="..\Labyrinth\Menu\Renderer.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Labyrinth\Graphics\GL\Shader\Text.frag" />
+    <None Include="..\Labyrinth\Graphics\GL\Shader\Text.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

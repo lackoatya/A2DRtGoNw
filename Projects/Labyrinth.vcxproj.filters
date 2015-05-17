@@ -6,11 +6,26 @@
     <ClInclude Include="..\Labyrinth\Graphics\GL\Context.h">
       <Filter>Graphics\GL</Filter>
     </ClInclude>
+    <ClInclude Include="..\Labyrinth\Graphics\IContext.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Labyrinth\Menu\Core.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Labyrinth\Menu\Renderer.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Labyrinth\Main.cc" />
     <ClCompile Include="..\Labyrinth\Graphics\GL\Context.cc">
       <Filter>Graphics\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Labyrinth\Menu\Core.cc">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Labyrinth\Menu\Renderer.cc">
+      <Filter>Menu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -38,5 +53,16 @@
     <Filter Include="Graphics\GL">
       <UniqueIdentifier>{63f92030-6214-4165-9692-ee2235fb1cba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Graphics\GL\Shader">
+      <UniqueIdentifier>{abf43e9c-88bc-44b2-943d-b1505e936976}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Labyrinth\Graphics\GL\Shader\Text.frag">
+      <Filter>Graphics\GL\Shader</Filter>
+    </None>
+    <None Include="..\Labyrinth\Graphics\GL\Shader\Text.vs">
+      <Filter>Graphics\GL\Shader</Filter>
+    </None>
   </ItemGroup>
 </Project>

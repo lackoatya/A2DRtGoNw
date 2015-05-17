@@ -7,7 +7,7 @@
 namespace Engine { 
 namespace Updater {
 template < class Result >
-class IDeterministicProcess {
+class IDeterministicProcess : public NonCopyable {
 public:
   const real32 m_interval;
 
