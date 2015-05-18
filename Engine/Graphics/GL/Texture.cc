@@ -1,13 +1,12 @@
 #include "Engine/Graphics/Gl/Texture.h"
 
-
 #include "SOIL/SOIL.h"
 
 namespace Engine {
 namespace Graphics {
 namespace GL {
 bool Texture::Load(const char * _path) {
-  GLuint id;
+  GLuint id = 0;
   glGenTextures(1, &id);
   glBindTexture(GL_TEXTURE_2D, id);
 
@@ -30,6 +29,9 @@ bool Texture::Load(const char * _path) {
     bool expected = false;
     if (m_loaded.compare_exchange_strong(expected, true)) {
       m_id = id;
+      return true;
+    } else {
+      return false;
     }
   } else {
     // TODO Rework this!

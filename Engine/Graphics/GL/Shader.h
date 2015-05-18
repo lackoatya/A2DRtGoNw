@@ -12,21 +12,33 @@ namespace Graphics {
 namespace GL {
 class Shader : public IShader {
 public:
-  Shader(const GLchar * _vertex_path, const GLchar * _fragment_path);
+  inline Shader(void) {
+  }
   
   inline virtual ~Shader(void) {
+    Release();
+  }
+
+  bool Load( std::string const& _vertex_path
+           , std::string const& _fragment_path );
+  inline bool Release(void) {
     glDeleteProgram(m_shader_program);
+    return true;
   }
 
   inline GLuint operator()(void) const {
     return m_shader_program;
   }
 
+  inline GLint operator[](const char * _name) const {
+    return glGetUniformLocation(m_shader_program, _name);
+  }
+
 protected:
   GLuint m_shader_program = 0;
 };
 
-class StaticShader : Shader {
+/*class StaticShader : Shader {
 public:
   inline StaticShader( const GLchar * _vertex_path, const GLchar * _fragment_path
               , const GLchar ** _uniforms, uint32 const& _uniforms_count )
@@ -48,14 +60,11 @@ public:
     return m_uniforms[_uniform_index];
   }
 
-  inline GLint operator[](const GLchar * _name) const {
-    return glGetUniformLocation(m_shader_program, _name);
-  }
 
 protected:
   uint32 m_uniforms_count = 0;
   GLint * m_uniforms = nullptr;
-};
+};*/
 }
 }
 }

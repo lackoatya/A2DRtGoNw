@@ -87,6 +87,7 @@
     <ClInclude Include="..\Engine\Game\IController.hpp" />
     <ClInclude Include="..\Engine\Game\IGame.hpp" />
     <ClInclude Include="..\Engine\Game\IGameObserver.hpp" />
+    <ClInclude Include="..\Engine\Graphics\GL\Mesh.h" />
     <ClInclude Include="..\Engine\Graphics\GL\Shader.h" />
     <ClInclude Include="..\Engine\Graphics\GL\Texture.h" />
     <ClInclude Include="..\Engine\Graphics\IContext.h" />
@@ -121,7 +122,8 @@
     <ClInclude Include="..\Engine\Utility\ObjectCounter.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Engine\Graphics\GL\Shader.cpp" />
+    <ClCompile Include="..\Engine\Graphics\GL\Mesh.cc" />
+    <ClCompile Include="..\Engine\Graphics\GL\Shader.cc" />
     <ClCompile Include="..\Engine\Graphics\GL\Texture.cc" />
     <ClCompile Include="..\Engine\Network\Packet.cpp" />
     <ClCompile Include="..\Engine\Utility\Logger.cc" />

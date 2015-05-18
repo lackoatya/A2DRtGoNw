@@ -7,12 +7,15 @@
 namespace Engine {
 namespace Graphics {
 namespace GL {
-Shader::Shader( const GLchar *_vertex_path, const GLchar *_fragment_path ) {
+bool Shader::Load( std::string const& _vertex_path
+                 , std::string const& _fragment_path ) {
   std::string vertex_code;
   std::string fragment_code;
 
   std::ifstream vertex_shader_file(_vertex_path), fragment_shader_file(_fragment_path);
   std::stringstream vertex_shader_stream, fragment_shader_stream;
+
+  assert( !vertex_shader_file.fail() && !fragment_shader_file.fail() );
 
   vertex_shader_stream << vertex_shader_file.rdbuf();
   fragment_shader_stream << fragment_shader_file.rdbuf();
@@ -34,24 +37,28 @@ Shader::Shader( const GLchar *_vertex_path, const GLchar *_fragment_path ) {
   glCompileShader(vertex);
 
   glGetShaderiv(vertex, GL_COMPILE_STATUS, &success);
-  assert(success);
-  /*if (!success) {
+  // assert(success);
+  if (!success) {
     GLchar info_log[512];
     glGetShaderInfoLog(vertex, 512, NULL, info_log);
-    Engine::Utility::AbortWithMessageAndData("Vertex Compilation failed:\0", info_log);
-  }*/
+    // Engine::Utility::AbortWithMessageAndData("Vertex Compilation failed:\0", info_log);
+
+    __asm int 3
+  }
 
   fragment = glCreateShader(GL_FRAGMENT_SHADER);
   glShaderSource(fragment, 1, &fragment_shader_code, NULL);
   glCompileShader(fragment);
 
   glGetShaderiv(fragment, GL_COMPILE_STATUS, &success);
-  assert(success);
-  /*if (!success) {
+  // assert(success);
+  if (!success) {
     GLchar info_log[512];
-    glGetShaderInfoLog(vertex, 512, NULL, info_log);
-    Engine::Utility::AbortWithMessageAndData("Fragment Compilation failed:\0", info_log);
-  }*/
+    glGetShaderInfoLog(fragment, 512, NULL, info_log);
+    // Engine::Utility::AbortWithMessageAndData("Fragment Compilation failed:\0", info_log);
+
+    __asm int 2
+  }
 
   m_shader_program = glCreateProgram();
   glAttachShader(m_shader_program, vertex);
@@ -69,6 +76,8 @@ Shader::Shader( const GLchar *_vertex_path, const GLchar *_fragment_path ) {
 
   glDeleteShader(vertex);
   glDeleteShader(fragment);
+
+  return true;
 }
 }
 }

@@ -21,8 +21,8 @@ Context::Context( uint32 const& _window_width, uint32 const& _window_height
   glViewport(0, 0, m_window_width, m_window_height);
 
   glEnable(GL_BLEND);
-  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-  glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+  // glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+  // glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
   /*
   projection_matrix_ = glm::ortho(0.0f, static_cast<real32>(window_width_), 0.0f,

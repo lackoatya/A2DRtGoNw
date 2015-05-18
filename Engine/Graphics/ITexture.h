@@ -21,7 +21,11 @@ protected:
 
   inline virtual ~ITexture(void) = default;
 
+#if BOOST_ATOMIC_BOOL_LOCK_FREE == 2
   atomic < bool > m_loaded;
+#else
+  // TODO
+#endif
   int32 m_width = 0, m_height = 0;
 };
 }

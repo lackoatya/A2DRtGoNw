@@ -157,6 +157,9 @@
     <ClInclude Include="..\Engine\Graphics\IMesh.h">
       <Filter>Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="..\Engine\Graphics\GL\Mesh.h">
+      <Filter>Graphics\GL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Engine\Network\Packet.cpp">
@@ -165,10 +168,13 @@
     <ClCompile Include="..\Engine\Utility\Logger.cc">
       <Filter>Utility</Filter>
     </ClCompile>
-    <ClCompile Include="..\Engine\Graphics\GL\Shader.cpp">
+    <ClCompile Include="..\Engine\Graphics\GL\Texture.cc">
       <Filter>Graphics\GL</Filter>
     </ClCompile>
-    <ClCompile Include="..\Engine\Graphics\GL\Texture.cc">
+    <ClCompile Include="..\Engine\Graphics\GL\Mesh.cc">
+      <Filter>Graphics\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Graphics\GL\Shader.cc">
       <Filter>Graphics\GL</Filter>
     </ClCompile>
   </ItemGroup>
