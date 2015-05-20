@@ -24,8 +24,8 @@ class Connection : public enable_shared_from_this < Connection > {
 public:
   class CommandHandlerInterface {
   public:
-    virtual void Handle_TCP(char const* const _data, size_t _received) = 0;
-    virtual void Handle_UDP(char const* const _data, size_t _received) = 0;
+    virtual void Handle_TCP(const char const* const _data, size_t _received) = 0;
+    virtual void Handle_UDP(const char const* const _data, size_t _received) = 0;
   };
 
   class DisconnectionHandlerInterface {
