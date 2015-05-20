@@ -106,7 +106,7 @@
     <ClInclude Include="..\Engine\Physics\AABB.h" />
     <ClInclude Include="..\Engine\Physics\Body.hpp" />
     <ClInclude Include="..\Engine\Physics\Circle.h" />
-    <ClInclude Include="..\Engine\Physics\ShapeInterface.h" />
+    <ClInclude Include="..\Engine\Physics\IShape.h" />
     <ClInclude Include="..\Engine\Platform.h" />
     <ClInclude Include="..\Engine\Processor\Blocked.hpp" />
     <ClInclude Include="..\Engine\Processor\IResult.hpp" />

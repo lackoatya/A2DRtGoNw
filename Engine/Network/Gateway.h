@@ -11,7 +11,7 @@ namespace Engine {
 namespace Network {
 class Gateway : public NonCopyable {
   public:
-    class ConnectionHandlerInterface {
+    class IConnectionHandler {
       public:
         virtual void Handle_Connection(shared_ptr < tcp_socket > _socket) = 0;
     };
@@ -27,7 +27,7 @@ class Gateway : public NonCopyable {
       }
     } const configuration;
 
-    atomic < shared_ptr < ConnectionHandlerInterface > > m_handler;
+    atomic < shared_ptr < IConnectionHandler > > m_handler;
 
     inline Gateway( Configuration const& _configuration
                   , Processor::Service * _service )
@@ -87,7 +87,7 @@ class Gateway : public NonCopyable {
     inline void Handle_Accept( shared_ptr < tcp_socket > _socket
                              , boost::system::error_code const& _error) {
       if ( !_error ) {
-        shared_ptr < ConnectionHandlerInterface > handler = m_handler.load();
+        shared_ptr < IConnectionHandler > handler = m_handler.load();
         if (handler) {
           handler->Handle_Connection( _socket );
         }

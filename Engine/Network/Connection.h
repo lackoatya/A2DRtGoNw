@@ -14,7 +14,7 @@
 
 namespace Engine {
 namespace Network {
-class PacketInterface {
+class IPacket {
 public:
   virtual char * const data(void) = 0;
   virtual uint32 const size(void) = 0;
@@ -22,13 +22,13 @@ public:
 
 class Connection : public enable_shared_from_this < Connection > {
 public:
-  class CommandHandlerInterface {
+  class ICommandHandler {
   public:
     virtual void Handle_TCP(const char const* const _data, size_t _received) = 0;
     virtual void Handle_UDP(const char const* const _data, size_t _received) = 0;
   };
 
-  class DisconnectionHandlerInterface {
+  class IDisconnectionHandler {
   public:
     virtual void Handle_Disconnection(shared_ptr < Connection > _connection) = 0;
   };
@@ -38,12 +38,12 @@ public:
     const uint32 packet_max_size;
   } const configuration;
 
-  atomic < shared_ptr < CommandHandlerInterface > > m_command_handler;
-  atomic < shared_ptr < DisconnectionHandlerInterface > > m_disconnection_handler;
+  atomic < shared_ptr < ICommandHandler > > m_command_handler;
+  atomic < shared_ptr < IDisconnectionHandler > > m_disconnection_handler;
 
   inline Connection( Configuration const& _configuration
-                   , shared_ptr < CommandHandlerInterface > _command_handler
-                   , shared_ptr < DisconnectionHandlerInterface > _disconnection_handler
+                   , shared_ptr < ICommandHandler > _command_handler
+                   , shared_ptr < IDisconnectionHandler > _disconnection_handler
                    , shared_ptr < tcp_socket > _tcp_socket
                    , shared_ptr < udp_socket > _udp_socket)
       : configuration(_configuration)
@@ -64,7 +64,7 @@ public:
     UDP_Receive(udp_data);
   }
 
-  virtual void TCP_Send(shared_ptr < PacketInterface > _packet) {
+  virtual void TCP_Send(shared_ptr < IPacket > _packet) {
     assert( _packet->size() < configuration.packet_max_size );
     m_tcp_socket->async_send( boost::asio::buffer( _packet->data(), _packet->size() )
                             , boost::bind( &Connection::Handle_TCP_Send
@@ -73,7 +73,7 @@ public:
                                          , boost::asio::placeholders::bytes_transferred ) );
   }
 
-  virtual void UDP_Send(shared_ptr < PacketInterface > _packet) {
+  virtual void UDP_Send(shared_ptr < IPacket > _packet) {
     assert( _packet->size() < configuration.packet_max_size );
     m_udp_socket->async_send( boost::asio::buffer( _packet->data(), _packet->size() )
                             , boost::bind( &Connection::Handle_UDP_Send
@@ -101,7 +101,7 @@ protected:
   virtual void Handle_TCP_Receive( boost::system::error_code const& _error, char * const _data
                                   , size_t _received) {
     if ( !_error ) {
-      shared_ptr < CommandHandlerInterface > command_handler = m_command_handler.load();
+      shared_ptr < ICommandHandler > command_handler = m_command_handler.load();
       if (command_handler ) {
         command_handler->Handle_TCP(_data, _received);
       }
@@ -141,7 +141,7 @@ protected:
   virtual void Handle_UDP_Receive(boost::system::error_code const& _error, char * const _data
                                 , size_t _received) {
     if ( !_error ) {
-      shared_ptr < CommandHandlerInterface > command_handler = m_command_handler.load();
+      shared_ptr < ICommandHandler > command_handler = m_command_handler.load();
       if ( command_handler ) {
         command_handler->Handle_UDP(_data, _received);
       }
@@ -166,7 +166,7 @@ protected:
   }
 
   virtual void Dispose(void) {
-    shared_ptr < DisconnectionHandlerInterface > disconnection_handler = m_disconnection_handler.load();
+    shared_ptr < IDisconnectionHandler > disconnection_handler = m_disconnection_handler.load();
     if ( disconnection_handler ) {
       disconnection_handler->Handle_Disconnection( shared_from_this() );
     }

@@ -2,12 +2,12 @@
 #define ENGINE_NUMERICS_RUNGE_KUTTA_4_INTEGRATOR_HPP_
 
 #include "Engine/Platform.h"
-#include "Engine/Numerics/IntegratorInterface.hpp"
+#include "Engine/Numerics/IIntegrator.hpp"
 
 namespace Engine {
 namespace Numerics {
 template <class State>
-class RungeKutta4Integrator : public IntegratorInterface<State> {
+class RungeKutta4Integrator : public IIntegrator < State > {
   public:
     struct RungeKutta4StateDerivate {
       public:

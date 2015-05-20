@@ -2,20 +2,20 @@
 #define ENGINE_PHYSICS_CIRCLE_H_
 
 #include "Engine/Physics/AABB.h"
-#include "Engine/Physics/ShapeInterface.h"
+#include "Engine/Physics/IShape.h"
 
 namespace Engine {
 namespace Physics {
-class Circle : public ShapeInterface {
+class Circle : public IShape {
   public:
     inline explicit Circle(Vector2 const& _position, real32 const& _radius)
-        : ShapeInterface(_position),
+        : IShape(_position),
           radius_(_radius) { }
     inline Circle(Circle && _other)
-        : ShapeInterface(_other.position),
+        : IShape(_other.position),
           radius_(_other.radius_) { }
     inline Circle(Circle const& _other)
-        : ShapeInterface(_other.position),
+        : IShape(_other.position),
           radius_(_other.radius_) { }
     inline Circle & operator=(Circle && _other) {
       position_ = _other.position_;

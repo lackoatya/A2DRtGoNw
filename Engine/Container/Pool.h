@@ -6,10 +6,10 @@
 namespace Engine {
 namespace Container {
 template < class Type >
-class PoolInterface : public NonCopyable {
+class IPool : public NonCopyable {
   public:
-    inline PoolInterface(void) = default;
-    inline virtual ~PoolInterface(void) {
+    inline IPool(void) = default;
+    inline virtual ~IPool(void) {
       delete[] m_data;
       m_data = nullptr;
     }
@@ -41,10 +41,10 @@ class PoolInterface : public NonCopyable {
     }
 };
 
-class OffsetPool : public PoolInterface < uint32 > {
+class OffsetPool : public IPool < uint32 > {
   public:
     inline OffsetPool(uint32 const& _size)
-        : PoolInterface < uint32 >() {
+        : IPool < uint32 >() {
       Allocate(_size);
     }
     inline ~OffsetPool(void) = default;

@@ -87,9 +87,6 @@
     <ClInclude Include="..\Engine\Physics\Circle.h">
       <Filter>Physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\Engine\Physics\ShapeInterface.h">
-      <Filter>Physics</Filter>
-    </ClInclude>
     <ClInclude Include="..\Engine\Numerics\LinearInterpolation.hpp">
       <Filter>Numerics</Filter>
     </ClInclude>
@@ -162,6 +159,9 @@
     </ClInclude>
     <ClInclude Include="..\Engine\Platform.h" />
     <ClInclude Include="..\Engine\Defines.h" />
+    <ClInclude Include="..\Engine\Physics\IShape.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Engine\Network\Packet.cpp">

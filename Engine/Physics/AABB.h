@@ -2,22 +2,22 @@
 #define ENGINE_PHYSICS_AABB_H_
 
 #include "Engine/Platform.h"
-#include "Engine/Physics/ShapeInterface.h"
+#include "Engine/Physics/IShape.h"
 
 namespace Engine {
 namespace Physics {
-class AABB : public ShapeInterface {
+class AABB : public IShape {
   public:
     inline AABB(Vector2 const& _position, real32 const& _width, real32 const& _height)
-        : ShapeInterface(_position),
+        : IShape(_position),
           width_(_width),
           height_(_height) { }
     inline AABB(AABB && _other)
-        : ShapeInterface(_other.position_),
+        : IShape(_other.position_),
           width_(_other.width_),
           height_(_other.height_) { }
     inline AABB(AABB const& _other)
-        : ShapeInterface(_other.position_),
+        : IShape(_other.position_),
           width_(_other.width_),
           height_(_other.height_) { }
     inline AABB & operator=(AABB && _other) {
