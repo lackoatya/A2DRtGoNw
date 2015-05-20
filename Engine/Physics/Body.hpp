@@ -1,7 +1,7 @@
 #ifndef ENGINE_PHYSICS_BODY_HPP_
 #define ENGINE_PHYSICS_BODY_HPP_
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 
 namespace Engine {
 namespace Physics {

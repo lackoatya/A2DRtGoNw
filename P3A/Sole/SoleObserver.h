@@ -1,7 +1,7 @@
 /*#ifndef P3A_SOLE_SOLE_OBSERVER_H_
 #define P3A_SOLE_SOLE_OBSERVER_H_
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 
 #include "P3A/CoreResult.h"
 #include "P3A/Graphics/GameObserverInterface.hpp"

@@ -1,18 +1,11 @@
 #ifndef ENGINE_TYPES_H_
 #define ENGINE_TYPES_H_
 
-#define _WIN32_WINNT 0x0501
-
-#if _DEBUG
-#undef DEBUG
-#define DEBUG
-#endif
-
 // TODO Let the bytes go! :(
 // http://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Empty_Base_Optimization
 // https://www.youtube.com/watch?v=6fZwJFjiA0A
 
-#ifdef DEBUG
+#ifdef CONFIGURATION_DEBUG
   #include "Engine/Utility/ObjectCounter.hpp"
   template < typename Derived >
   class BaseClass : public Engine::Utility::ObjectCounter < Derived > {

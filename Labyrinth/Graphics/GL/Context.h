@@ -12,7 +12,7 @@
 #include "GLM/glm.hpp"
 #include "GLM/gtc/matrix_transform.hpp"
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 #include "Engine/Graphics/IShader.h"
 #include "Engine/Graphics/ITexture.h"
 

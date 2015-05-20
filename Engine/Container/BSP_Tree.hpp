@@ -5,7 +5,7 @@
 
 #include <list>
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 #include "Engine/Container/SeparatableLinkedList.hpp"
 
 namespace Engine {

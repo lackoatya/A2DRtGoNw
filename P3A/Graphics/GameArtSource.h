@@ -1,7 +1,7 @@
 #ifndef P3A_GRAPHICS_GAME_ART_SOURCE_H_
 #define P3A_GRAPHICS_GAME_ART_SOURCE_H_
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 #include "Engine/Graphics/Mesh.h"
 #include "Engine/Graphics/Appearance.h"
 #include "Engine/Graphics/TextureBase.h"

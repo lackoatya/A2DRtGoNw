@@ -1,7 +1,7 @@
 #ifndef P3A_HOST_HOST_SNAPSHOT_H_
 #define P3A_HOST_HOST_SNAPSHOT_H_
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 #include "P3A/Game/Ninja.h"
 #include "P3A/Game/Missile.h"
 

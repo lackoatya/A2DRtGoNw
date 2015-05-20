@@ -1,7 +1,7 @@
 #ifndef ENGINE_UPDATER_ITIME_UPDATABLE_HPP_
 #define ENGINE_UPDATER_ITIME_UPDATABLE_HPP_
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 #include "Engine/Updater/IUpdatable.hpp"
 
 namespace Engine {

@@ -1,7 +1,7 @@
 #ifndef P3A_HOST_HOST_CORE_GAME_H_
 #define P3A_HOST_HOST_CORE_GAME_H_
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 #include "Engine/Container/IntervalBuffer.hpp"
 #include "Engine/Network/Gateway.h"
 #include "Engine/Network/Connection.h"

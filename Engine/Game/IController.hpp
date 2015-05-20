@@ -1,7 +1,7 @@
 #ifndef ENGINE_GAME_ICONTROLLER_HPP_
 #define ENGINE_GAME_ICONTROLLER_HPP_
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 #include "Engine/Container/Buffer.hpp"
 
 namespace Engine {

@@ -84,6 +84,7 @@
     <ClInclude Include="..\Engine\Container\IntervalBuffer.hpp" />
     <ClInclude Include="..\Engine\Container\Pool.h" />
     <ClInclude Include="..\Engine\Container\SeparatableLinkedList.hpp" />
+    <ClInclude Include="..\Engine\Defines.h" />
     <ClInclude Include="..\Engine\Game\IController.hpp" />
     <ClInclude Include="..\Engine\Game\IGame.hpp" />
     <ClInclude Include="..\Engine\Game\IGameObserver.hpp" />
@@ -106,6 +107,7 @@
     <ClInclude Include="..\Engine\Physics\Body.hpp" />
     <ClInclude Include="..\Engine\Physics\Circle.h" />
     <ClInclude Include="..\Engine\Physics\ShapeInterface.h" />
+    <ClInclude Include="..\Engine\Platform.h" />
     <ClInclude Include="..\Engine\Processor\Blocked.hpp" />
     <ClInclude Include="..\Engine\Processor\IResult.hpp" />
     <ClInclude Include="..\Engine\Processor\IRunnable.hpp" />

@@ -1,7 +1,7 @@
 #ifndef P3A_MENU_MENU_RENDERER_H_
 #define P3A_MENU_MENU_RENDERER_H_
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 #include "Engine/Updater/Deterministic.hpp"
 
 #include "P3A/CoreResult.h"

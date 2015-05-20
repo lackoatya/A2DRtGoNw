@@ -1,7 +1,7 @@
 #ifndef P3A_HOST_HOST_LOBBY_H_
 #define P3A_HOST_HOST_LOBBY_H_
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 #include "Engine/Network/Gateway.h"
 #include "Engine/Network/Connection.h"
 

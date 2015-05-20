@@ -4,7 +4,7 @@
 #define GLEW_STATIC
 #include "GLEW/glew.h"
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 #include "Engine/Graphics/ITexture.h"
 
 namespace Engine {

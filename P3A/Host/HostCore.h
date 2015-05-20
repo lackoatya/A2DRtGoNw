@@ -1,7 +1,7 @@
 #ifndef P3A_HOST_HOST_CORE_H_
 #define P3A_HOST_HOST_CORE_H_
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 #include "Engine/Network/Gateway.h"
 #include "Engine/Processor/ThreadedService.h"
 

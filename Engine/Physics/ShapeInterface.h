@@ -1,7 +1,7 @@
 #ifndef ENGINE_PHYSICS_SHAPE_INTERFACE_H_
 #define ENGINE_PHYSICS_SHAPE_INTERFACE_H_
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 
 namespace Engine {
 namespace Physics {

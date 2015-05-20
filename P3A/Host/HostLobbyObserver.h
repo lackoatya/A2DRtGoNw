@@ -1,7 +1,7 @@
 /*#ifndef P3A_HOST_HOST_LOBBY_OBSERVER_H_
 #define P3A_HOST_HOST_LOBBY_OBSERVER_H_
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 #include "Engine/Updater/NonDeterministic.hpp"
 
 #include "P3A/CoreResult.h" 

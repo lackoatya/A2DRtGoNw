@@ -3,7 +3,7 @@
 
 #include "BOOST/atomic.hpp"
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 
 namespace Engine {
 namespace Container {

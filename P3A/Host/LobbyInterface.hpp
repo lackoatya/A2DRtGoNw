@@ -1,7 +1,7 @@
 /*#ifndef ENGINE_NETWORK_LOBBY_INTERFACE_HPP_
 #define ENGINE_NETWORK_LOBBY_INTERFACE_HPP_
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 #include "Engine/Network/Gateway.h"
 
 namespace Engine {

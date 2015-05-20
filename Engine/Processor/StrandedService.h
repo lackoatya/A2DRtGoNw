@@ -3,7 +3,7 @@
 
 #include "BOOST/asio/strand.hpp"
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 #include "Engine/Processor/Service.h"
 
 namespace Engine {

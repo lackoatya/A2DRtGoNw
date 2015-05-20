@@ -1,7 +1,7 @@
 #ifndef P3A_GAME_NINJA_H_
 #define P3A_GAME_NINJA_H_
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 #include "Engine/Container/Buffer.hpp"
 #include "Engine/Physics/AABB.h"
 #include "Engine/Physics/Body.hpp"

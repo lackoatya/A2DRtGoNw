@@ -1,7 +1,7 @@
 #ifndef P3A_HOST_HOST_CORE_CONFIGURATOR_H_
 #define P3A_HOST_HOST_CORE_CONFIGURATOR_H_
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 #include "Engine/Updater/NonDeterministic.hpp"
 #include "Engine/Processor/IResult.hpp"
 

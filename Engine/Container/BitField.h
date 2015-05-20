@@ -1,7 +1,7 @@
 #ifndef ENGINE_CONTAINER_BIT_FIELD_H_
 #define ENGINE_CONTAINER_BIT_FIELD_H_
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 
 namespace Engine {
 namespace Container {

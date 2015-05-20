@@ -1,7 +1,7 @@
 #ifndef ENGINE_NUMERICS_IINTERPOLATOR_HPP_
 #define ENGINE_NUMERICS_IINTERPOLATOR_HPP_
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 
 namespace Engine {
 namespace Numerics {

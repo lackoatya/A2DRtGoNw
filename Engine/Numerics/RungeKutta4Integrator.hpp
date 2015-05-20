@@ -1,7 +1,7 @@
 #ifndef ENGINE_NUMERICS_RUNGE_KUTTA_4_INTEGRATOR_HPP_
 #define ENGINE_NUMERICS_RUNGE_KUTTA_4_INTEGRATOR_HPP_
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 #include "Engine/Numerics/IntegratorInterface.hpp"
 
 namespace Engine {

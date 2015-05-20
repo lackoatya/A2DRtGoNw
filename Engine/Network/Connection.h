@@ -7,7 +7,7 @@
 #include "BOOST/asio.hpp"
 #include "BOOST/bind.hpp"
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 #include "Engine/Processor/Service.h"
 
 // TODO Modify char * to void * and get an Allocator?

@@ -6,7 +6,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/transform2.hpp>
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 #include "Engine/Graphics/GL/Mesh.h"
 #include "Engine/Graphics/GL/Shader.h"
 #include "Engine/Graphics/GL/Texture.h"

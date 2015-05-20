@@ -1,7 +1,7 @@
 #ifndef ENGINE_UPDATER_IUPDATABLE_HPP_
 #define ENGINE_UPDATER_IUPDATABLE_HPP_
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 
 namespace Engine {
 namespace Updater {

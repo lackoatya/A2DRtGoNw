@@ -1,7 +1,7 @@
 #ifndef ENGINE_GAME_IGAME_OBSERVER_HPP_
 #define ENGINE_GAME_IGAME_OBSERVER_HPP_
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 #include "Engine/Updater/NonDeterministic.hpp"
 #include "Engine/Container/IntervalBuffer.hpp"
 

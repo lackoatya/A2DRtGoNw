@@ -1,7 +1,7 @@
 #ifndef P3A_HOST_HOST_OBSERVER_H_
 #define P3A_HOST_HOST_OBSERVER_H_
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 #include "Engine/Game/IGameObserver.hpp"
 
 #include "P3A/CoreResult.h"

@@ -160,6 +160,8 @@
     <ClInclude Include="..\Engine\Graphics\GL\Mesh.h">
       <Filter>Graphics\GL</Filter>
     </ClInclude>
+    <ClInclude Include="..\Engine\Platform.h" />
+    <ClInclude Include="..\Engine\Defines.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Engine\Network\Packet.cpp">

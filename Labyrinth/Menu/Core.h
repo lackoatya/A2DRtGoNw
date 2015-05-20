@@ -1,7 +1,7 @@
 #ifndef LABYRINTH_MENU_CORE_H_
 #define LABYRINTH_MENU_CORE_H_
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 #include "Engine/Updater/Deterministic.hpp"
 #include "Engine/Processor/Blocked.hpp"
 

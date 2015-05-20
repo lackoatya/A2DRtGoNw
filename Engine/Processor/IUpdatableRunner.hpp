@@ -1,7 +1,7 @@
 #ifndef ENGINE_PROCESSOR_IUPDATABLE_RUNNER_HPP_
 #define ENGINE_PROCESSOR_IUPDATABLE_RUNNER_HPP_
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 #include "Engine/Updater/IUpdatable.hpp"
 #include "Engine/Processor/IRunnable.hpp"
 

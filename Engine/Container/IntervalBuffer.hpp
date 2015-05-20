@@ -1,7 +1,7 @@
 #ifndef ENGINE_CONTAINER_INTERVAL_BUFFER_HPP_
 #define ENGINE_CONTAINER_INTERVAL_BUFFER_HPP_
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 #include "Engine/Container/Buffer.hpp"
 
 namespace Engine {

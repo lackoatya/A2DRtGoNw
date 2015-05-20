@@ -1,7 +1,7 @@
 #ifndef P3A_MENU_MENU_CORE_H_
 #define P3A_MENU_MENU_CORE_H_
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 #include "Engine/Updater/Deterministic.hpp"
 #include "Engine/Processor/Blocked.hpp"
 

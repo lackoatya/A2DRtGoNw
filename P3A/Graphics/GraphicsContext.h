@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 #include "Engine/Graphics/Shader.h"
 #include "Engine/Graphics/TextureBase.h"
 #include "Engine/Graphics/ModelBase.h"

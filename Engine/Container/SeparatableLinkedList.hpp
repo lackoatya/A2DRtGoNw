@@ -5,7 +5,7 @@
 
 #include "BOOST/foreach.hpp"
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 
 namespace Engine {
 namespace Container {

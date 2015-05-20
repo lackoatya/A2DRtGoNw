@@ -1,7 +1,7 @@
 #ifndef P3A_GAME_NINJA_PLAYER_H_
 #define P3A_GAME_NINJA_PLAYER_H_
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 
 #include "P3A/Game/Ninja.h"
 

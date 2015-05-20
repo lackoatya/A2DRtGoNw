@@ -1,7 +1,7 @@
 #ifndef ENGINE_UPDATER_DETERMINISTIC_HPP_
 #define ENGINE_UPDATER_DETERMINISTIC_HPP_
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 #include "Engine/Updater/ITimeUpdatable.hpp"
 
 namespace Engine { 

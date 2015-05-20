@@ -1,7 +1,7 @@
 #ifndef LABYRINTH_GRAPHICS_ICONTEXT_H_
 #define LABYRINTH_GRAPHICS_ICONTEXT_H_
 
-#include "Engine/Types.h"
+#include "Engine/Platform.h"
 #include "Engine/Graphics/IContext.h"
 
 namespace Labyrinth {
