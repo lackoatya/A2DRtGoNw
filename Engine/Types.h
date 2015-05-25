@@ -46,7 +46,21 @@ using enable_shared_from_this = boost::enable_shared_from_this < Type >;
 
 #include "BOOST/make_shared.hpp"
 // TODO Alias make_shared here!
-#define make_shared(Type, ... ) boost::make_shared < ##Type, ##__VA_ARGS__ >
+#define make_shared( _type, ... ) boost::make_shared < _type, __VA_ARGS__ >
+
+// Static Polymorphism
+// See @ http://en.wikipedia.org/wiki/Curiously_recurring_template_pattern
+#define polymorphic_base_class( _name ) \
+  template < typename Derived > \
+  class _name
+
+#define polymorphic_call( _return, _interface, _implementation, ... ) \
+  inline _return _interface (__VA_ARGS__) { \
+    static_cast< Derived* >(this)->_implementation(__VA_ARGS__); \
+  }
+
+#define polymorphic_derived_class( _name, _base) \
+  class _name : public _base < _name >
 
 // Atomic
 #include "BOOST/atomic.hpp"

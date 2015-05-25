@@ -8,8 +8,14 @@
 
 #include "Engine/Container/Buffer.hpp"
 
-shared_ptr < Engine::Container::Buffer < uint32 > > m_buffer(make_shared(Engine::Container::Buffer < uint32 >, uint32)(8));
-Engine::Container::Buffer_Proxy < uint32 > m_buffer_proxy(m_buffer);
+polymorphic_base_class(TEST) {
+  polymorphic_call(void, interface_name, implementation_name)
+};
+
+polymorphic_derived_class(DERIVED_TEST, TEST) {
+  void implementation_name(void) {
+  } 
+};
 
 int main(void) {
   Labyrinth::Graphics::IContext * context = nullptr;
