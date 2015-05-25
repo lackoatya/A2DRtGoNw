@@ -6,11 +6,10 @@
 #include "Labyrinth/Menu/Core.h"
 // #include "Labyrinth/Host/HostCore.h"
 
-class ASD : public BaseClass < ASD > {
-public:
-  uint32 asdasdasd = 0;
-};
+#include "Engine/Container/Buffer.hpp"
 
+shared_ptr < Engine::Container::Buffer < uint32 > > m_buffer(make_shared(Engine::Container::Buffer < uint32 >, uint32)(8));
+Engine::Container::Buffer_Proxy < uint32 > m_buffer_proxy(m_buffer);
 
 int main(void) {
   Labyrinth::Graphics::IContext * context = nullptr;

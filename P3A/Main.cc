@@ -1,4 +1,8 @@
-#include "P3A/Graphics/GameArtSource.h"
+int main(void) {
+  return 0;
+}
+
+/*#include "P3A/Graphics/GameArtSource.h"
 #include "P3A/Graphics/GraphicsContext.h"
 
 #include "P3A/CoreResult.h"
@@ -18,9 +22,9 @@ int main(void) {
       } continue;
 
       case P3A::CoreState::SOLE: {
-        /*P3A::Graphics::GameArtSource art_source;
+        P3A::Graphics::GameArtSource art_source;
         P3A::Sole::SoleCore sole(&graphics, &art_source);
-        state = sole.Run();*/
+        state = sole.Run();
       } continue;
 
       case P3A::CoreState::HOST: {
@@ -36,4 +40,4 @@ int main(void) {
   }
 
   return 0;
-}
+}*/

@@ -19,6 +19,8 @@
 // Assert
 #include <assert.h>
 
+#include <utility>
+
 // Basic types
 #include "BOOST/cstdint.hpp"
 
@@ -35,15 +37,16 @@ typedef double real64;
 
 // Shared Pointer
 #include "BOOST/shared_ptr.hpp"
-
-template < class Type >
+template < typename Type >
 using shared_ptr = boost::shared_ptr < Type >;
 
-// Shared Pointer from This
 #include "BOOST/enable_shared_from_this.hpp"
-
 template < class Type >
 using enable_shared_from_this = boost::enable_shared_from_this < Type >;
+
+#include "BOOST/make_shared.hpp"
+// TODO Alias make_shared here!
+#define make_shared(Type, ... ) boost::make_shared < ##Type, ##__VA_ARGS__ >
 
 // Atomic
 #include "BOOST/atomic.hpp"

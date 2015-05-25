@@ -1,60 +1,74 @@
 #ifndef ENGINE_CONTAINER_BUFFER_HPP_
 #define ENGINE_CONTAINER_BUFFER_HPP_
 
-#include "BOOST/atomic.hpp"
-
 #include "Engine/Platform.h"
 
 namespace Engine {
 namespace Container {
-template < class DataType >
+// Single-Threaded Circlic Buffer.
+template < typename DataType >
 class Buffer : public NonCopyable {
 public:
   inline Buffer(uint32 const& _size)
       : size_(_size),
-        data_(new DataType[size_]) { }
+        m_data(new DataType[size_]) {
+  }
+  
   inline virtual ~Buffer(void) {
-    delete[] data_;
-    data_ = nullptr;
+    delete[] m_data;
+    m_data = nullptr;
   }
 
-  inline uint32 next(uint32 const& _index) const {
-    return (_index < size_ - 1) ? _index + 1 : 0;
+  inline uint32 size(void) const { return m_size; }
+  inline uint32 last(void) const { return m_last.load(); }
+
+  // Advances m_last value, and returns the current m_last value into _index
+  inline void Advance(uint32 & _index) {
+    uint32 last_cache = m_last.load();
+    _index = Next(last_cache);
+    assert( m_last.compare_exchange_strong(last_cache, _index) && "Invalid compare_exhange_strong @ Buffer::Advance");
   }
 
-  /*inline void add(DataType const& _value) {
-    uint32 next_ = next(last_);
-    data_[next_] = _value;
-    last_ = next_;
-  }*/
-
-  inline void procede(void) {
-    last_ = next(last_);
+  // Returns the data at _index.
+  // Note: _index is not bound checked!
+  inline DataType * operator[](uint32 const& _index) const {
+    assert( _index < m_size && "Invalid _index @ Buffer::[]");
+    return m_data[_index];
   }
 
-  inline void add(DataType _value) {
-    memcpy(&(data_[next(last_)]), &_value, sizeof(DataType));
-    last_ = next(last_);
+protected:
+  const uint32 m_size;
+  boost::atomic< uint32 > m_last = 0;
+  DataType * m_data = nullptr;
+
+  // Sets _index to be bound valid.
+  // Note: _index should not be greater than 2 * m_size!
+  inline void Next(uint32 & _index) const {
+    assert( _index < 2 * m_size && "Invalid _index @ Buffer::Next!");
+    return _index < m_size ? _index : _index - m_size;
+  }
+};
+
+// Multi-Threaded Proxy for a Single-Threaded Circlic Buffer.
+template < typename DataType >
+class Buffer_Proxy : public NonCopyable {
+public:
+  inline Buffer_Proxy(shared_ptr < Buffer < DataType > > _buffer)
+      : m_buffer(_buffer) {
+    assert( _buffer && "Invalid _buffer @ Buffer_Proxy::ctor!");
   }
 
-  inline void add(DataType * _value) {
-    memcpy(&(data_[next(last_)]), _value, sizeof(DataType));
-    last_ = next(last_);
+  inline ~Buffer_Proxy(void) = default;
+
+  // Returns the data at _index as const.
+  // Note: _index is not bound checked!
+  inline const DataType * operator[](uint32 const& _index) const {
+    assert( m_buffer && "Invalid _index @ Buffer_Proxy::[]!");
+    return m_buffer[_index];
   }
 
-  inline uint32 size(void) const { return size_; }
-  inline uint32 last(void) const { return last_; }
-  inline DataType * get(uint32 const& _index) const { return &data_[_index]; }
-  inline DataType   get_value(uint32 const& _index) const { return data_[_index]; }
-  inline DataType * get_last(void) const { return &data_[last_]; }
-  inline DataType   get_last_value(void) const { return data_[last_]; }
-  inline DataType * get_next(void) const { return &data_[next(last_)]; }
-  inline DataType   get_next_value(void) const { return data_[nest(last_)]; }
-
-  protected:
-    const uint32 size_;
-    boost::atomic<uint32> last_ = 0;
-    DataType * data_ = nullptr;
+private:
+  shared_ptr < Buffer < DataType > > m_buffer;
 };
 }
 }
