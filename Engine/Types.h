@@ -62,6 +62,18 @@ using enable_shared_from_this = boost::enable_shared_from_this < Type >;
 #define polymorphic_derived_class( _name, _base) \
   class _name : public _base < _name >
 
+/* USAGE:
+  polymorphic_base_class(TEST) {
+    polymorphic_call(void, interface_name, implementation_name)
+  };
+
+  polymorphic_derived_class(DERIVED_TEST, TEST) {
+    void implementation_name(void) {
+      // Implementation here..
+    }
+  };
+*/
+
 // Atomic
 #include "BOOST/atomic.hpp"
 template<class Type>

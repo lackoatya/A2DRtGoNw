@@ -8,15 +8,6 @@
 
 #include "Engine/Container/Buffer.hpp"
 
-polymorphic_base_class(TEST) {
-  polymorphic_call(void, interface_name, implementation_name)
-};
-
-polymorphic_derived_class(DERIVED_TEST, TEST) {
-  void implementation_name(void) {
-  } 
-};
-
 int main(void) {
   Labyrinth::Graphics::IContext * context = nullptr;
   
