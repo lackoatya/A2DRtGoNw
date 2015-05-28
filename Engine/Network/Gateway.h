@@ -1,101 +1,171 @@
 #ifndef ENGINE_NETWORK_GATEWAY_H_
 #define ENGINE_NETWORK_GATEWAY_H_
 
-#include "BOOST/asio.hpp"
 #include "BOOST/bind.hpp"
 
 #include "Engine/Container/Pool.h"
 #include "Engine/Processor/Service.h"
+#include "Engine/Network/IHandler.hpp"
 
-namespace Engine {
-namespace Network {
-class Gateway : public NonCopyable {
-  public:
-    class IConnectionHandler {
-      public:
-        virtual void Handle_Connection(shared_ptr < tcp_socket > _socket) = 0;
-    };
+namespace Engine { namespace Network {
 
-  public:
-    struct Configuration {
-      uint32 connections_max;
-      uint32 port_offset;
+class Gateway_TCP : public NonCopyable {
+public:
+  inline Gateway_TCP( Processor::Service * _service
+                    , Handler < shared_ptr < tcp::socket > > _tcp_connection_handler )
+      : m_service(_service)
+      , m_gateway(_service->service())
+      , m_tcp_connection_handler(_tcp_connection_handler) {
+    assert( _service && "Invalid _service @ Gateway_TCP::ctor" );
+  }
 
-      inline Configuration(uint32 _connections_max, uint32 _port_offset)
-          : connections_max(_connections_max)
-          , port_offset(_port_offset) {
+  inline Gateway_TCP( Processor::Service * _service )
+      : Gateway_TCP(_service, nullptr) {
+  }
+
+  inline virtual ~Gateway_TCP(void) {
+  }
+
+  inline boost::system::error_code Bind(address const& _address, uint32 const& _port) {
+    boost::system::error_code error;
+
+    m_gateway.open( tcp::v4(), error );
+    if (error) return error;
+
+    m_gateway.bind( tcp::endpoint( _address, _port ), error );
+    return error;
+  }
+
+  inline void Listen(void) {
+    if ( m_gateway.is_open() ) {
+      shared_ptr < tcp::socket > accepted(new tcp::socket(m_service->service()));
+      m_gateway.async_accept( *accepted
+                            , boost::bind( &Gateway_TCP::Handle_Accept
+                                         , this
+                                         , accepted
+                                         , boost::asio::placeholders::error ) );
+    }
+  }
+
+  inline void set_handler( Handler < shared_ptr < tcp::socket > > _handler ) {
+    m_tcp_connection_handler = _handler;
+  }
+
+protected:
+  Processor::Service * m_service = nullptr;
+  tcp::acceptor m_gateway;
+  ThreadSafeHandler < shared_ptr < tcp::socket > > m_tcp_connection_handler;
+
+  inline void Handle_Accept( shared_ptr < tcp::socket > _socket
+                           , boost::system::error_code const& _error ) {
+    if (!_error) {
+      auto tcp_connection_handler = m_tcp_connection_handler.load();
+      if (tcp_connection_handler) {
+        tcp_connection_handler->Handle(_socket);
       }
-    } const configuration;
-
-    atomic < shared_ptr < IConnectionHandler > > m_handler;
-
-    inline Gateway( Configuration const& _configuration
-                  , Processor::Service * _service )
-        : configuration(_configuration)
-        , m_service(_service)
-        , m_gateway(_service->service())
-        , m_port_offsets(configuration.connections_max) {
-      assert( _service );
     }
 
-    inline virtual ~Gateway(void) {
+    Listen();
+  }
+};
+
+class Gateway_Both : public NonCopyable {
+private:
+  class Gateway_UDP final : IHandler < shared_ptr < tcp::socket > > {
+  public:
+    inline Gateway_UDP( Processor::Service * _service
+                      , Handler < shared_ptr < tcp::socket >
+                                , shared_ptr < udp::socket > > _connection_handler )
+        : m_connection_handler( _connection_handler )
+        , m_udp_gateway( _service->service() ) {
+      assert( _service && "Invalid _service @ TCP_Handler::ctor" );
     }
 
-    inline boost::system::error_code Bind( boost::asio::ip::tcp::endpoint const& _endpoint ) {
+    inline ~Gateway_UDP(void) {
+    }
+
+    inline boost::system::error_code Bind( address const& _address, uint32 const& _port ) {
       boost::system::error_code error;
 
-      error = m_gateway.open(_endpoint.protocol(), error);
+      m_udp_gateway.open( udp::v4(), error);
       if (error) return error;
 
-      error = m_gateway.bind(_endpoint, error);
+      m_udp_gateway.bind( udp::endpoint( _address, _port ), error);
       return error;
     }
 
-    inline void Listen(void) {
-      shared_ptr < tcp_socket > accepted(new tcp_socket(m_service->service()));
-      if (m_gateway.is_open()) m_gateway.async_accept( *accepted
-                                                     , boost::bind( &Gateway::Handle_Accept
-                                                                  , this
-                                                                  , accepted
-                                                                  , boost::asio::placeholders::error ) );
+    inline void Handle( shared_ptr < tcp::socket > _tcp_socket ) {
+      shared_ptr < udp::socket > udp_socket( new udp::socket( m_service->service() ) );
+
+      m_udp_gateway.async_connect( udp::endpoint( _tcp_socket->remote_endpoint().address()
+                                                , _tcp_socket->remote_endpoint().port() )
+                                 , boost::bind( &Gateway_UDP::Handle_Connection
+                                              , this
+                                              , boost::asio::placeholders::error
+                                              , _tcp_socket
+                                              , udp_socket ));
     }
 
-    // TODO This is not the perfect place for this!
-    inline void ReturnPort(uint32 const& _port) {
-      m_port_offsets.push(_port - configuration.port_offset);
-    }
-
-    inline void Shutdown(void) {
-      Dispose();
+    inline void set_handler( Handler < shared_ptr < tcp::socket >
+                                     , shared_ptr < udp::socket > > _handler ) {
+      m_connection_handler = _handler;
     }
 
   protected:
-    inline virtual void Dispose(void) {
-      m_gateway.cancel();
-      m_gateway.close();
+    ThreadSafeHandler < shared_ptr < tcp::socket >
+                      , shared_ptr < udp::socket > > m_connection_handler;
 
-      // TODO ?!?
-      delete this;
-    }
-
-  private:
     Processor::Service * m_service = nullptr;
+    udp::socket m_udp_gateway;
 
-    boost::asio::ip::tcp::acceptor m_gateway;
-    Engine::Container::OffsetPool m_port_offsets;
-
-    inline void Handle_Accept( shared_ptr < tcp_socket > _socket
-                             , boost::system::error_code const& _error) {
+    inline void Handle_Connection( boost::system::error_code const& _error
+                                 , shared_ptr < tcp::socket > _tcp_socket
+                                 , shared_ptr < udp::socket > _udp_socket ) {
       if ( !_error ) {
-        shared_ptr < IConnectionHandler > handler = m_handler.load();
-        if (handler) {
-          handler->Handle_Connection( _socket );
+        auto connection_handler = m_connection_handler.load();
+        if ( connection_handler ) {
+          connection_handler->Handle( _tcp_socket, _udp_socket );
         }
       }
-      
-      Listen();
     }
+  };
+
+public:
+  inline Gateway_Both( Processor::Service * _service
+                     , Handler < shared_ptr < tcp::socket >
+                               , shared_ptr < udp::socket > > _connection_handler )
+      : m_udp_gateway( new Gateway_UDP( _service, _connection_handler ) )
+      , m_tcp_gateway( _service, m_udp_gateway ) {
+  }
+
+  inline Gateway_Both( Processor::Service * _service )
+      : Gateway_Both(_service, nullptr) {
+  }
+
+  inline virtual ~Gateway_Both(void) {
+  }
+
+  inline boost::system::error_code Bind( address const& _address, uint32 const& _port ) {
+    boost::system::error_code error;
+    if ( error = m_tcp_gateway.Bind( _address, _port ) ) return error;
+    if ( error = m_udp_gateway->Bind( _address, _port ) ) return error;
+    return error;
+  }
+
+  inline void Listen(void) {
+    m_tcp_gateway.Listen();
+  }
+
+  inline void set_handler(Handler < shared_ptr < tcp::socket >
+                          , shared_ptr < udp::socket > > _connection_handler) {
+    m_udp_gateway->set_handler( _connection_handler );
+  }
+
+protected:
+  shared_ptr < Gateway_UDP > m_udp_gateway;
+  Gateway_TCP m_tcp_gateway;
 };
-}
-}
+
+} }
+
 #endif
