@@ -162,6 +162,13 @@
     <ClInclude Include="..\Engine\Physics\IShape.h">
       <Filter>Physics</Filter>
     </ClInclude>
+    <ClInclude Include="..\Engine\Algorithms.h" />
+    <ClInclude Include="..\Engine\Network\Connector.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Network\IHandler.hpp">
+      <Filter>Network</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Engine\Network\Packet.cpp">

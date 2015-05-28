@@ -3,58 +3,61 @@
 
 #include "Engine/Platform.h"
 
-namespace Engine {
-namespace Container {
+namespace Engine { namespace Container {
 template < class Type >
 class IPool : public NonCopyable {
-  public:
-    inline IPool(void) = default;
-    inline virtual ~IPool(void) {
-      delete[] m_data;
-      m_data = nullptr;
-    }
+public:
+  inline IPool(void)
+      : m_last(0) {
+  }
 
-    inline Type pop(void) {
-      assert( m_data );
-      uint32 index = m_last--; 
-      return m_data[index];
-    }
-    inline void push(Type const& _value) {
-      assert( m_data );
-      uint32 index = m_last++;
-      m_data[index] = _value;
-    }
+  inline virtual ~IPool(void) {
+    delete[] m_data;
+    m_data = nullptr;
+  }
 
-  protected:
-    uint32 m_size = 0;
-    atomic < uint32 > m_last = m_size;
-    Type * m_data = nullptr;
+  inline Type pop(void) {
+    assert( m_data );
+    uint32 index = m_last--; 
+    return m_data[index];
+  }
+  inline void push(Type const& _value) {
+    assert( m_data );
+    uint32 index = m_last++;
+    m_data[index] = _value;
+  }
+
+protected:
+  uint32 m_size = 0;
+  atomic < uint32 > m_last;
+  Type * m_data = nullptr;
     
-    virtual void Fill(void) = 0;
+  virtual void Fill(void) = 0;
 
-    inline void Allocate(uint32 const& _size) {
-      assert(!m_data);
-      m_data = new Type[_size];
-      m_size = _size;
-
-      Fill();
-    }
+  inline void Allocate(uint32 const& _size) {
+    assert( !m_data && "Allocating Pool second time @ IPool::Allocate" );
+    m_data = new Type[_size];
+    m_size = _size;
+    Fill();
+  }
 };
 
 class OffsetPool : public IPool < uint32 > {
-  public:
-    inline OffsetPool(uint32 const& _size)
-        : IPool < uint32 >() {
-      Allocate(_size);
-    }
-    inline ~OffsetPool(void) = default;
+public:
+  inline OffsetPool(uint32 const& _size)
+      : IPool < uint32 >() {
+    Allocate(_size);
+  }
 
-  private:
-    void Fill(void) {
-      for (uint32 current = 0; current < m_size; ++current) {
-        m_data[current] = current;
-      }
+  inline ~OffsetPool(void) {
+  }
+
+private:
+  void Fill(void) {
+    for (uint32 current = 0; current < m_size; ++current) {
+      m_data[current] = current;
     }
+  }
 };
 }
 }

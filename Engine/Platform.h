@@ -3,5 +3,6 @@
 
 #include "Engine/Defines.h"
 #include "Engine/Types.h"
+#include "Engine/Algorithms.h"
 
 #endif

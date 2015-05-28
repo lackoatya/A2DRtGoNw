@@ -43,7 +43,7 @@ bool Shader::Load( std::string const& _vertex_path
     glGetShaderInfoLog(vertex, 512, NULL, info_log);
     // Engine::Utility::AbortWithMessageAndData("Vertex Compilation failed:\0", info_log);
 
-    __asm int 3
+    // __asm int 3
   }
 
   fragment = glCreateShader(GL_FRAGMENT_SHADER);
@@ -57,7 +57,7 @@ bool Shader::Load( std::string const& _vertex_path
     glGetShaderInfoLog(fragment, 512, NULL, info_log);
     // Engine::Utility::AbortWithMessageAndData("Fragment Compilation failed:\0", info_log);
 
-    __asm int 2
+    // __asm int 2
   }
 
   m_shader_program = glCreateProgram();

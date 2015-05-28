@@ -12,16 +12,17 @@ template < class Result >
 class Threaded : public NonCopyable
                , public IRunnable < void > {
 public:
-  inline Threaded(IRunnable < Result > * _runner)
-      : m_runner(_runner)
+  inline Threaded(IRunnable < Result > * _runnable)
+      : m_runnable(_runnable)
       , m_thread() {
+    assert( _runnable && "Invalid _runnable @ Threaded::ctor");
   }
     
   inline virtual ~Threaded(void) {
   }
 
   inline virtual void Run(void) override {
-    m_thread = boost::thread(boost::bind(&IRunnable < Result >::Run, &m_runner));
+    m_thread = boost::thread(boost::bind(&IRunnable < Result >::Run, m_runnable));
   }
 
   inline virtual void Stop(void) {
@@ -33,7 +34,7 @@ public:
   }
 
 protected:
-  IRunnable < Result > m_runner;
+  IRunnable < Result > * m_runnable = nullptr;
   boost::thread m_thread;
 };
 }

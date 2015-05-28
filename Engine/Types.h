@@ -37,12 +37,16 @@ typedef double real64;
 
 // Shared Pointer
 #include "BOOST/shared_ptr.hpp"
-template < typename Type >
-using shared_ptr = boost::shared_ptr < Type >;
+template < typename T >
+using shared_ptr = boost::shared_ptr < T >;
 
 #include "BOOST/enable_shared_from_this.hpp"
-template < class Type >
-using enable_shared_from_this = boost::enable_shared_from_this < Type >;
+template < class T >
+using enable_shared_from_this = boost::enable_shared_from_this < T >;
+
+#include "BOOST/utility/enable_if.hpp"
+template < class Cond, class T = void >
+using enable_if = boost::enable_if < Cond, T >;
 
 #include "BOOST/make_shared.hpp"
 // TODO Alias make_shared here!
@@ -76,8 +80,8 @@ using enable_shared_from_this = boost::enable_shared_from_this < Type >;
 
 // Atomic
 #include "BOOST/atomic.hpp"
-template<class Type>
-using atomic = boost::atomic <Type>;
+template < typename T >
+using atomic = boost::atomic < T >;
 
 // Mutex
 #include "BOOST/thread/shared_mutex.hpp"
@@ -91,13 +95,9 @@ typedef boost::unique_lock < Mutex > Unique_Lock;
 
 // Networking
 #include "BOOST/asio.hpp"
-typedef boost::asio::ip::tcp::socket tcp_socket;
-typedef boost::asio::ip::udp::socket udp_socket;
-
-typedef boost::asio::ip::tcp::endpoint tcp_endpoint;
-typedef boost::asio::ip::udp::endpoint udp_endpoint;
-
-typedef boost::asio::ip::address address;
+using tcp = boost::asio::ip::tcp;
+using udp = boost::asio::ip::udp;
+using address = boost::asio::ip::address;
 
 // Constants
 const real32 PI = 3.141592741f;

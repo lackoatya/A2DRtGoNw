@@ -4,9 +4,14 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <IntDir>$(SolutionDir)\Intermediate\$(Configuration)\$(Platform)\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir);$(SolutionDir)\Libraries\Include;D:\boost_1_57_0;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\Libraries\$(Configuration)\$(Platform);D:\boost_1_57_0\stage\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir);$(SolutionDir)\Libraries\Include;D:\boost_1_58_0;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\Libraries\$(Configuration)\$(Platform);D:\boost_1_58_0\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
-  <ItemDefinitionGroup />
+  <ItemDefinitionGroup>
+    <Link>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemGroup />
 </Project>
