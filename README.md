@@ -29,7 +29,11 @@ To be decided.
 ## Engine ##
 
 ### <a id="Engine_Base">Base</a> ###
-To be set.
+Basic typedefs and macros located in the main directory of Engine. Every component of Engine includes Platform.h, wich unifies other Base header files.
+* Platform.h: Include this header to access every Base header.
+* Defines.h: Usefull macros like Platform definitions and Debug/Release.
+* Types.h: POD redifinitions with typedefs, Boost includes and redefinitions with using. Several usefull classes like Vector2 and ?.
+* Algorithms: Nothing useful yet.
 
 ### <a id="Engine_Container">Container</a> ###
 To be set.

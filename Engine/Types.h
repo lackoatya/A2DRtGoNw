@@ -49,8 +49,6 @@ template < class Cond, class T = void >
 using enable_if = boost::enable_if < Cond, T >;
 
 #include "BOOST/make_shared.hpp"
-// TODO Alias make_shared here!
-#define make_shared( _type, ... ) boost::make_shared < _type, __VA_ARGS__ >
 
 // Static Polymorphism
 // See @ http://en.wikipedia.org/wiki/Curiously_recurring_template_pattern

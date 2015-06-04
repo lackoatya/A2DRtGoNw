@@ -6,14 +6,14 @@
 #include "Engine/Platform.h"
 #include "Engine/Processor/IRunnable.hpp"
 
-namespace Engine {
-namespace Processor {
-template < class Result >
+namespace Engine { namespace Processor {
+
+template< class Result >
 class Threaded : public NonCopyable
                , public IRunnable < void > {
 public:
-  inline Threaded(IRunnable < Result > * _runnable)
-      : m_runnable(_runnable)
+  inline Threaded( shared_ptr< IRunnable< Result > > _runnable )
+      : m_runnable( _runnable )
       , m_thread() {
     assert( _runnable && "Invalid _runnable @ Threaded::ctor");
   }
@@ -22,7 +22,7 @@ public:
   }
 
   inline virtual void Run(void) override {
-    m_thread = boost::thread(boost::bind(&IRunnable < Result >::Run, m_runnable));
+    m_thread = boost::thread( &IRunnable< Result >::Run, m_runnable );
   }
 
   inline virtual void Stop(void) {
@@ -34,10 +34,10 @@ public:
   }
 
 protected:
-  IRunnable < Result > * m_runnable = nullptr;
+  shared_ptr< IRunnable< Result > > m_runnable = nullptr;
   boost::thread m_thread;
 };
-}
-}
+
+} }
 
 #endif

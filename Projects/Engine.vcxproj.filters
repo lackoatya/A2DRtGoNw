@@ -34,6 +34,9 @@
     <Filter Include="Graphics\DX">
       <UniqueIdentifier>{ef2835e9-664a-4813-959b-98aa6a6a9a72}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Allocator">
+      <UniqueIdentifier>{c0f1cbdb-e266-4f65-a7f1-e0d9591b8730}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Engine\Container\BitField.h">
@@ -46,9 +49,6 @@
       <Filter>Container</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine\Container\IntervalBuffer.hpp">
-      <Filter>Container</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Engine\Container\Pool.h">
       <Filter>Container</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine\Container\SeparatableLinkedList.hpp">
@@ -168,6 +168,12 @@
     </ClInclude>
     <ClInclude Include="..\Engine\Network\IHandler.hpp">
       <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Container\Generator.h">
+      <Filter>Container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Allocator\Pool.hpp">
+      <Filter>Allocator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

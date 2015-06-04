@@ -19,31 +19,31 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{AA2A8842-4A35-43AE-8599-04BB2B978016}</ProjectGuid>
-    <RootNamespace>Engine</RootNamespace>
+    <ProjectGuid>{84EF6E97-EDC5-487D-A3F0-6A6247EBA7FE}</ProjectGuid>
+    <RootNamespace>Engine_UnitTest</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -52,66 +52,45 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="Engine.props" />
     <Import Project="Shared.props" />
+    <Import Project="Game.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="Engine.props" />
     <Import Project="Shared.props" />
+    <Import Project="Game.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="Engine.props" />
-    <Import Project="Shared.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="Engine.props" />
-    <Import Project="Shared.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir);$(SolutionDir)\Libraries\Include;D:\boost_1_57_0;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\Libraries\$(Configuration)\$(Platform);D:\boost_1_57_0\stage\lib;$(LibraryPath)</LibraryPath>
-    <OutDir>$(SolutionDir)\Libraries\$(Configuration)\$(Platform)\</OutDir>
-    <IntDir>$(SolutionDir)\Intermediate\$(Configuration)\$(Platform)\$(ProjectName)\</IntDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)\Libraries\$(Configuration)\$(Platform)\</OutDir>
-    <IntDir>$(SolutionDir)\Intermediate\$(Configuration)\$(Platform)\$(ProjectName)\</IntDir>
-  </PropertyGroup>
+  <PropertyGroup />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
-      <ObjectFileName>$(IntermediateOutputPath)\%(RelativeDir)</ObjectFileName>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
-    <Lib>
-      <AdditionalDependencies>opengl32.lib;glew32sd.lib;glfw3.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
-    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
-      <ObjectFileName>$(IntermediateOutputPath)\%(RelativeDir)</ObjectFileName>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
-    <Lib>
-      <AdditionalDependencies>opengl32.lib;glew32sd.lib;glfw3.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
-    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -142,61 +121,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\Engine\Algorithms.h" />
-    <ClInclude Include="..\Engine\Allocator\Pool.hpp" />
-    <ClInclude Include="..\Engine\Container\BitField.h" />
-    <ClInclude Include="..\Engine\Container\BSP_Tree.hpp" />
-    <ClInclude Include="..\Engine\Container\Buffer.hpp" />
-    <ClInclude Include="..\Engine\Container\IntervalBuffer.hpp" />
-    <ClInclude Include="..\Engine\Container\Generator.h" />
-    <ClInclude Include="..\Engine\Container\SeparatableLinkedList.hpp" />
-    <ClInclude Include="..\Engine\Defines.h" />
-    <ClInclude Include="..\Engine\Game\IController.hpp" />
-    <ClInclude Include="..\Engine\Game\IGame.hpp" />
-    <ClInclude Include="..\Engine\Game\IGameObserver.hpp" />
-    <ClInclude Include="..\Engine\Graphics\GL\Mesh.h" />
-    <ClInclude Include="..\Engine\Graphics\GL\Shader.h" />
-    <ClInclude Include="..\Engine\Graphics\GL\Texture.h" />
-    <ClInclude Include="..\Engine\Graphics\IContext.h" />
-    <ClInclude Include="..\Engine\Graphics\IMesh.h" />
-    <ClInclude Include="..\Engine\Graphics\IShader.h" />
-    <ClInclude Include="..\Engine\Graphics\ITexture.h" />
-    <ClInclude Include="..\Engine\Network\Connection.h" />
-    <ClInclude Include="..\Engine\Network\Connector.h" />
-    <ClInclude Include="..\Engine\Network\Gateway.h" />
-    <ClInclude Include="..\Engine\Network\IHandler.hpp" />
-    <ClInclude Include="..\Engine\Network\Packet.h" />
-    <ClInclude Include="..\Engine\Numerics\IIntegrator.hpp" />
-    <ClInclude Include="..\Engine\Numerics\IInterpolator.hpp" />
-    <ClInclude Include="..\Engine\Numerics\LinearInterpolation.hpp" />
-    <ClInclude Include="..\Engine\Numerics\RungeKutta4Integrator.hpp" />
-    <ClInclude Include="..\Engine\Numerics\SymplecticEulerIntegrator.hpp" />
-    <ClInclude Include="..\Engine\Physics\AABB.h" />
-    <ClInclude Include="..\Engine\Physics\Body.hpp" />
-    <ClInclude Include="..\Engine\Physics\Circle.h" />
-    <ClInclude Include="..\Engine\Physics\IShape.h" />
-    <ClInclude Include="..\Engine\Platform.h" />
-    <ClInclude Include="..\Engine\Processor\Blocked.hpp" />
-    <ClInclude Include="..\Engine\Processor\IResult.hpp" />
-    <ClInclude Include="..\Engine\Processor\IRunnable.hpp" />
-    <ClInclude Include="..\Engine\Processor\IUpdatableRunner.hpp" />
-    <ClInclude Include="..\Engine\Processor\Service.h" />
-    <ClInclude Include="..\Engine\Processor\StrandedService.h" />
-    <ClInclude Include="..\Engine\Processor\Threaded.hpp" />
-    <ClInclude Include="..\Engine\Types.h" />
-    <ClInclude Include="..\Engine\Updater\Deterministic.hpp" />
-    <ClInclude Include="..\Engine\Updater\IUpdatable.hpp" />
-    <ClInclude Include="..\Engine\Updater\NonDeterministic.hpp" />
-    <ClInclude Include="..\Engine\Updater\ITimeUpdatable.hpp" />
-    <ClInclude Include="..\Engine\Utility\Logger.h" />
-    <ClInclude Include="..\Engine\Utility\ObjectCounter.hpp" />
+    <ClCompile Include="..\Engine_UnitTest\Main.cc" />
+    <ClCompile Include="..\Engine_UnitTest\Network.cc" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Engine\Graphics\GL\Mesh.cc" />
-    <ClCompile Include="..\Engine\Graphics\GL\Shader.cc" />
-    <ClCompile Include="..\Engine\Graphics\GL\Texture.cc" />
-    <ClCompile Include="..\Engine\Network\Packet.cpp" />
-    <ClCompile Include="..\Engine\Utility\Logger.cc" />
+    <ClInclude Include="..\Engine_UnitTest\Container.h" />
+    <ClInclude Include="..\Engine_UnitTest\Network.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
